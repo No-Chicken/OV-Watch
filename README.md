@@ -9,7 +9,7 @@ https://www.bilibili.com/video/BV1hh4y1J7TS
 
 # 系统框图
 
-<img src=".\images\系统框图.jpg" alt="系统框图" style="zoom: 50%;" />
+![手表系统框图](.\images\手表系统框图.png)
 
 # 功能说明
 已经尽量满足现在智能手表的功能，后期还需要继续添加修改很多东西。大致功能包括：
@@ -26,16 +26,16 @@ https://www.bilibili.com/video/BV1hh4y1J7TS
 10. 海拔测量
 11. 其他功能etc.
 
-大致功能表如下图所示：
+### 大致功能表如下图所示：
 
-<img src=".\images\功能表.jpg" alt="功能表" style="zoom: 67%;" />
+![各版本功能表](.\images\各版本功能表.png)
 
 # 部分界面图
 
-<img src=".\images\界面.jpg" alt="界面" style="zoom: 80%;" />
+<img src=".\images\界面.jpg" alt="界面"  />
 
 # 实物图
 
-<img src=".\images\实物充电.jpg" alt="实物充电" style="zoom: 33%;" />
+![实物充电](.\images\实物充电图.png)
 
-<img src=".\images\实物拆.jpg" alt="实物拆" style="zoom: 30%;" />
+![实物拆解图](.\images\实物拆解图.png)
