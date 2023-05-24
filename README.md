@@ -9,7 +9,7 @@ https://www.bilibili.com/video/BV1hh4y1J7TS
 
 # 系统框图
 
-![手表系统框图](.\images\手表系统框图.png)
+<img src=".\images\手表系统框图.png" alt="手表系统框图" style="zoom:100%;" />
 
 # 功能说明
 已经尽量满足现在智能手表的功能，后期还需要继续添加修改很多东西。大致功能包括：
@@ -28,7 +28,7 @@ https://www.bilibili.com/video/BV1hh4y1J7TS
 
 ### 大致功能表如下图所示：
 
-![各版本功能表](.\images\各版本功能表.png)
+<img src=".\images\各版本功能表.png" alt="各版本功能表" style="zoom:100%;" />
 
 # 部分界面图
 
@@ -36,6 +36,6 @@ https://www.bilibili.com/video/BV1hh4y1J7TS
 
 # 实物图
 
-![实物充电](.\images\实物充电图.png)
+<img src=".\images\实物充电图.png" alt="实物充电图" style="zoom:100%;" />
 
-![实物拆解图](.\images\实物拆解图.png)
+<img src=".\images\实物拆解图.png" alt="实物拆解图" style="zoom:100%;" />
