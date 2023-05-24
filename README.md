@@ -31,3 +31,8 @@ https://www.bilibili.com/video/BV1hh4y1J7TS
 ·海拔测量
 
 etc.
+
+大致功能表如下图所示：
+
+
+
