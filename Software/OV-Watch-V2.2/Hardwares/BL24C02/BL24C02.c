@@ -6,8 +6,8 @@ iic_bus_t BL_bus =
 {
 	.IIC_SDA_PORT = GPIOA,
 	.IIC_SCL_PORT = GPIOA,
-	.IIC_SDA_PIN  = GPIO_PIN_6,
-	.IIC_SCL_PIN  = GPIO_PIN_7,
+	.IIC_SDA_PIN  = GPIO_PIN_11,
+	.IIC_SCL_PIN  = GPIO_PIN_12,
 };
 
 void BL24C02_Write(uint8_t addr,uint8_t length,uint8_t buff[])
