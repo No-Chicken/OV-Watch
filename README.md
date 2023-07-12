@@ -28,3 +28,7 @@ https://www.bilibili.com/video/BV19g4y1N7YR/
 
 <img src=".\images\心率实物图.png" alt="心率实物图" style="zoom:100%;" />
 
+<img src=".\images\front.jpg" alt="front" style="zoom:100%;" />
+
+<img src=".\images\back.jpg" alt="back" style="zoom:100%;" />
+
