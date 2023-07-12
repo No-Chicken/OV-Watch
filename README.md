@@ -1,4 +1,4 @@
-# OV-Watch-V2.2
+# OV-Watch-V2.3
 Smart Watch, MCU: STM32F411CEU6, UI: LVGL, OS:FreeRTOS 
 
 硬件开源链接：

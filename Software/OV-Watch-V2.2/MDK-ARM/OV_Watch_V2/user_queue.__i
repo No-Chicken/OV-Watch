@@ -1,6 +1,0 @@
---c99 -c --cpu Cortex-M4.fp.sp -g -O3 --apcs=interwork --split_sections -I ../Core/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Drivers/CMSIS/Include -I ..\Tasks\Inc -I ../SYSTEM -I ../Hardwares/AHT21 -I ../Hardwares/BL24C02 -I ../Hardwares/EM7028 -I ../Hardwares/IIC -I ../Hardwares/LCD -I ../Hardwares/LSM303DLH -I ../Hardwares/MPU6050 -I ../Hardwares/POWER -I ../Hardwares/TOUCH -I ../Hardwares/SPL06_001 -I ..\Hardwares\KEY -I ..\Middlewares\LVGL\GUI_UserApp -I ..\Middlewares\LVGL\GUI\porting -I ..\Middlewares\LVGL\GUI\lvgl\src -I ..\Middlewares\LVGL\GUI -I ..\Middlewares\LVGL\GUI\lvgl --locale=english
--I.\RTE\_OV_Watch_V2
--ID:\softwares\KEIL5MDK\packs\ARM\CMSIS\5.9.0\CMSIS\Core\Include
--ID:\softwares\KEIL5MDK\packs\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
--D__UVISION_VERSION="537" -D_RTE_ -DSTM32F411xE -D_RTE_ -DUSE_HAL_DRIVER -DSTM32F411xE
--o ov_watch_v2\user_queue.o --omf_browse ov_watch_v2\user_queue.crf --depend ov_watch_v2\user_queue.d "..\Tasks\Src\user_Queue.c"
