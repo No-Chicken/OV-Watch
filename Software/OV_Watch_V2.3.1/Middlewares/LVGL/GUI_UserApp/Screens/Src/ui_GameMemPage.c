@@ -187,7 +187,7 @@ static void updata_btnm(char * btnm_map[], uint8_t matrix[MATRIX_SIZE * MATRIX_S
 
 uint8_t Game_Mem_Finish(void)
 {
-    for(uint16_t x; x < MATRIX_SIZE*MATRIX_SIZE; x++)
+    for(uint16_t x=0; x < MATRIX_SIZE*MATRIX_SIZE; x++)
     {
         if(Game_Mem.matrix[x]!=0)
             return 0;
