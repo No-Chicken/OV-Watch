@@ -14,7 +14,7 @@ extern osMessageQueueId_t Key_MessageQueue;
 extern osMessageQueueId_t Idle_MessageQueue;
 extern osMessageQueueId_t Stop_MessageQueue;
 extern osMessageQueueId_t IdleBreak_MessageQueue;
-extern osMessageQueueId_t BatDet_MessageQueue;
+extern osMessageQueueId_t HomeUpdata_MessageQueue;
 
 
 void User_Tasks_Init(void);

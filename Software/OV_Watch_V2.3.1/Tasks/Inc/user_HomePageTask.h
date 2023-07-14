@@ -6,8 +6,7 @@ extern "C" {
 #endif
 
 void TimeRenewTask(void *argument);
-void BatDet_Task(void *argument);
-void HomePageSensorDataRenew_Task(void *argument);
+void HomeUpdata_Task(void *argument);
 
 #ifdef __cplusplus
 }

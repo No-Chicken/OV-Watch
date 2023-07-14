@@ -89,10 +89,10 @@ const osThreadAttr_t TimeRenewTask_attributes = {
   .priority = (osPriority_t) osPriorityLow1,
 };
 
-//TimeRenew task
-osThreadId_t BatDetTaskHandle;
-const osThreadAttr_t BatDetTask_attributes = {
-  .name = "BatDetTask",
+//HomeUpdata task
+osThreadId_t HomeUpdataTaskHandle;
+const osThreadAttr_t HomeUpdataTask_attributes = {
+  .name = "HomeUpdataTask",
   .stack_size = 128 * 5,
   .priority = (osPriority_t) osPriorityLow1,
 };
@@ -153,7 +153,7 @@ osMessageQueueId_t Key_MessageQueue;
 osMessageQueueId_t Idle_MessageQueue;
 osMessageQueueId_t Stop_MessageQueue;
 osMessageQueueId_t IdleBreak_MessageQueue;
-osMessageQueueId_t BatDet_MessageQueue;
+osMessageQueueId_t HomeUpdata_MessageQueue;
 
 
 /* Private function prototypes -----------------------------------------------*/
@@ -182,7 +182,7 @@ void User_Tasks_Init(void)
 	Idle_MessageQueue = osMessageQueueNew(1, 1, NULL);
 	Stop_MessageQueue = osMessageQueueNew(1, 1, NULL);
 	IdleBreak_MessageQueue = osMessageQueueNew(1, 1, NULL);
-	BatDet_MessageQueue = osMessageQueueNew(1, 1, NULL);
+	HomeUpdata_MessageQueue = osMessageQueueNew(1, 1, NULL);
 	
 	/* add threads, ... */
   LvHandlerTaskHandle  = osThreadNew(LvHandlerTask, NULL, &LvHandlerTask_attributes);
@@ -192,7 +192,7 @@ void User_Tasks_Init(void)
 	KeyTaskHandle 			 = osThreadNew(KeyTask, NULL, &KeyTask_attributes);
 	ScrRenewTaskHandle   = osThreadNew(ScrRenewTask, NULL, &ScrRenewTask_attributes);
 	TimeRenewTaskHandle  = osThreadNew(TimeRenewTask, NULL, &TimeRenewTask_attributes);
-	BatDetTaskHandle     = osThreadNew(BatDet_Task, NULL, &TimeRenewTask_attributes);
+	HomeUpdataTaskHandle = osThreadNew(HomeUpdata_Task, NULL, &HomeUpdataTask_attributes);
 	SensorDataTaskHandle = osThreadNew(SensorDataRenewTask, NULL, &SensorDataTask_attributes);
 	HRDataTaskHandle		 = osThreadNew(HRDataRenewTask, NULL, &HRDataTask_attributes);
 	ChargPageEnterTaskHandle = osThreadNew(ChargPageEnterTask, NULL, &ChargPageEnterTask_attributes);
@@ -204,8 +204,8 @@ void User_Tasks_Init(void)
 	
 	
 	/* add  others ... */
-	uint8_t BatDetStr;
-	osMessageQueuePut(BatDet_MessageQueue, &BatDetStr, 0, 1);
+	uint8_t HomeUpdataStr;
+	osMessageQueuePut(HomeUpdata_MessageQueue, &HomeUpdataStr, 0, 1);
 	
 }
 

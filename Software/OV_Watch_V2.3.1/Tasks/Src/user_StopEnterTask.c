@@ -136,7 +136,7 @@ void StopEnterTask(void *argument)
 			if(ChargeCheck())
 			{HardInt_Charg_flag = 1;}
 			//send the bat detect message
-			osMessageQueuePut(BatDet_MessageQueue, &BatDetStr, 0, 1);
+			osMessageQueuePut(HomeUpdata_MessageQueue, &BatDetStr, 0, 1);
 			delay_ms(500);
 			/**********************************/
 			

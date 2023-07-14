@@ -64,6 +64,9 @@ void TimeRenewTask(void *argument)
 				sprintf(value_strbuf,"%2d-%02d",ui_DateMonthValue,ui_DateDayValue);
 				lv_label_set_text(ui_DateLabel, value_strbuf);
 				lv_label_set_text(ui_DayLabel, ui_Days[ui_DataWeekdayValue-1]);
+				//reset the MPU6050 Step count
+				if(!Sensor_MPU_Erro)
+					dmp_set_pedometer_step_count(0);
 			}
 			if(ui_DateMonthValue != nowdate.Month)
 			{
@@ -80,16 +83,16 @@ void TimeRenewTask(void *argument)
 }
 
 /**
-  * @brief  homepage check the battery power(5 mins a detection)
+  * @brief  homepage check the battery power and other data
   * @param  argument: Not used
   * @retval None
   */
-void BatDet_Task(void *argument)
+void HomeUpdata_Task(void *argument)
 {
 	while(1)
 	{
-		uint8_t BatDetStr;
-		if(osMessageQueueGet(BatDet_MessageQueue,&BatDetStr,NULL,0)==osOK)
+		uint8_t HomeUpdataStr;
+		if(osMessageQueueGet(HomeUpdata_MessageQueue,&HomeUpdataStr,NULL,0)==osOK)
 		{
 			//bat
 			uint8_t value_strbuf[5];

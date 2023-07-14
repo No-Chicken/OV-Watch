@@ -27,11 +27,16 @@ Project File Date:  06/29/2023
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 for Certification (build 960)', folder: 'D:\softwares\KEIL5MDK\ARM\ARMCC\Bin'
 Build target 'OV_Watch_V2.3'
-compiling user_MPUCheckTask.c...
+compiling mpu6050.c...
+..\BSP\MPU6050\mpu6050.c(322): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	if(roll<=0.55 && roll>=-0.55 && pitch<=0.55 && pitch>=-0.55)
+..\BSP\MPU6050\mpu6050.c(322): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	if(roll<=0.55 && roll>=-0.55 && pitch<=0.55 && pitch>=-0.55)
+..\BSP\MPU6050\mpu6050.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=196300 RO-data=193772 RW-data=2208 ZI-data=97880  
+Program Size: Code=196316 RO-data=193824 RW-data=2208 ZI-data=97880  
 FromELF: creating hex file...
-"OV_Watch_V2.3\OV_Watch_V2.3" - 0 Error(s), 0 Warning(s).
+"OV_Watch_V2.3\OV_Watch_V2.3" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
