@@ -49,6 +49,8 @@
 #include "lv_port_disp.h"
 #include "lv_port_indev.h"
 #include "ui.h"
+//
+#include "user_MPUCheckTask.h"
 
 /* USER CODE END Includes */
 
@@ -156,8 +158,14 @@ int main(void)
 	EM7028_hrs_DisEnable();
 	
 	if(!Sensor_MPU_Erro)
+	{
+		if(MPU_isHorizontal())
+			user_MPU_Wrist_State = WRIST_UP;
+		else
+			user_MPU_Wrist_State = WRIST_DOWN;
 		dmp_set_pedometer_step_count(0);
-	
+	}
+		
 	//BLE
 	KT6328_GPIO_Init();
 	KT6328_Enable();

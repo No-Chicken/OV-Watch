@@ -199,3 +199,5 @@ ov_watch_v2.3\main.o: ../Middlewares/LVGL/GUI/porting/lv_port_disp.h
 ov_watch_v2.3\main.o: ../Middlewares/LVGL/GUI/porting/lv_port_indev.h
 ov_watch_v2.3\main.o: ../Middlewares/LVGL/GUI_UserApp/ui.h
 ov_watch_v2.3\main.o: D:\softwares\KEIL5MDK\ARM\ARMCC\Bin\..\include\stdio.h
+ov_watch_v2.3\main.o: ../Tasks/Inc/user_MPUCheckTask.h
+ov_watch_v2.3\main.o: ../Tasks/Inc/user_TasksInit.h
