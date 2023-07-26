@@ -4,6 +4,9 @@ Smart Watch, MCU: STM32F411CEU6, UI: LVGL, OS:FreeRTOS
 功能增加部分视频链接：
 https://www.bilibili.com/video/BV19g4y1N7YR/
 
+V2.2演示视频链接：
+https://www.bilibili.com/video/BV1hh4y1J7TS
+
 # 增加的功能说明
 修改的功能包括：
 
