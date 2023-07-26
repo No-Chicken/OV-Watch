@@ -1,0 +1,10 @@
+ov_watch_v2.3\lv_printf.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_printf.c
+ov_watch_v2.3\lv_printf.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_printf.h
+ov_watch_v2.3\lv_printf.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../lv_conf_internal.h
+ov_watch_v2.3\lv_printf.o: D:\softwares\KEIL5MDK\ARM\ARMCC\Bin\..\include\stdint.h
+ov_watch_v2.3\lv_printf.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../lv_conf_kconfig.h
+ov_watch_v2.3\lv_printf.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\../../../lv_conf.h
+ov_watch_v2.3\lv_printf.o: D:\softwares\KEIL5MDK\ARM\ARMCC\Bin\..\include\stdarg.h
+ov_watch_v2.3\lv_printf.o: D:\softwares\KEIL5MDK\ARM\ARMCC\Bin\..\include\stddef.h
+ov_watch_v2.3\lv_printf.o: ..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_types.h
+ov_watch_v2.3\lv_printf.o: D:\softwares\KEIL5MDK\ARM\ARMCC\Bin\..\include\stdbool.h
