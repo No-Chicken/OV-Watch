@@ -325,7 +325,7 @@ uint8_t MPU_isHorizontal(void)
 {
 	float roll,pitch;
 	MPU_Get_Angles(&roll,&pitch);
-	if(roll<=0.45 && roll>=-0.45 && pitch<=0.45 && pitch>=-0.45)
+	if(roll<=0.50 && roll>=-0.50 && pitch<=0.50 && pitch>=-0.50)
 	{return 1;}
 	return 0;
 }

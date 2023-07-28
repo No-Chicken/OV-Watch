@@ -121,7 +121,7 @@ void StopEnterTask(void *argument)
 			}
 			
 			//
-			if(!KEY1 || KEY2 || ChargeCheck() || Wrist_Flag)
+			if(!KEY1 || KEY2 || HardInt_Charg_flag || Wrist_Flag)
 			{
 				Wrist_Flag = 0;
 				//resume, go on
