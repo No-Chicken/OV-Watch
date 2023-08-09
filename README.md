@@ -7,7 +7,9 @@ https://www.bilibili.com/video/BV19g4y1N7YR/
 V2.2演示视频链接：
 https://www.bilibili.com/video/BV1hh4y1J7TS
 
-# 增加的功能说明
+
+
+## 增加的功能说明
 修改的功能包括：
 
 1. 心率部分，硬件增加LED矩阵，增强PPG信号强度
@@ -19,19 +21,35 @@ https://www.bilibili.com/video/BV1hh4y1J7TS
 
 ### 功能表如下图所示：
 
-<img src=".\images\功能表.png" alt="功能表" style="zoom:100%;" />
+<div align=center>
+<img src=".\images\功能表.png" alt="功能吧" style="zoom:100%;" />
+</div>
 
-# 新版本实物图
 
+
+## 新版本实物图
+
+<div align=center>
 <img src=".\images\实物图.jpg" alt="实物图" style="zoom:100%;" />
+</div>
 
+<div align=center>
 <img src=".\images\实物图2.png" alt="实物图2" style="zoom:100%;" />
+</div>
 
+<div align=center>
 <img src=".\images\实物图3.png" alt="实物图3" style="zoom:100%;" />
+</div>
 
+<div align=center>
 <img src=".\images\心率实物图.png" alt="心率实物图" style="zoom:100%;" />
+</div>
 
+<div align=center>
 <img src=".\images\front.jpg" alt="front" style="zoom:100%;" />
+</div>
 
+<div align=center>
 <img src=".\images\back.jpg" alt="back" style="zoom:100%;" />
+</div>
 
