@@ -197,7 +197,7 @@ u8 MPU_Set_Rate(u16 rate)
 	data=1000/rate-1;
 	data=MPU_Write_Byte(MPU_SAMPLE_RATE_REG,data);
  	return MPU_Set_LPF(rate/2);
-
+}
 
 /**************************************************************************/
 /*
