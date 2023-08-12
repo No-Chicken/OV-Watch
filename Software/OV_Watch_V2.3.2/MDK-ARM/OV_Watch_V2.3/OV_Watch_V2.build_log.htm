@@ -21,17 +21,22 @@ Target DLL:      CMSIS_AGDI.dll V1.33.15.0
 Dialog DLL:      TCM.DLL V1.56.4.0
  
 <h2>Project:</h2>
-D:\projects\programs\STM32_Programs\F411_programs\OV_Watch_V2\OV_Watch_V2.3.2\MDK-ARM\OV_Watch_V2.3.uvprojx
+D:\projects\Github_Projects\OV-Watch-V2.3\Software\OV_Watch_V2.3.2\MDK-ARM\OV_Watch_V2.3.uvprojx
 Project File Date:  07/22/2023
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 for Certification (build 960)', folder: 'D:\softwares\KEIL5MDK\ARM\ARMCC\Bin'
 Build target 'OV_Watch_V2.3'
-compiling main.c...
+compiling mpu6050.c...
+..\BSP\MPU6050\mpu6050.c(460): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	if(roll<=0.50 && roll>=-0.50 && pitch<=0.50 && pitch>=-0.50)
+..\BSP\MPU6050\mpu6050.c(460): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	if(roll<=0.50 && roll>=-0.50 && pitch<=0.50 && pitch>=-0.50)
+..\BSP\MPU6050\mpu6050.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=200772 RO-data=197020 RW-data=2216 ZI-data=101992  
+Program Size: Code=200768 RO-data=197020 RW-data=2216 ZI-data=101992  
 FromELF: creating hex file...
-"OV_Watch_V2.3\OV_Watch_V2.3" - 0 Error(s), 0 Warning(s).
+"OV_Watch_V2.3\OV_Watch_V2.3" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
