@@ -125,7 +125,7 @@ uint8_t AHT_Read(float *humi, float *temp)
 	*humi /= 10;
 	
 	RetuData = 0;
-	RetuData = (RetuData|Byte_4th)<<8;
+	RetuData = (RetuData|(Byte_4th&0x0f))<<8;
 	RetuData = (RetuData|Byte_5th)<<8;
 	RetuData = (RetuData|Byte_6th);
 	RetuData = RetuData&0xfffff;
