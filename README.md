@@ -1,4 +1,4 @@
-# OV-Watch-V2.3
+# OV-Watch-V2.3.2
 Smart Watch, MCU: STM32F411CEU6, UI: LVGL, OS:FreeRTOS 
 
 V2.3功能增加部分视频链接：
@@ -52,4 +52,3 @@ https://www.bilibili.com/video/BV1hh4y1J7TS
 <div align=center>
 <img src=".\images\back.jpg" alt="back" style="zoom:100%;" />
 </div>
-

@@ -63,7 +63,7 @@ void ui_AboutPage_screen_init(void)
     lv_obj_set_height(ui_VersionTextLabel, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_VersionTextLabel, 25);
     lv_obj_set_y(ui_VersionTextLabel, 90);
-    lv_label_set_text(ui_VersionTextLabel, "V2.3");
+    lv_label_set_text(ui_VersionTextLabel, "V2.3.2");
     lv_obj_set_style_text_font(ui_VersionTextLabel, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_MCULabel = lv_label_create(ui_AboutPage);
