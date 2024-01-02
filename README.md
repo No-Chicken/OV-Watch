@@ -52,6 +52,8 @@ https://www.bilibili.com/video/BV1hh4y1J7TS
 <div align=center>
 <img src=".\images\back.jpg" alt="back" style="zoom:100%;" />
 </div>
+
+
 ## 软件部分设计细节：
 
 ### 1.低功耗设计
