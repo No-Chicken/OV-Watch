@@ -1,60 +1,92 @@
-# OV-Watch-V2.3.2
-Smart Watch, MCU: STM32F411CEU6, UI: LVGL, OS:FreeRTOS 
-
-V2.3功能增加部分视频链接：
-https://www.bilibili.com/video/BV19g4y1N7YR/
-
-V2.2演示视频链接：
-https://www.bilibili.com/video/BV1hh4y1J7TS
 
 
+  <h1 align="center">OV-Watch</h1>
 
-## 增加的功能说明
+<center>
+    <figure>
+        <img src=https://img.shields.io/badge/version-2.3.2-blue>
+        <img src=https://img.shields.io/badge/License-MIT-green)>
+        <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
+    </figure>
+</center>
+
+## :ledger: Overview
+
+A powerful Smart Watch
+
+![](https://img.shields.io/badge/MCU-STM32F411CEU6-blue)![](https://img.shields.io/badge/UI-LVGL-red)![](https://img.shields.io/badge/OS-FreeRTOS-green)
+
+<div align=center>
+<img src="./images/界面.jpg" alt="界面" style="zoom:80%;" />
+</div>
+
+
+
+## :link:视频链接：
+
+<p align="center">
+<a href="https://space.bilibili.com/34154740">bilibili主页 </a> |
+<a href="https://www.bilibili.com/video/BV19g4y1N7YR/">V2.3新增功能视频 </a> |
+<a href="https://www.bilibili.com/video/BV1hh4y1J7TS">V2.2演示视频 </a>
+</p>
+
+
+
+## :rocket: 增加的功能说明
 修改的功能包括：
 
 1. 心率部分，硬件增加LED矩阵，增强PPG信号强度
+
 1. 双板改为贴合，不做4层板因为立创不能做盲埋孔
+
 1. 蓝牙改为KT6328A 
+
 1. MPU6050电路更改，V2.2的AUX接地了，导致之前的功耗高了，现在待机功耗几百uA 
+
 1. 删除NFC部分，因为以前的设计NFC会被PCB铺铜以及屏幕铁皮屏蔽
+
 1. 加入游戏（2048，记忆方块，MPU6050相关游戏）
 
-## 功能表如下图所示：
+   
+
+## :bookmark_tabs:功能表如下图所示：
 
 <div align=center>
-<img src=".\images\功能表.png" alt="功能吧" style="zoom:100%;" />
+<img src="./images/功能表.png" alt="功能吧" style="zoom:100%;" />
 </div>
 
 
 
-## 新版本实物图
+
+## :star2:新版本实物图
 
 <div align=center>
-<img src=".\images\实物图.jpg" alt="实物图" style="zoom:100%;" />
+<img src="./images/实物图.jpg" alt="实物图" style="zoom:100%;" />
 </div>
 
 <div align=center>
-<img src=".\images\实物图2.png" alt="实物图2" style="zoom:100%;" />
+<img src="./images/实物图2.png" alt="实物图2" style="zoom:100%;" />
 </div>
 
 <div align=center>
-<img src=".\images\实物图3.png" alt="实物图3" style="zoom:100%;" />
+<img src="./images/实物图3.png" alt="实物图3" style="zoom:100%;" />
 </div>
 
 <div align=center>
-<img src=".\images\心率实物图.png" alt="心率实物图" style="zoom:100%;" />
+<img src="./images/心率实物图.png" alt="心率实物图" style="zoom:100%;" />
 </div>
 
 <div align=center>
-<img src=".\images\front.jpg" alt="front" style="zoom:100%;" />
+<img src="./images/front.jpg" alt="front" style="zoom:100%;" />
 </div>
 
 <div align=center>
-<img src=".\images\back.jpg" alt="back" style="zoom:100%;" />
+<img src="./images/back.jpg" alt="back" style="zoom:100%;" />
 </div>
 
 
-## 软件部分设计细节：
+
+## :computer:软件部分设计细节：
 
 ### 1.低功耗设计
 
@@ -73,8 +105,9 @@ MPU6050不能直接使用DMP库，初始化后功耗很高，需要进行一些�
 心率计算本来使用的官方的库，但是计算太慢了，后面改为自己写的一个简易的峰值检测的算法。EM7028的PPG信号如下图所示
 
 <div align=center>
-<img src=".\images\EM7028的测量曲线.jpg" alt="EM7028的测量曲线" style="zoom:100%;" />
+<img src="./images/EM7028的测量曲线.jpg" alt="EM7028的测量曲线" style="zoom:100%;" />
 </div>
+
 
 ### 3.数据存储
 
@@ -109,5 +142,5 @@ if(keystr == 1)
 计算器的逻辑就是很经典的计算器问题，经典的就是开两个栈，一个存放符号，一个存数字，然后进行出栈计算等等操作，以`1+2*6/3`为例，具体的过程如下动图所示。但是会有一个问题就是小数点，这个动图展示的只是整数计算的逻辑，带小数点的详细见代码。
 
 <div align=center>
-<img src=".\images\计算.gif" alt="计算" style="zoom:80%;" />
+<img src="./images/计算.gif" alt="计算" style="zoom:80%;" />
 </div>
