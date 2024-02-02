@@ -2,19 +2,18 @@
 
   <h1 align="center">OV-Watch</h1>
 
-<center>
-    <figure>
+<div align=center>
         <img src=https://img.shields.io/badge/version-2.3.2-blue>
         <img src=https://img.shields.io/badge/License-MIT-green)>
         <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
-    </figure>
-</center>
+</div>
+
 
 ## :ledger: Overview
 
 A powerful Smart Watch
 
-![](https://img.shields.io/badge/MCU-STM32F411CEU6-blue)![](https://img.shields.io/badge/UI-LVGL-red)![](https://img.shields.io/badge/OS-FreeRTOS-green)
+![](https://img.shields.io/badge/MCU-STM32F411CEU6-blue)  ![](https://img.shields.io/badge/UI-LVGL-red)  ![](https://img.shields.io/badge/OS-FreeRTOS-green)
 
 <div align=center>
 <img src="./images/界面.jpg" alt="界面" style="zoom:80%;" />
