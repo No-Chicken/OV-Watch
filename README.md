@@ -14,6 +14,10 @@
 
 A powerful Smart Watch
 
+<p align="center">
+	<img border="1px" width="50%" src="./images/演示动图.gif">
+</p>
+
 ![](https://img.shields.io/badge/MCU-STM32F411CEU6-blue)  ![](https://img.shields.io/badge/UI-LVGL-red)  ![](https://img.shields.io/badge/OS-FreeRTOS-green)
 
 <div align=center>
