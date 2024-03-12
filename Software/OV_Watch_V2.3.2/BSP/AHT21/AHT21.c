@@ -49,7 +49,7 @@ uint8_t AHT_Init(void)
 	
 	delay_ms(40);
 	
-	if(AHT_Read_Status()&&0x08!=0x08)
+	if((AHT_Read_Status()&&0x08)!=0x08)
 	{
 		IICStart(&AHT_bus);
 		IICSendByte(&AHT_bus,0x70);
