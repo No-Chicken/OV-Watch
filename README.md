@@ -31,63 +31,69 @@ A powerful Smart Watch
 
 <p align="center">
 <a href="https://space.bilibili.com/34154740">bilibili主页 </a> |
+<a href="https://oshwhub.com/no_chicken/zhi-neng-shou-biao-OV-Watch_V2.2">硬件开源 </a>|
 <a href="https://www.bilibili.com/video/BV19g4y1N7YR/">V2.3新增功能视频 </a> |
 <a href="https://www.bilibili.com/video/BV1hh4y1J7TS">V2.2演示视频 </a>
 </p>
 
 
 
+
 ## :rocket: 增加的功能说明
 修改的功能包括：
 
-1. 心率部分，硬件增加LED矩阵，增强PPG信号强度
+1. 心率部分，硬件增加LED矩阵，增强PPG信号强度.
 
-1. 双板改为贴合，不做4层板因为立创不能做盲埋孔
+1. 双板改为贴合，不做4层板因为立创不能做盲埋孔.
 
-1. 蓝牙改为KT6328A 
+1. 蓝牙改为KT6328A.
 
-1. MPU6050电路更改，V2.2的AUX接地了，导致之前的功耗高了，现在待机功耗几百uA 
+1. MPU6050电路更改，V2.2的AUX接地了，导致之前的功耗高了，现在待机功耗几百uA.
 
-1. 删除NFC部分，因为以前的设计NFC会被PCB铺铜以及屏幕铁皮屏蔽
+1. 删除NFC部分，因为以前的设计NFC会被PCB铺铜以及屏幕铁皮屏蔽.
 
-1. 加入游戏（2048，记忆方块，MPU6050相关游戏）
+1. 供电部分进行低功耗设计，TPS63020的PS/SYNC端口拉低，设置Power Save模式。在参考手册中，低电流状态下，以往的效率只有60%，power save模式可以达到90%。
+
+1. 加入游戏（2048，记忆方块，MPU6050相关游戏）。
+
+1. 修改了一些bug。
 
    
 
 ## :bookmark_tabs:功能表如下图所示：
 
-<div align=center>
-<img src="./images/功能表.png" alt="功能吧" style="zoom:100%;" />
-</div>
-
+<p align="center">
+	<img border="1px" width="60%" src="./images/功能表.png">
+</p>
 
 
 
 ## :star2:新版本实物图
 
-<div align=center>
-<img src="./images/实物图.jpg" alt="实物图" style="zoom:100%;" />
-</div>
+<p align="center">
+	<img border="1px" width="50%" src="./images/实物图.jpg">
+</p>
 
-<div align=center>
-<img src="./images/实物图2.png" alt="实物图2" style="zoom:100%;" />
-</div>
+<p align="center">
+	<img border="1px" width="50%" src="./images/实物图2.png">
+</p>
 
-<div align=center>
-<img src="./images/实物图3.png" alt="实物图3" style="zoom:100%;" />
-</div>
+<p align="center">
+	<img border="1px" width="50%" src="./images/实物图3.png">
+</p>
 
-<div align=center>
-<img src="./images/心率实物图.png" alt="心率实物图" style="zoom:100%;" />
-</div>
+<p align="center">
+	<img border="1px" width="50%" src="./images/心率实物图.png">
+</p>
 
-<div align=center>
-<img src="./images/front.jpg" alt="front" style="zoom:100%;" />
-</div>
+<p align="center">
+	<img border="1px" width="50%" src="./images/front.jpg">
+</p>
 
-<div align=center>
-<img src="./images/back.jpg" alt="back" style="zoom:100%;" />
-</div>
+<p align="center">
+	<img border="1px" width="50%" src="./images/back.jpg">
+</p>
+
 
 
 
@@ -111,9 +117,10 @@ MPU6050不能直接使用DMP库，初始化后功耗很高，需要进行一些�
 
 心率计算本来使用的官方的库，但是计算太慢了，后面改为自己写的一个简易的峰值检测的算法。EM7028的PPG信号如下图所示
 
-<div align=center>
-<img src="./images/EM7028的测量曲线.jpg" alt="EM7028的测量曲线" style="zoom:100%;" />
-</div>
+<p align="center">
+	<img border="1px" width="50%" src="./images/EM7028的测量曲线.jpg">
+</p>
+
 
 
 ### 3.数据存储
@@ -156,6 +163,6 @@ if(keystr == 1)
 4. 继续将当前运算符与运算符栈顶元素比较。
 5. 继续按照以上步骤进行遍历，当遍历结束之后，则将当前两个栈内元素取出来进行运算即可得到最终结果。
 
-<div align=center>
-<img src="./images/计算.gif" alt="计算" style="zoom:80%;" />
-</div>
+<p align="center">
+	<img border="1px" width="50%" src="./images/计算.gif">
+</p>
