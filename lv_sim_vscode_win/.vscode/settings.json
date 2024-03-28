@@ -1,0 +1,42 @@
+{
+    "MicroPython.executeButton": [
+        {
+            "text": "▶",
+            "tooltip": "运行",
+            "alignment": "left",
+            "command": "extension.executeFile",
+            "priority": 3.5
+        }
+    ],
+    "MicroPython.syncButton": [
+        {
+            "text": "$(sync)",
+            "tooltip": "同步",
+            "alignment": "left",
+            "command": "extension.execute",
+            "priority": 4
+        }
+    ],
+    "files.associations": {
+        "lv_conf.h": "c",
+        "lvgl.h": "c",
+        "ui.h": "c",
+        "ui_helpers.h": "c",
+        "lv_demos.h": "c",
+        "lv_demo_widgets.h": "c",
+        "lv_demo_music.h": "c",
+        "ui_homepage.h": "c",
+        "ui_menupage.h": "c",
+        "ui_aboutpage.h": "c",
+        "ui_envpage.h": "c",
+        "ui_setpage.h": "c",
+        "ui_megboxes.h": "c",
+        "ui_spo2page.h": "c",
+        "ui_timerpage.h": "c",
+        "time.h": "c",
+        "pagestack.h": "c",
+        "lv_drv_conf.h": "c",
+        "win32drv.h": "c",
+        "system_error": "c"
+    }
+}

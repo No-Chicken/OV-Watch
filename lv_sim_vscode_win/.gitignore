@@ -1,0 +1,10 @@
+Debug/
+.settings/
+lv_dev_tools/
+**/*.o
+demo
+.pydevproject
+/.metadata/
+/.tracecompass
+build/
+bin/
