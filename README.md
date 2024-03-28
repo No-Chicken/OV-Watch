@@ -164,6 +164,8 @@ if(keystr == 1)
 <p align="center">
 	<img border="1px" width="50%" src="./images/计算.gif">
 </p>
+
+
 ### 6.LVGL在windows在vscode的仿真配置参考
 
 参考链接: https://blog.csdn.net/weixin_49337111/article/details/136536375
