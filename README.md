@@ -14,6 +14,10 @@
 
 A powerful Smart Watch
 
+如果你觉得这个手表的硬件难焊接难复刻，又想进行代码的学习，可以试一下新的STM32F411开发板：
+
+FriPi炸鸡派：https://github.com/No-Chicken/FryPi
+
 ![](https://img.shields.io/badge/MCU-STM32F411CEU6-blue)  ![](https://img.shields.io/badge/UI-LVGL-red)  ![](https://img.shields.io/badge/OS-FreeRTOS-green)
 
 <p align="center">
