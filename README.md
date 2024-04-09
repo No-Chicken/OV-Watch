@@ -175,3 +175,7 @@ if(keystr == 1)
 参考链接: https://blog.csdn.net/weixin_49337111/article/details/136536375
 
 已经更改好的可以跑的代码放在了`lv_sim_vscode_win`这个文件夹中，应该可以直接使用vscode打开。
+
+<p align="center">
+	<img border="1px" width="70%" src="./images/LVGL_sim.jpg">
+</p>
