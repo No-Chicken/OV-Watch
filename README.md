@@ -3,10 +3,11 @@
   <h1 align="center">OV-Watch</h1>
 
 <div align=center>
-        <img src=https://img.shields.io/badge/version-2.3.2-blue>
+        <img src=https://img.shields.io/badge/version-2.3.3-blue>
         <img src=https://img.shields.io/badge/License-GPL3.0-green)>
         <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
 </div>
+
 
 
 
