@@ -9,8 +9,6 @@
 </div>
 
 
-
-
 ## :ledger: Overview
 
 A powerful Smart Watch
@@ -30,8 +28,6 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 </p>
 
 
-
-
 ## :link:视频链接：
 
 <p align="center">
@@ -42,28 +38,24 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 </p>
 
 
-
-
 ## :rocket: 增加的功能说明
-修改的功能包括：
+V2.3.3相对V2.3.2修改的功能包括：
 
-1. 心率部分，硬件增加LED矩阵，增强PPG信号强度.
+1. 增加了BootLoader程序.
 
-1. 双板改为贴合，不做4层板因为立创不能做盲埋孔.
+1. 增加了IAP OTA功能, 即可以通过蓝牙升级程序.
 
-1. 蓝牙改为KT6328A.
+1. 修改了一些bug.
 
-1. MPU6050电路更改，V2.2的AUX接地了，导致之前的功耗高了，现在待机功耗几百uA.
 
-1. 删除NFC部分，因为以前的设计NFC会被PCB铺铜以及屏幕铁皮屏蔽.
 
-1. 供电部分进行低功耗设计，TPS63020的PS/SYNC端口拉低，设置Power Save模式。在参考手册中，低电流状态下，以往的效率只有60%，power save模式可以达到90%。
+## :black_nib:如何烧录BootLoader和升级APP：
 
-1. 加入游戏（2048，记忆方块，MPU6050相关游戏）。
+由于具体的步骤太多这里不放了, 详细见Firmware中的README文件: [BootLoader和APP说明](./Firmware/README.md)
 
-1. 修改了一些bug。
+如果你觉得带BootLoader的V2.3.3版本太麻烦了, 可以自行去下载[ver2.3.2分支](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2), 用以前的代码.
 
-   
+
 
 ## :bookmark_tabs:功能表如下图所示：
 
@@ -73,7 +65,7 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 
 
-## :star2:新版本实物图
+## :star2:实物图
 
 <p align="center">
 	<img border="1px" width="50%" src="./images/实物图.jpg">
@@ -85,10 +77,6 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 <p align="center">
 	<img border="1px" width="50%" src="./images/实物图3.png">
-</p>
-
-<p align="center">
-	<img border="1px" width="50%" src="./images/心率实物图.png">
 </p>
 
 <p align="center">

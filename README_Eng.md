@@ -42,26 +42,22 @@ FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 
 
 
-## :rocket: Additional Features ( in V2.3 )
-The modified features include:
+## :rocket: Additional Features ( in V2.3.3 )
+The features modified in V2.3.3 include:
 
-1. Heart rate section: added LED matrix hardware to enhance PPG signal strength.
+1. Added BootLoader program.
+2. Added IAP OTA functionality, which enables program upgrades via Bluetooth.
+3. Fixed some bugs.
 
-1. Changed to a double-layer board to accommodate fitting, avoiding 4-layer board due to the inability of JLCPCB to make blind buried vias.
 
-1. Bluetooth changed to KT6328A.
 
-1. MPU6050 circuit modification: In V2.2, the AUX pin was grounded, which led to higher power consumption in previous versions. Now standby power consumption is in the range of several hundred microamperes.
+## :black_nib:How to download BootLoader  and upgrad APP：
 
-1. Removed NFC section due to previous design issues where NFC would be shielded by PCB copper and screen iron sheet.
+Please refer to the README file in the `Firmware` folder for details: [BootLoader & APP Instructions](./Firmware/README.md)
 
-1. Power supply section redesigned for low power consumption: pulled down the PS/SYNC pin of TPS63020 and set to Power Save mode. According to the reference manual, under low current conditions, the previous efficiency was only 60%, whereas Power Save mode can achieve 90%.
+If you find the version 2.3.3 with BootLoader too complicated, you can download branch [ver2.3.2](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2) and use the previous code.
 
-1. Added games (2048, memory blocks, MPU6050-related games).
 
-1. Fixed some bugs.
-
-   
 
 ## :bookmark_tabs:Function List：
 
