@@ -44,7 +44,7 @@ V2.4.0相对V2.3.2修改的功能包括：
 
 1. 更改了Back板硬件, 将蓝牙的使能电路修改，以前不能完全关闭，现在可以不用蓝牙时直接关了蓝牙，就可以不用KT6328A了，直接使用KT6368A, 有SPP功能, 可以无线升级.
 
-1. 增加了BootLoader程序
+1. 增加了BootLoader程序, 即分离了Boot和App.
 
 1. 增加了IAP OTA功能, 即可以通过蓝牙升级程序.
 
@@ -63,8 +63,9 @@ V2.4.0相对V2.3.2修改的功能包括：
 ## :bookmark_tabs:功能表如下图所示：
 
 <p align="center">
-	<img border="1px" width="70%" src="./images/功能表.jpg">
+	<img border="1px" width="75%" src="./images/功能表.jpg">
 </p>
+
 
 
 

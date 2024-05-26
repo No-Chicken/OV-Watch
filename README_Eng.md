@@ -3,10 +3,11 @@
   <h1 align="center">OV-Watch</h1>
 
 <div align=center>
-        <img src=https://img.shields.io/badge/version-2.3.3-blue>
+        <img src=https://img.shields.io/badge/version-2.4.0-blue>
         <img src=https://img.shields.io/badge/License-GPL3.0-green)>
         <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
 </div>
+
 
 
 
@@ -43,11 +44,12 @@ FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 
 
 ## :rocket: Additional Features ( in V2.3.3 )
-The features modified in V2.3.3 include:
+The features modified in V2.4.0 include:
 
-1. Added BootLoader program.
-2. Added IAP OTA functionality, which enables program upgrades via Bluetooth.
-3. Fixed some bugs.
+1. fixed a bug in hardware in Back board, fixed the BLE circuit, now can totally disable the BLE power.
+2. Added BootLoader program.
+3. Added IAP OTA functionality, which enables program upgrades via Bluetooth.
+4. Fixed some bugs.
 
 
 
