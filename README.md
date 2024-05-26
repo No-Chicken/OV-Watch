@@ -3,10 +3,11 @@
   <h1 align="center">OV-Watch</h1>
 
 <div align=center>
-        <img src=https://img.shields.io/badge/version-2.3.3-blue>
+        <img src=https://img.shields.io/badge/version-2.4.0-blue>
         <img src=https://img.shields.io/badge/License-GPL3.0-green)>
         <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
 </div>
+
 
 
 ## :ledger: Overview
@@ -39,9 +40,11 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 
 ## :rocket: 增加的功能说明
-V2.3.3相对V2.3.2修改的功能包括：
+V2.4.0相对V2.3.2修改的功能包括：
 
-1. 增加了BootLoader程序.
+1. 更改了Back板硬件, 将蓝牙的使能电路修改，以前不能完全关闭，现在可以不用蓝牙时直接关了蓝牙，就可以不用KT6328A了，直接使用KT6368A, 有SPP功能, 可以无线升级.
+
+1. 增加了BootLoader程序
 
 1. 增加了IAP OTA功能, 即可以通过蓝牙升级程序.
 
@@ -49,19 +52,20 @@ V2.3.3相对V2.3.2修改的功能包括：
 
 
 
-## :black_nib:如何烧录BootLoader和升级APP：
+## :black_nib:如何烧录：
 
 由于具体的步骤太多这里不放了, 详细见Firmware中的README文件: [BootLoader和APP说明](./Firmware/README.md)
 
-如果你觉得带BootLoader的V2.3.3版本太麻烦了, 可以自行去下载[ver2.3.2分支](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2), 用以前的代码.
+如果你觉得带BootLoader的V2.4.0版本太麻烦了, 可以自行去下载[ver2.3.2分支](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2), 用以前的代码.
 
 
 
 ## :bookmark_tabs:功能表如下图所示：
 
 <p align="center">
-	<img border="1px" width="60%" src="./images/功能表.png">
+	<img border="1px" width="70%" src="./images/功能表.jpg">
 </p>
+
 
 
 

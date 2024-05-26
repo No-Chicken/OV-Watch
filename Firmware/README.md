@@ -8,7 +8,7 @@
 
 做蓝牙升级下载程序的目的就是, 当你的手表装到外壳中后, 不需要拆开就可以进行蓝牙IAP升级APP了~
 
-Fireware文件夹中有`BootLoader_F411.hex`和`APP_OV_Watch_V2.3.3.bin`两个文件, 分别对应工程`Software`文件夹中的`IAP_F411`和`OV_Watch_V2.3.3`这两个工程, 分别都是这两个工程编译好生成的文件.
+Fireware文件夹中有`BootLoader_F411.hex`和`APP_OV_Watch_V2.4.0.bin`两个文件, 分别对应工程`Software`文件夹中的`IAP_F411`和`OV_Watch_V2.4.0`这两个工程, 分别都是这两个工程编译好生成的文件.
 
 BootLoader和APP存储的空间大概如下图
 
@@ -34,7 +34,7 @@ BootLoader和APP存储的空间大概如下图
 	<img border="1px" width="80%" src="../images/ST-LINK download.jpg">
 </p>
 
-温馨提醒: 工程的设计不知道怎么改最好不要瞎改.
+温馨提醒: keil工程里面的设置不知道怎么改最好不要瞎改.
 
 
 
@@ -62,7 +62,7 @@ BootLoader和APP存储的空间大概如下图
 	<img border="1px" width="50%" src="../images/boot升级界面.jpg">
 </p>
 
-4. 进入界面后, 输入`1`即可进行APP文件传输, 选择`send Ymodem`将`APP_OV_Watch_V2.3.3.bin`这个文件传进去即可, 过程比较慢, 耐心等待升级即可.
+4. 进入界面后, 输入`1`即可进行APP文件传输, 选择`send Ymodem`将`APP_OV_Watch_V2.4.0.bin`这个文件传进去即可, 过程比较慢, 耐心等待升级即可.
 
 <p align="center">
 	<img border="1px" width="50%" src="../images/send ymodem.jpg">
