@@ -54,7 +54,7 @@ V2.4.0相对V2.3.2修改的功能包括：
 
 ## :black_nib:如何烧录：
 
-由于具体的步骤太多这里不放了, 详细见Firmware中的README文件: [BootLoader和APP说明](./Firmware/README.md)
+由于具体的步骤太多这里不放了, 详细见Firmware中的README文件: [BootLoader和APP烧录说明](./Firmware/README.md)
 
 如果你觉得带BootLoader的V2.4.0版本太麻烦了, 可以自行去下载[ver2.3.2分支](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2), 用以前的代码.
 
