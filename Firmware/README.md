@@ -40,7 +40,7 @@ BootLoader和APP存储的空间大概如下图
 
 ## :black_nib:如何进行APP烧录升级
 
-1. 用你的电脑找到手表的蓝牙进行配对, 一般来讲蓝牙是叫KT6328A_BLE之类的, 具体的看自己情况嗷, 我这里是叫TD5322A
+1. 用你的电脑找到手表的蓝牙进行配对, 一般来讲蓝牙是叫KT6368A-SPP之类的, 具体的看自己情况嗷, 我这里是叫TD5322A
 
 <p align="center">
 	<img border="1px" width="30%" src="../images/蓝牙配对.jpg">
