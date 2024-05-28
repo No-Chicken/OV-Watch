@@ -17,14 +17,13 @@ BootLoader和APP存储的空间大概如下图
 </p>
 
 
-
 ## :warning:如何进入BootLoader的升级模式
 
-手表下载好BootLoader后，上电开机时按住KEY1上按键, 记住是先按住KEY1, 然后再按KEY2上电 (或者调试模式时, 是按住KEY1再插下载器上电). 直接上电不按KEY1, 是直接进入APP的.
+确保手表下载好`BootLoader`后，上电开机时按住KEY1上按键, 记住是先按住KEY1, 然后再按KEY2上电 (或者调试模式时, 是按住KEY1再插下载器上电). 直接上电不按KEY1, 是直接进入APP的.
 
 
 
-## :black_nib:如何进行BootLoader烧录
+## :black_nib:如何烧录BootLoader
 
 1. 首先使用下载器连接好手表的PCB板子的SWD口；
 2. 打开keil工程编译好, 直接点击`Download`烧录即可；
@@ -33,13 +32,13 @@ BootLoader和APP存储的空间大概如下图
 <p align="center">
 	<img border="1px" width="80%" src="../images/ST-LINK download.jpg">
 </p>
-
 ! ! ! 温馨提醒: keil工程里面的设置不知道怎么改最好不要瞎改.
 
 
 
 ## :black_nib:如何进行APP烧录升级
 
+1. 进入BootLoader的升级模式
 1. 用你的电脑找到手表的蓝牙进行配对, 一般来讲蓝牙是叫KT6368A-SPP之类的, 具体的看自己情况嗷, 我这里是叫TD5322A
 
 <p align="center">
