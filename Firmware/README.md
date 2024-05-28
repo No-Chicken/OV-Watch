@@ -18,23 +18,23 @@ BootLoader和APP存储的空间大概如下图
 
 
 
-## :warning:如何进入Boot的升级模式
+## :warning:如何进入BootLoader的升级模式
 
-上电开机时按住KEY1上按键, 记住是先按住KEY1, 然后再按KEY2上电 (或者调试模式时, 是按住KEY1再插下载器上电)
+手表下载好BootLoader后，上电开机时按住KEY1上按键, 记住是先按住KEY1, 然后再按KEY2上电 (或者调试模式时, 是按住KEY1再插下载器上电). 直接上电不按KEY1, 是直接进入APP的.
 
 
 
 ## :black_nib:如何进行BootLoader烧录
 
-首先打开keil工程编译好, 直接点击Download烧录即可. 
-
-或者将`BootLoader_F411.hex`拖到`STM32 ST-LINK Utility`中进行烧录, 也挺方便.
+1. 首先使用下载器连接好手表的PCB板子的SWD口；
+2. 打开keil工程编译好, 直接点击`Download`烧录即可；
+3. 当然如果你不想碰代码，直接将`BootLoader_F411.hex`拖到`STM32 ST-LINK Utility`中进行烧录, 也挺方便.
 
 <p align="center">
 	<img border="1px" width="80%" src="../images/ST-LINK download.jpg">
 </p>
 
-温馨提醒: keil工程里面的设置不知道怎么改最好不要瞎改.
+! ! ! 温馨提醒: keil工程里面的设置不知道怎么改最好不要瞎改.
 
 
 
@@ -68,4 +68,5 @@ BootLoader和APP存储的空间大概如下图
 	<img border="1px" width="50%" src="../images/send ymodem.jpg">
 </p>
 
-5. 最后传输完毕, 输入`3`即可执行APP, 也请耐心等候开开机~
+5. 最后传输完毕, 输入`3`即可执行APP, 等候开开机~
+5. 以后每当APP有更新后，就算装进外壳了，也可以直接使用蓝牙无线升级啦~~
