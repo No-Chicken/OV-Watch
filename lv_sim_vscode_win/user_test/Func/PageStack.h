@@ -23,7 +23,7 @@ uint8_t user_Stack_Pop(user_Stack_T* stack);
 uint8_t user_Stack_isEmpty(user_Stack_T* stack);
 void user_Stack_Clear(user_Stack_T* stack);
 
-user_Stack_T ScrRenewStack;
+extern user_Stack_T ScrRenewStack;
 
 #ifdef __cplusplus
 } /*extern "C"*/

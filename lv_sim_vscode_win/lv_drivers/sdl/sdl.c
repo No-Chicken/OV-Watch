@@ -52,6 +52,13 @@
 #include <string.h>
 #include SDL_INCLUDE_PATH
 
+#define USER_CODE_DEFINE 1
+
+#if USER_CODE_DEFINE
+    #include "../../user_test/Func/pubsub.h"
+    #include "../../user_test/ui.h"
+#endif
+
 /*********************
  *      DEFINES
  *********************/
@@ -323,6 +330,15 @@ void sdl_keyboard_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
         data->key = buf[0];
         memmove(buf, buf + 1, len);
         data->continue_reading = true;
+
+        //***********user code here***********//
+        #if USER_CODE_DEFINE
+            if(data->key == 8)
+            {
+                PubSub_Message_t msg1 = {1, "SDL_Key"};
+                Publisher_publish(&SDL_KeyBoard_Publisher, msg1);
+            }
+        #endif
     }
 }
 
@@ -567,6 +583,7 @@ static void keyboard_handler(SDL_Event * event)
                     buf[len] = ctrl_key;
                     buf[len + 1] = '\0';
                 }
+
                 break;
             }
         case SDL_TEXTINPUT:                     /*Text input*/

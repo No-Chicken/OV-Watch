@@ -37,6 +37,10 @@
         "pagestack.h": "c",
         "lv_drv_conf.h": "c",
         "win32drv.h": "c",
-        "system_error": "c"
+        "system_error": "c",
+        "pubsub.h": "c",
+        "lv_disp.h": "c",
+        "ui_gameselectpage.h": "c",
+        "ui_datetimesetpage.h": "c"
     }
 }

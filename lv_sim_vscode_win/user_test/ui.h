@@ -11,6 +11,7 @@ extern "C" {
 
 #include "stdio.h"
 #include "./Func/PageStack.h"
+#include "./Func/pubsub.h"
 
 LV_FONT_DECLARE(ui_font_Cuyuan18);
 LV_FONT_DECLARE(ui_font_Cuyuan20);
@@ -29,6 +30,9 @@ LV_FONT_DECLARE(ui_font_iconfont34);
 LV_FONT_DECLARE(ui_font_iconfont45);
 
 void ui_init(void);
+
+void SDL_KeyBoard_Subscriber(PubSub_Message_t message);
+
 
 #ifdef __cplusplus
 } /*extern "C"*/

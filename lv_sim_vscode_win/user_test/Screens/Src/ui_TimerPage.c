@@ -73,13 +73,12 @@ void ui_event_TimerReBtn(lv_event_t * e)
 void LabelRefresh_timer(lv_timer_t * timer)
 {
     uint8_t strbuf[2];
-
-    sprintf(strbuf,"%02d",ui_TimerPage_min);
-    lv_label_set_text(ui_TimerMinLabel, strbuf);
-    sprintf(strbuf,"%02d",ui_TimerPage_sec);
-    lv_label_set_text(ui_TimerSecLabel, strbuf);
-    sprintf(strbuf,"%02d",ui_TimerPage_10ms);
-    lv_label_set_text(ui_TimerMilSecLabel, strbuf);
+    // sprintf(strbuf,"%02d",ui_TimerPage_min);
+    // lv_label_set_text(ui_TimerMinLabel, strbuf);
+    // sprintf(strbuf,"%02d",ui_TimerPage_sec);
+    // lv_label_set_text(ui_TimerSecLabel, strbuf);
+    // sprintf(strbuf,"%02d",ui_TimerPage_10ms);
+    // lv_label_set_text(ui_TimerMilSecLabel, strbuf);
 
 
 }

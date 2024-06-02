@@ -80,11 +80,11 @@ void ui_event_HomePage(lv_event_t * e)
   {
     if(lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT)
     {
-
-      user_Stack_Pop(&ScrRenewStack);
-      _ui_screen_change(&ui_MenuPage, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 100, 0, &ui_MenuPage_screen_init);
-      user_Stack_Push(&ScrRenewStack,(long long int)&ui_HomePage);
-      user_Stack_Push(&ScrRenewStack,(long long int)&ui_MenuPage);
+        user_Stack_Pop(&ScrRenewStack);
+        ui_MenuPage_screen_init();
+        lv_scr_load_anim(ui_MenuPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
+        user_Stack_Push(&ScrRenewStack,(long long int)&ui_HomePage);
+        user_Stack_Push(&ScrRenewStack,(long long int)&ui_MenuPage);
     }
   }
 
@@ -652,7 +652,6 @@ void ui_PowerPage_screen_init(void)
 
 		//events
 		lv_obj_add_event_cb(ui_PowerSlider, ui_event_PowerSlider, LV_EVENT_ALL, NULL);
-
 
 }
 
