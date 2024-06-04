@@ -1,5 +1,7 @@
 #include "PageStack.h"
 
+user_Stack_T ScrRenewStack;
+
 uint8_t user_Stack_Push(user_Stack_T* stack, StackData_t datain)
 {
   if(stack->Top_Point == MAX_DEPTH - 1)

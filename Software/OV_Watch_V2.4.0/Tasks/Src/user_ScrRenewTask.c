@@ -17,7 +17,6 @@
 
 /* Private variables ---------------------------------------------------------*/
 extern osMessageQueueId_t Key_MessageQueue;
-user_Stack_T ScrRenewStack;
 
 /* Private function prototypes -----------------------------------------------*/
 

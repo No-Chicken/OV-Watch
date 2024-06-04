@@ -3,7 +3,7 @@
 #include "ui_ComputerPage.h"
 
 #include "StrCalculate.h"
-#include "user_ScrRenewTask.h"
+#include "PageStack.h"
 
 
 ///////////////////// VARIABLES ////////////////////

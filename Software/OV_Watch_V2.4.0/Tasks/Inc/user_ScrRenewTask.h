@@ -9,7 +9,6 @@ extern "C" {
 	
 void ScrRenewTask(void *argument);
 
-extern user_Stack_T ScrRenewStack;
 
 #ifdef __cplusplus
 }

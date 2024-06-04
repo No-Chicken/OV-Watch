@@ -12,6 +12,8 @@ extern "C" {
 
 #include "stdio.h"
 
+#include "PageStack.h"	
+
 LV_FONT_DECLARE(ui_font_Cuyuan18);
 LV_FONT_DECLARE(ui_font_Cuyuan20);
 LV_FONT_DECLARE(ui_font_Cuyuan24);

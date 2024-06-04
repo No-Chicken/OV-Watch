@@ -572,16 +572,6 @@
           <GroupName>Application/User/Tasks</GroupName>
           <Files>
             <File>
-              <FileName>PageStack.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Tasks\Src\PageStack.c</FilePath>
-            </File>
-            <File>
-              <FileName>StrCalculate.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Tasks\Src\StrCalculate.c</FilePath>
-            </File>
-            <File>
               <FileName>user_ChargPageTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Tasks\Src\user_ChargPageTask.c</FilePath>
@@ -630,6 +620,21 @@
               <FileName>user_DataSaveTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Tasks\Src\user_DataSaveTask.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Application/User/MidFuc</GroupName>
+          <Files>
+            <File>
+              <FileName>PageStack.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Tasks\Src\PageStack.c</FilePath>
+            </File>
+            <File>
+              <FileName>StrCalculate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Tasks\Src\StrCalculate.c</FilePath>
             </File>
           </Files>
         </Group>

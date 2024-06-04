@@ -5,7 +5,7 @@
 #include "ui_Game2048Page.h"
 #include "ui_GameMemPage.h"
 
-#include "user_ScrRenewTask.h"
+#include "PageStack.h"
 
 lv_obj_t * ui_GameSelectPage;
 lv_obj_t * ui_Game2048Panel;
