@@ -115,6 +115,18 @@ int main(void)
 	//BLE
 	KT6328_GPIO_Init();
 	KT6328_Enable();
+	
+	//power GPIO使能和电池供电使能
+	Power_Init();
+
+	//PWM Start
+	HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
+
+	//lcd
+	LCD_Init();
+	LCD_Fill(0, 0, LCD_W, LCD_H, BLACK);
+	delay_ms(10);
+	LCD_Set_Light(50);
 
   //开机启动时如果按下KEY1, 进入boot中IAP升级模式
   if(HAL_GPIO_ReadPin(KEY1_PORT, KEY1_PIN) == 0)
@@ -123,17 +135,7 @@ int main(void)
     delay_ms(500);
     if(HAL_GPIO_ReadPin(KEY1_PORT, KEY1_PIN) == 0)
     {
-      //power GPIO使能和电池供电使能
-      Power_Init();
-
-      //PWM Start
-      HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);
-
-      //lcd
-      LCD_Init();
-      LCD_Fill(0, 0, LCD_W, LCD_H, BLACK);
-      delay_ms(10);
-      LCD_Set_Light(50);
+      
       LCD_ShowString(72, LCD_H/2, (uint8_t*)"Bootload", WHITE, BLACK, 24, 0);//12*6,16*8,24*12,32*16
       LCD_ShowString(32, LCD_H/2+48, (uint8_t*)"OV-Watch V2.4.0", WHITE, BLACK, 24, 0);
 
@@ -187,6 +189,13 @@ int main(void)
         __set_MSP(*(__IO uint32_t*) APPLICATION_ADDRESS);
         Jump_To_Application();
     }
+		// no legal APP 
+		else
+		{
+			LCD_ShowString(74, LCD_H/2, (uint8_t*)"No App!", WHITE, BLACK, 24, 0);//12*6,16*8,24*12,32*16
+      LCD_ShowString(32, LCD_H/2+48, (uint8_t*)"Please Download", WHITE, BLACK, 24, 0);
+			HAL_Delay(1000);
+		}
   }
 
 
