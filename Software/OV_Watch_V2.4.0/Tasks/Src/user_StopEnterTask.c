@@ -9,6 +9,7 @@
 
 #include "main.h"
 #include "stm32f4xx_it.h"
+#include "usart.h"
 #include "lcd_init.h"
 #include "power.h"
 #include "CST816.h"

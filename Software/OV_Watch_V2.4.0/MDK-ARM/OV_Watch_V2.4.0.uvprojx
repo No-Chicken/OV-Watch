@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\OV_Watch_V2.4.0\</OutputDirectory>
-          <OutputName>OV_Watch_V2.4.0</OutputName>
+          <OutputName>OV_Watch_V2.4.1</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
