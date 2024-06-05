@@ -131,7 +131,7 @@ At first, the watch used the motion function of the MPU6050 from sleep to wake u
 
 note: MPU6050 cannot directly use the DMP library. After initialization, the power consumption is high and some modifications are needed to reduce power consumption. Refer to the project code for specifics.
 
-If using the KT6328A for Bluetooth, it is not recommended to disable Bluetooth because its standby power consumption is very low.
+If using the KT6368A for Bluetooth, disable Bluetooth when not use, so that can save power.
 
 As For Test, when I testing with 3V3 as power supply, the power consumption is approximately 70-80mA in operating mode, around 1mA in standby mode, and almost no power consumption in shutdown mode, with only the RTC working. However, there was no testing of the power supply connected to the Vbat terminal powered by DCDC, and this power consumption depends entirely on the efficiency of the DCDC.
 
