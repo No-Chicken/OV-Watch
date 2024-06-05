@@ -3,10 +3,11 @@
   <h1 align="center">OV-Watch</h1>
 
 <div align=center>
-        <img src=https://img.shields.io/badge/version-2.4.0-blue>
+        <img src=https://img.shields.io/badge/version-2.4.1-blue>
         <img src=https://img.shields.io/badge/License-GPL3.0-green)>
         <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
 </div>
+
 
 
 
@@ -40,7 +41,16 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 
 ## :rocket: 增加的功能说明
-V2.4.0相对V2.3.2修改的功能包括：
+**V2.4.1相对V2.4.0修改的功能包括: **
+
+1. 睡眠时DeInit串口的IO口，设置为输入，修复休眠功耗很高的情况，现在休眠状态电流800多uA.
+
+1. BootLoader和APP都加入长按KEY1关机功能.
+
+1. APP中按键的BSP改动，现在是按键按下松开才发生作用，避免了一些误触情况.
+
+
+**V2.4.0相对V2.3.2修改的功能包括: **
 
 1. 更改了Back板硬件, 将蓝牙的使能电路修改，以前不能完全关闭，现在可以不用蓝牙时直接关了蓝牙，就可以不用KT6328A了，直接使用KT6368A, 有SPP功能, 可以无线升级.
 
