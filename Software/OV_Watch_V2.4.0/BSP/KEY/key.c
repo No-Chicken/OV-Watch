@@ -32,23 +32,37 @@ void Key_Port_Init(void)
 uint8_t KeyScan(uint8_t mode)
 {
 	static uint8_t key_up = 1;
-	uint8_t keyvalue=0;
-	if(mode) key_up = 1;
+	static uint8_t key_down = 0;
+	uint8_t keyvalue = 0;
+
+	if(mode)
+	{
+		key_up = 1;
+		key_down = 0;
+	}
+
 	if( key_up && ((!KEY1) || KEY2))
 	{
-		//delay_ms(3);//ensure the key is down
-		osDelay(3);
-		if(!KEY1) keyvalue = 1;
-		else if(KEY2) keyvalue = 2;
-		if(keyvalue) key_up = 0;
+		osDelay(3);//ensure the key
+		if(!KEY1)
+			key_down = 1;
+		if(KEY2)
+			key_down = 2;
+		if(key_down) 
+			key_up = 0;
 	}
-	else
+
+	if ( key_down && (KEY1 && (!KEY2)) )
 	{
-		//delay_ms(3);//ensure the key is up
-		osDelay(3);
-		if(KEY1 && (!KEY2))
+		osDelay(3);//ensure the key
+		if(KEY1 && (!KEY2)) 
+		{
 			key_up = 1;
+			keyvalue = key_down;
+			key_down = 0;
+		}
 	}
+
 	return keyvalue;
 }
 
