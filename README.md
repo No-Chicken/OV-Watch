@@ -1,4 +1,6 @@
-
+<p align="right">
+  <b>中文</b> | <a href="./README_Eng.md">English</a> 
+</p>
 
   <h1 align="center">OV-Watch</h1>
 
@@ -9,8 +11,6 @@
 </div>
 
 
-
-
 ## :ledger: Overview
 
 A powerful Smart Watch
@@ -19,7 +19,12 @@ A powerful Smart Watch
 
 FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
-![](https://img.shields.io/badge/MCU-STM32F411CEU6-blue)  ![](https://img.shields.io/badge/UI-LVGL-red)  ![](https://img.shields.io/badge/OS-FreeRTOS-green)
+<div align=center>
+        <img src=https://img.shields.io/badge/MCU-STM32F411CEU6-blue>
+        <img src=https://img.shields.io/badge/UI-LVGL_v8.2-red>
+        <img src=https://img.shields.io/badge/OS-FreeRTOS-green>
+</div>
+
 
 <p align="center">
 	<img border="1px" width="50%" src="./images/演示动图.gif">
@@ -40,8 +45,10 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 </p>
 
 
+
+
 ## :rocket: 增加的功能说明
-**V2.4.1相对V2.4.0修改的功能包括: **
+### V2.4.1相对V2.4.0修改的功能包括: 
 
 1. 睡眠时DeInit串口的IO口，设置为输入，修复休眠功耗很高的情况，现在休眠状态电流800多uA.
 
@@ -49,8 +56,7 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 1. APP中按键的BSP改动，现在是按键按下松开才发生作用，避免了一些误触情况.
 
-
-**V2.4.0相对V2.3.2修改的功能包括: **
+### V2.4.0相对V2.3.2修改的功能包括: 
 
 1. 更改了Back板硬件, 将蓝牙的使能电路修改，以前不能完全关闭，现在可以不用蓝牙时直接关了蓝牙，就可以不用KT6328A了，直接使用KT6368A, 有SPP功能, 可以无线升级.
 

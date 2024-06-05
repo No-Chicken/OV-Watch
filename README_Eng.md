@@ -1,4 +1,6 @@
-
+<p align="right">
+  <a href="./README.md">中文</a> | <b>English</b> 
+</p> 
 
   <h1 align="center">OV-Watch</h1>
 
@@ -20,7 +22,11 @@ If you find the hardware of this watch difficult to solder or replicate, if hard
 
 FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 
-![](https://img.shields.io/badge/MCU-STM32F411CEU6-blue)  ![](https://img.shields.io/badge/UI-LVGL-red)  ![](https://img.shields.io/badge/OS-FreeRTOS-green)
+<div align=center>
+        <img src=https://img.shields.io/badge/MCU-STM32F411CEU6-blue>
+        <img src=https://img.shields.io/badge/UI-LVGL_v8.2-red>
+        <img src=https://img.shields.io/badge/OS-FreeRTOS-green>
+</div>
 
 <p align="center">
 	<img border="1px" width="50%" src="./images/演示动图.gif">
@@ -43,14 +49,16 @@ FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 
 
 
+
+
 ## :rocket: Additional Features 
-**The features modified in V2.4.1 include:**
+### The features modified in V2.4.1 include:
 
 1. During sleep, deinitialize the UART's I/O ports and set them to input mode to reduce high sleep power consumption. Currently, the sleep state current is over 800 uA.
 2. Add a long press shutdown function for KEY1 in both the BootLoader and the APP
 3. Modify the BSP of the buttons in the APP so that actions occur only when the button is pressed and released, preventing some accidental touches.
 
-**The features modified in V2.4.0 include:**
+### The features modified in V2.4.0 include:
 
 1. fixed a bug in hardware in Back board, fixed the BLE circuit, now can totally disable the BLE power.
 2. Added BootLoader program.
