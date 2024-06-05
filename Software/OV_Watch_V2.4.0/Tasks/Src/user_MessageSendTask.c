@@ -96,7 +96,7 @@ void MessageSendTask(void *argument)
 			}
 			else if(!strcmp(HardInt_receive_str,"OV+VERSION"))
 			{
-				printf("VERSION=V2.3\r\n");
+				printf("VERSION=V2.4\r\n");
 			}
 			else if(!strcmp(HardInt_receive_str,"OV+SEND"))
 			{
