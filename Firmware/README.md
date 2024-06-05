@@ -61,7 +61,7 @@ BootLoader和APP存储的空间大概如下图
 	<img border="1px" width="50%" src="../images/boot升级界面.jpg">
 </p>
 
-4. 进入界面后, 输入`1`即可进行APP文件传输, 选择`send Ymodem`将`APP_OV_Watch_V2.4.0.bin`这个文件传进去即可, 过程比较慢, 耐心等待升级即可.
+4. 进入界面后, 输入`1`即可进行APP文件传输, 此时电脑一直会收到`CCCCCC...`, 此时就是在等待你用Ymodem协议发文件, 选择`send Ymodem`将`APP_OV_Watch_V2.4.0.bin`这个文件传进去即可, 过程比较慢, 耐心等待升级即可.
 
 <p align="center">
 	<img border="1px" width="50%" src="../images/send ymodem.jpg">
