@@ -249,7 +249,7 @@ int main(void)
 	delay_ms(10);
 	LCD_Set_Light(50);
 	LCD_ShowString(72,LCD_H/2,(uint8_t*)"Welcome!",WHITE,BLACK,24,0);//12*6,16*8,24*12,32*16
-	LCD_ShowString(36,LCD_H/2+48,(uint8_t*)"OV-Watch V2.4.0",WHITE,BLACK,24,0);
+	LCD_ShowString(36,LCD_H/2+48,(uint8_t*)"OV-Watch V2.4.1",WHITE,BLACK,24,0);
 	delay_ms(1000);
 	LCD_Fill(0,LCD_H/2-24,LCD_W,LCD_H/2+49,BLACK);
 
