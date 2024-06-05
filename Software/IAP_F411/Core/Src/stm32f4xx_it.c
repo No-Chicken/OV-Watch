@@ -22,6 +22,8 @@
 #include "stm32f4xx_it.h"
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "key.h"
+#include "power.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -183,7 +185,22 @@ void PendSV_Handler(void)
 void SysTick_Handler(void)
 {
   /* USER CODE BEGIN SysTick_IRQn 0 */
-
+  static uint16_t key1_long_press;
+  if(!KEY1)
+  {
+		if(boot_in_menu_flag)
+		{
+			key1_long_press += 1;
+			if(key1_long_press >= 3000)
+			{
+				Power_DisEnable();
+			}
+		}
+  }
+  else
+  {
+    key1_long_press = 0;
+  }
   /* USER CODE END SysTick_IRQn 0 */
   HAL_IncTick();
   /* USER CODE BEGIN SysTick_IRQn 1 */
