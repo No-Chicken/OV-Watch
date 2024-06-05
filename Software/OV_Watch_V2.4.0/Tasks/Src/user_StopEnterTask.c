@@ -68,19 +68,22 @@ void StopEnterTask(void *argument)
 		if(osMessageQueueGet(Stop_MessageQueue,&Stopstr,NULL,0)==osOK)
 		{
 			
-			/***** your sleep operations *****/
+			/****************************** your sleep operations *****************************/
 			sleep:
 			IdleTimerCount = 0;
 
 			//sensors
 			
+			//usart
+			HAL_UART_MspDeInit(&huart1);
+
 			//lcd
 			LCD_RES_Clr();
 			LCD_Close_Light();
 			//touch
 			CST816_Sleep();
 			
-			/*********************************/
+			/***********************************************************************************/
 			
 			vTaskSuspendAll();
 			//Disnable Watch Dog
@@ -99,7 +102,7 @@ void StopEnterTask(void *argument)
 			WDOG_Feed();
 			xTaskResumeAll();
 			
-			/***** your wakeup operations *****/
+			/****************************** your wakeup operations ******************************/
 			
 			//MPU Check
 			if(user_MPU_Wrist_EN)
@@ -132,7 +135,8 @@ void StopEnterTask(void *argument)
 				goto sleep;
 			}
 			
-			
+			//usart
+			HAL_UART_MspInit(&huart1);
 			//lcd
 			LCD_Init();
 			LCD_Set_Light(ui_LightSliderValue);
@@ -143,7 +147,8 @@ void StopEnterTask(void *argument)
 			{HardInt_Charg_flag = 1;}
 			//send the Home Updata message
 			osMessageQueuePut(HomeUpdata_MessageQueue, &HomeUpdataStr, 0, 1);
-			/**********************************/
+
+			/**************************************************************************************/
 			
 		}
 		osDelay(100);
