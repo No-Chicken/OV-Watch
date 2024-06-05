@@ -9,9 +9,7 @@
         <img src=https://img.shields.io/badge/License-GPL3.0-green)>
         <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
 </div>
-
-
-
+<br>
 
 
 ## :ledger: Overview
@@ -37,7 +35,7 @@ FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 </p>
 
 
-
+<br>
 
 ## :link:Links：
 
@@ -46,9 +44,7 @@ FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 <a href="https://www.bilibili.com/video/BV19g4y1N7YR/">V2.3 NEW function video intro </a>  |
 <a href="https://oshwhub.com/no_chicken/zhi-neng-shou-biao-OV-Watch_V2.2">Easy EDA open source hardware </a> 
 </p>
-
-
-
+<br>
 
 
 ## :rocket: Additional Features 
@@ -65,7 +61,7 @@ FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 3. Added IAP OTA functionality, which enables program upgrades via Bluetooth.
 4. Fixed some bugs.
 
-
+<br>
 
 ## :black_nib:How to download BootLoader  and upgrad APP：
 
@@ -73,7 +69,7 @@ Please refer to the README file in the `Firmware` folder for details: [BootLoade
 
 If you find the version 2.3.3 with BootLoader too complicated, you can download branch [ver2.3.2](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2) and use the previous code.
 
-
+<br>
 
 ## :bookmark_tabs:Function List：
 
@@ -123,7 +119,7 @@ If you find the version 2.3.3 with BootLoader too complicated, you can download 
 </p>
 
 
-
+<br>
 
 ## :computer:Design Details of the Software Section：
 
@@ -148,8 +144,6 @@ Originally, the heart rate calculation used the official library, but the calcul
 <p align="center">
 	<img border="1px" width="50%" src="./images/EM7028的测量曲线.jpg">
 </p>
-
-
 
 
 

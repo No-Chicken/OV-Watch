@@ -9,7 +9,7 @@
         <img src=https://img.shields.io/badge/License-GPL3.0-green)>
         <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
 </div>
-
+<br>
 
 ## :ledger: Overview
 
@@ -24,8 +24,6 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
         <img src=https://img.shields.io/badge/UI-LVGL_v8.2-red>
         <img src=https://img.shields.io/badge/OS-FreeRTOS-green>
 </div>
-
-
 <p align="center">
 	<img border="1px" width="50%" src="./images/演示动图.gif">
 </p>
@@ -33,7 +31,7 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 <p align="center">
 	<img border="1px" width="50%" src="./images/界面.jpg">
 </p>
-
+<br>
 
 ## :link:视频链接：
 
@@ -43,12 +41,10 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 <a href="https://www.bilibili.com/video/BV19g4y1N7YR/">V2.3新增功能视频 </a> |
 <a href="https://www.bilibili.com/video/BV1hh4y1J7TS">V2.2演示视频 </a>
 </p>
-
-
-
+<br>
 
 ## :rocket: 增加的功能说明
-### V2.4.1相对V2.4.0修改的功能包括: 
+#### V2.4.1相对V2.4.0修改的功能包括: 
 
 1. 睡眠时DeInit串口的IO口，设置为输入，修复休眠功耗很高的情况，现在休眠状态电流800多uA.
 
@@ -56,7 +52,7 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 1. APP中按键的BSP改动，现在是按键按下松开才发生作用，避免了一些误触情况.
 
-### V2.4.0相对V2.3.2修改的功能包括: 
+#### V2.4.0相对V2.3.2修改的功能包括: 
 
 1. 更改了Back板硬件, 将蓝牙的使能电路修改，以前不能完全关闭，现在可以不用蓝牙时直接关了蓝牙，就可以不用KT6328A了，直接使用KT6368A, 有SPP功能, 可以无线升级.
 
@@ -66,7 +62,7 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 1. 修改了一些bug.
 
-
+<br>
 
 ## :black_nib:如何烧录：
 
@@ -74,16 +70,14 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 如果你觉得带BootLoader的V2.4.0版本太麻烦了, 可以自行去下载[ver2.3.2分支](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2), 用以前的代码.
 
-
+<br>
 
 ## :bookmark_tabs:功能表如下图所示：
 
 <p align="center">
 	<img border="1px" width="75%" src="./images/功能表.jpg">
 </p>
-
-
-
+<br>
 
 
 ## :star2:实物图
@@ -107,7 +101,7 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 <p align="center">
 	<img border="1px" width="50%" src="./images/back.jpg">
 </p>
-
+<br>
 
 ## :computer:软件部分设计细节：
 
