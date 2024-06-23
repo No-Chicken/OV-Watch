@@ -5,10 +5,15 @@
   <h1 align="center">OV-Watch</h1>
 
 <div align=center>
-        <img src=https://img.shields.io/badge/version-2.4.0-blue>
+        <img src=https://img.shields.io/badge/version-2.4.1-blue>
         <img src=https://img.shields.io/badge/License-GPL3.0-green)>
         <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
+    <br>
+        <img src=https://img.shields.io/badge/MCU-STM32F411CEU6-lightblue>
+        <img src=https://img.shields.io/badge/UI-LVGL_v8.2-red>
+        <img src=https://img.shields.io/badge/OS-FreeRTOS-green>
 </div>
+
 <br>
 
 
@@ -20,11 +25,6 @@ If you find the hardware of this watch difficult to solder or replicate, if hard
 
 FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 
-<div align=center>
-        <img src=https://img.shields.io/badge/MCU-STM32F411CEU6-blue>
-        <img src=https://img.shields.io/badge/UI-LVGL_v8.2-red>
-        <img src=https://img.shields.io/badge/OS-FreeRTOS-green>
-</div>
 
 <p align="center">
 	<img border="1px" width="50%" src="./images/演示动图.gif">
