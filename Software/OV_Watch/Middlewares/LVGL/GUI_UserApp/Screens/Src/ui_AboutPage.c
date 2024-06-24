@@ -1,6 +1,7 @@
 #include "ui.h"
 #include "ui_helpers.h"
 #include "ui_AboutPage.h"
+#include "version.h"
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_AboutPage;
 
@@ -63,7 +64,9 @@ void ui_AboutPage_screen_init(void)
     lv_obj_set_height(ui_VersionTextLabel, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_x(ui_VersionTextLabel, 25);
     lv_obj_set_y(ui_VersionTextLabel, 90);
-    lv_label_set_text(ui_VersionTextLabel, "V2.4.1");
+    char str_buf[8];
+    sprintf(str_buf, "V%d.%d.%d", watch_version_major(), watch_version_minor(), watch_version_patch());
+    lv_label_set_text(ui_VersionTextLabel, str_buf);
     lv_obj_set_style_text_font(ui_VersionTextLabel, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     ui_MCULabel = lv_label_create(ui_AboutPage);
@@ -155,7 +158,7 @@ void ui_AboutPage_screen_init(void)
     lv_obj_set_y(ui_AuthorSTextLabel, 340);
     lv_label_set_text(ui_AuthorSTextLabel, "Kingham");
     lv_obj_set_style_text_font(ui_AuthorSTextLabel, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
-		
+
 		ui_AuthorGLabel = lv_label_create(ui_AboutPage);
     lv_obj_set_width(ui_AuthorGLabel, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_AuthorGLabel, LV_SIZE_CONTENT);    /// 1

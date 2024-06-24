@@ -57,6 +57,8 @@
 //APP SYS setting
 #include "ui_DateTimeSetPage.h"
 
+#include "version.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -140,21 +142,21 @@ int main(void)
 	//usart start
 	HAL_UART_Receive_DMA(&huart1,(uint8_t*)HardInt_receive_str,25);
 	__HAL_UART_ENABLE_IT(&huart1,UART_IT_IDLE);
-	
+
 	//PWM Start
 	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);
-	
+
 	//sys delay
 	delay_init();
 	//wait
 	// delay_ms(1000);
-	
+
 	//power
 	Power_Init();
-	
+
 	//key
 	Key_Port_Init();
-	
+
 	//sensor
 	uint8_t num = 3;
 	while(num && Sensor_AHT21_Erro)
@@ -162,7 +164,7 @@ int main(void)
 		num--;
 		Sensor_AHT21_Erro = AHT_Init();
 	}
-	
+
 	num = 3;
 	while(num && Sensor_LSM303_Erro)
 	{
@@ -171,14 +173,14 @@ int main(void)
 	}
 	if(!Sensor_LSM303_Erro)
 		LSM303DLH_Sleep();
-	
+
 	num = 3;
 	while(num && Sensor_SPL_Erro)
 	{
 		num--;
 		Sensor_SPL_Erro = SPL_init();
 	}
-	
+
 	num = 3;
 	while(num && Sensor_MPU_Erro)
 	{
@@ -186,7 +188,7 @@ int main(void)
 		Sensor_MPU_Erro = mpu_dmp_init();
 		//Sensor_MPU_Erro = MPU_Init();
 	}
-	
+
 	num = 3;
 	while(num && Sensor_EM_Erro)
 	{
@@ -195,9 +197,9 @@ int main(void)
 	}
 	if(!Sensor_EM_Erro)
 		EM7028_hrs_DisEnable();
-		
-	
-		
+
+
+
 	//EEPROM
 	EEPROM_Init();
 	if(!EEPROM_Check())
@@ -214,10 +216,10 @@ int main(void)
 			user_MPU_Wrist_EN = recbuf[0];
 			user_APPSy_EN = recbuf[1];
 		}
-		
+
 		RTC_DateTypeDef nowdate;
 		HAL_RTC_GetDate(&hrtc,&nowdate,RTC_FORMAT_BIN);
-		
+
 		SettingGet(recbuf,0x20,3);
 		if(recbuf[0] == nowdate.Date)
 		{
@@ -228,28 +230,29 @@ int main(void)
 				dmp_set_pedometer_step_count((unsigned long)steps);
 		}
 	}
-	
-	
-	
+
+
 	//BLE
 	KT6328_GPIO_Init();
 	KT6328_Disable();
-	
+
 	//set the KT6328 BautRate 9600
 	//default is 115200
 	//printf("AT+CT01\r\n");
-	
+
 	//touch
 	CST816_GPIO_Init();
 	CST816_RESET();
-	
+
 	//lcd
 	LCD_Init();
 	LCD_Fill(0,0,LCD_W,LCD_H,BLACK);
 	delay_ms(10);
 	LCD_Set_Light(50);
 	LCD_ShowString(72,LCD_H/2,(uint8_t*)"Welcome!",WHITE,BLACK,24,0);//12*6,16*8,24*12,32*16
-	LCD_ShowString(36,LCD_H/2+48,(uint8_t*)"OV-Watch V2.4.1",WHITE,BLACK,24,0);
+  uint8_t lcd_buf_str[17];
+  sprintf(lcd_buf_str, "OV-Watch V%d.%d.%d", watch_version_major(), watch_version_minor(), watch_version_patch());
+	LCD_ShowString(36, LCD_H/2+48, (uint8_t*)lcd_buf_str, WHITE, BLACK, 24, 0);
 	delay_ms(1000);
 	LCD_Fill(0,LCD_H/2-24,LCD_W,LCD_H/2+49,BLACK);
 
@@ -258,7 +261,7 @@ int main(void)
 	lv_port_disp_init();
 	lv_port_indev_init();
 	ui_init();
-	
+
   /* USER CODE END 2 */
 
   /* Init scheduler */
@@ -276,7 +279,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		
+
   }
   /* USER CODE END 3 */
 }

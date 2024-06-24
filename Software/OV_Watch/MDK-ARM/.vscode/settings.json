@@ -16,5 +16,19 @@
             "command": "extension.execute",
             "priority": 4
         }
-    ]
+    ],
+    "files.associations": {
+        "lvgl.h": "c",
+        "version.h": "c",
+        "rtc.h": "c",
+        "hwdataget.h": "c",
+        "ui.h": "c",
+        "lv_extra.h": "c",
+        "power.h": "c",
+        "ui_chargpage.h": "c",
+        "ui_compasspage.h": "c",
+        "ui_timerpage.h": "c",
+        "user_mpuchecktask.h": "c",
+        "stdbool.h": "c"
+    }
 }

@@ -7,7 +7,7 @@
 #include "ui_DateTimeSetPage.h"
 
 #include "PageStack.h"
-#include "user_MPUCheckTask.h"
+#include "HWDataAccess.h"
 
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_SetPage;
@@ -94,12 +94,12 @@ void ui_event_WristSwitch(lv_event_t * e)
        if(lv_obj_has_state(ui_WristSwitch,LV_STATE_CHECKED))
        {
             //open
-				 user_MPU_Wrist_EN=1;
+			  HW_MPU_Wrist_Enable();
        }
        else
        {
             //close
-				 user_MPU_Wrist_EN=0;
+				 HW_MPU_Wrist_Disable();
        }
     }
 }
@@ -292,7 +292,7 @@ void ui_SetPage_screen_init(void)
     lv_obj_set_width(ui_WristSwitch, 55);
     lv_obj_set_height(ui_WristSwitch, 25);
     lv_obj_set_align(ui_WristSwitch, LV_ALIGN_RIGHT_MID);
-		if(user_MPU_Wrist_EN)
+		if(HW_MPU_Wrist_is_Enabled())
 		{lv_obj_add_state(ui_WristSwitch, LV_STATE_CHECKED);}
 
     ui_PasswordPanel = lv_obj_create(ui_SetPage);

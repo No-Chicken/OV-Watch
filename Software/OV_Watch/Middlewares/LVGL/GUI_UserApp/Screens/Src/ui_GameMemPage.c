@@ -7,7 +7,7 @@
 #include "ui_MenuPage.h"
 #include "ui_GameMemPage.h"
 
-#include "rtc.h"
+#include "HWDataAccess.h"
 
 #define MATRIX_SIZE 4
 
@@ -39,7 +39,7 @@ void ui_event_GameMemBtnM_handler(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     lv_obj_t * obj = lv_event_get_target(e);
-		
+
     if(code == LV_EVENT_VALUE_CHANGED)
     {
         uint32_t id = lv_btnmatrix_get_selected_btn(obj);
@@ -47,10 +47,10 @@ void ui_event_GameMemBtnM_handler(lv_event_t * e)
         Game_Mem.present_id = (uint8_t)id;
         if(Game_Mem.present_id != Game_Mem.previous_id)
         {
-					
+
             if(Game_Mem.matrix[Game_Mem.present_id] == Game_Mem.matrix[Game_Mem.previous_id])
             {
-							
+
                 lv_btnmatrix_set_btn_ctrl(ui_GameMem_BtnM,Game_Mem.present_id,LV_BTNMATRIX_CTRL_HIDDEN);
                 lv_btnmatrix_set_btn_ctrl(ui_GameMem_BtnM,Game_Mem.previous_id,LV_BTNMATRIX_CTRL_HIDDEN);
                 Game_Mem.matrix[Game_Mem.present_id] = 0;
@@ -60,7 +60,7 @@ void ui_event_GameMemBtnM_handler(lv_event_t * e)
                     lv_obj_clear_flag(ui_new_game_btn,LV_OBJ_FLAG_HIDDEN);
                 }
                 Game_Mem.previous_id = Game_Mem.present_id;
-							
+
             }
             else
             {
@@ -69,10 +69,10 @@ void ui_event_GameMemBtnM_handler(lv_event_t * e)
                 Game_Mem.label_opa_map[Game_Mem.present_id] = LV_OPA_100;
                 Game_Mem.previous_id = Game_Mem.present_id;
             }
-						
+
         }
     }
-		
+
     if(code == LV_EVENT_DRAW_PART_BEGIN)
     {
         lv_obj_draw_part_dsc_t * dsc = lv_event_get_param(e);
@@ -154,10 +154,10 @@ void Game_Mem_Init(void)
 void list_rand_number(uint8_t arry[], uint8_t max_count, uint8_t count)
 {
     int w, t;
-		int time=0;
-		RTC_TimeTypeDef nowtime;
-		HAL_RTC_GetTime(&hrtc,&nowtime,RTC_FORMAT_BIN);
-		time = nowtime.Seconds;
+	int time=0;
+	HW_DateTimeTypeDef nowtime;
+	HW_RTC_Get_TimeDate(&nowtime);
+	time = nowtime.Seconds;
     srand(time);
 
     for (int i = 0; i < max_count; i++)

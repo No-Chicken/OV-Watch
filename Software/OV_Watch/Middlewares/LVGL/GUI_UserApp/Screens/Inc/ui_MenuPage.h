@@ -9,16 +9,16 @@ extern "C" {
 
 #define CALENDAR_PAGE_EN		1
 #define COMPUTER_PAGE_EN		1
-#define TIMER_PAGE_EN				1
-#define CARD_PAGE_EN        1
+#define TIMER_PAGE_EN			1
+#define CARD_PAGE_EN            1
 #define SPROTS_PAGE_EN			0
-#define HR_PAGE_EN					1
-#define O2_PAGE_EN					1
-#define ENVIRONMENT_PAGE_EN	1
+#define HR_PAGE_EN				1
+#define O2_PAGE_EN				1
+#define ENVIRONMENT_PAGE_EN	    1
 #define COMPASS_PAGE_EN			1
-#define GAME_PAGE_EN        1
-#define SET_PAGE_EN					1
-#define ABOUT_PAGE_EN				1
+#define GAME_PAGE_EN            1
+#define SET_PAGE_EN				1
+#define ABOUT_PAGE_EN			1
 
 extern lv_obj_t * ui_MenuPage;
 extern lv_obj_t * ui_MenuCalPanel;

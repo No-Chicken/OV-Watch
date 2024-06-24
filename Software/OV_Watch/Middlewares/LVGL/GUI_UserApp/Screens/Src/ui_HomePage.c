@@ -6,8 +6,6 @@
 #include "ui_HRPage.h"
 #include "ui_SetPage.h"
 
-#include "lcd.h"
-#include "lcd_init.h"
 #include "power.h"
 #include "KT6328.h"
 
@@ -151,7 +149,7 @@ void ui_event_PowerSlider(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_VALUE_CHANGED)
     {
-			
+
     }
 		if(event_code == LV_EVENT_CLICKED)
 		{
@@ -301,7 +299,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_style_text_color(ui_StepiconLabel, lv_color_hex(0x3278FF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_StepiconLabel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_StepiconLabel, &ui_font_iconfont24, LV_PART_MAIN | LV_STATE_DEFAULT);
-		
+
     ui_StepCnLabel = lv_label_create(ui_HomePage);
     lv_obj_set_width(ui_StepCnLabel, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_StepCnLabel, LV_SIZE_CONTENT);    /// 1
@@ -312,7 +310,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_style_text_color(ui_StepCnLabel, lv_color_hex(0x3278FF), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_opa(ui_StepCnLabel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_StepCnLabel, &ui_font_Cuyuan18, LV_PART_MAIN | LV_STATE_DEFAULT);
-		
+
     ui_StepNumLabel = lv_label_create(ui_HomePage);
     lv_obj_set_width(ui_StepNumLabel, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_StepNumLabel, LV_SIZE_CONTENT);    /// 1
@@ -333,7 +331,7 @@ void ui_HomePage_screen_init(void)
 
     lv_obj_set_style_bg_color(ui_StepNumBar, lv_color_hex(0x3278FF), LV_PART_INDICATOR | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_StepNumBar, 255, LV_PART_INDICATOR | LV_STATE_DEFAULT);
-		
+
     ui_TempArc = lv_arc_create(ui_HomePage);
     lv_obj_set_width(ui_TempArc, 50);
     lv_obj_set_height(ui_TempArc, 50);
@@ -417,7 +415,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_align(ui_HumiNumLabel, LV_ALIGN_CENTER);
     sprintf(value_strbuf,"%d",ui_EnvHumiValue);
     lv_label_set_text(ui_HumiNumLabel, value_strbuf);
-		
+
 		ui_HRArc = lv_arc_create(ui_HomePage);
     lv_obj_set_width(ui_HRArc, 50);
     lv_obj_set_height(ui_HRArc, 50);
@@ -439,7 +437,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_style_pad_right(ui_HRArc, 0, LV_PART_KNOB | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_top(ui_HRArc, 0, LV_PART_KNOB | LV_STATE_DEFAULT);
     lv_obj_set_style_pad_bottom(ui_HRArc, 0, LV_PART_KNOB | LV_STATE_DEFAULT);
-		
+
     ui_HRiconLabel = lv_label_create(ui_HomePage);
     lv_obj_set_width(ui_HRiconLabel, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_HRiconLabel, LV_SIZE_CONTENT);    /// 1
@@ -459,8 +457,8 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_align(ui_HRNumLabel, LV_ALIGN_CENTER);
     sprintf(value_strbuf,"%d",ui_HRValue);
     lv_label_set_text(ui_HRNumLabel, value_strbuf);
-		
-		
+
+
     ui_DropDownPanel = lv_obj_create(ui_HomePage);
     lv_obj_set_width(ui_DropDownPanel, 240);
     lv_obj_set_height(ui_DropDownPanel, 420);
@@ -477,7 +475,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_style_border_opa(ui_DropDownPanel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_DropDownPanel, 0, LV_PART_SCROLLBAR | LV_STATE_DEFAULT);
     lv_obj_set_style_bg_opa(ui_DropDownPanel, 0, LV_PART_SCROLLBAR | LV_STATE_SCROLLED);
-		
+
     ui_UpBGPanel = lv_obj_create(ui_DropDownPanel);
     lv_obj_set_width(ui_UpBGPanel, 240);
     lv_obj_set_height(ui_UpBGPanel, 130);
@@ -615,14 +613,14 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_style_bg_opa(ui_DownBGPanel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_color(ui_DownBGPanel, lv_color_hex(0x000000), LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_border_opa(ui_DownBGPanel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
-		
+
 		//events
 		lv_obj_add_event_cb(ui_HomePage, ui_event_HomePage, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_NFCButton, ui_event_NFCButton, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_BLEButton, ui_event_BLEButton, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_PowerButton, ui_event_PowerButton, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_SetButton, ui_event_SetButton, LV_EVENT_ALL, NULL);
-    lv_obj_add_event_cb(ui_LightSlider,ui_event_LightSlider, LV_EVENT_ALL, NULL);	
+    lv_obj_add_event_cb(ui_LightSlider,ui_event_LightSlider, LV_EVENT_ALL, NULL);
 
 }
 
@@ -656,7 +654,7 @@ void ui_PowerPage_screen_init(void)
 
 		//events
 		lv_obj_add_event_cb(ui_PowerSlider, ui_event_PowerSlider, LV_EVENT_ALL, NULL);
-		
+
 
 }
 

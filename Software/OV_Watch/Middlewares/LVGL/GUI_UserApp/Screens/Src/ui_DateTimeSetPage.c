@@ -5,7 +5,8 @@
 #include "ui_DateTimeSetPage.h"
 
 #include "PageStack.h"
-#include "rtc.h"
+
+#include "HWDataAccess.h"
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_DateTimeSetPage;
 lv_obj_t * ui_APPSyPanel;
@@ -98,7 +99,7 @@ void ui_event_DateSetOKButton(lv_event_t * e)
 			ui_DateMonthValue = setmonth;
 			ui_DateDayValue = setday;
 			ui_DataWeekdayValue = weekday_cluculate(setyear,setmonth,setday,20);
-			
+
 			ui_DateTimeSetPage_screen_init();
       lv_scr_load_anim(ui_DateTimeSetPage,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
 			user_Stack_Pop(&ScrRenewStack);
@@ -116,7 +117,7 @@ void ui_event_TimeSetOKButton(lv_event_t * e)
 			RTC_SetTime(sethour,setmin,setsec);
 			ui_TimeHourValue = sethour;
 			ui_TimeMinuteValue = setmin;
-			
+
 			ui_DateTimeSetPage_screen_init();
       lv_scr_load_anim(ui_DateTimeSetPage,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
 			user_Stack_Pop(&ScrRenewStack);
@@ -273,7 +274,7 @@ void ui_DateTimeSetPage_screen_init(void)
     lv_obj_set_align(ui_TimeSetLabel3, LV_ALIGN_RIGHT_MID);
     lv_label_set_text(ui_TimeSetLabel3, ".");
     lv_obj_set_style_text_font(ui_TimeSetLabel3, &ui_font_Cuyuan20, LV_PART_MAIN | LV_STATE_DEFAULT);
-		
+
 		lv_obj_add_event_cb(ui_DateTimeSetPage, ui_event_DateTimeSetPage, LV_EVENT_ALL, NULL);
 		lv_obj_add_event_cb(ui_DateSetPanel, ui_event_DateSetPanel, LV_EVENT_ALL, NULL);
 		lv_obj_add_event_cb(ui_TimeSetPanel, ui_event_TimeSetPanel, LV_EVENT_ALL, NULL);
@@ -285,17 +286,15 @@ void ui_DateTimeSetPage_screen_init(void)
 void ui_DateSetPage_screen_init(void)
 {
 
-    RTC_DateTypeDef nowdate;
-    RTC_TimeTypeDef nowtime;
-    HAL_RTC_GetTime(&hrtc,&nowtime,RTC_FORMAT_BIN);
-    HAL_RTC_GetDate(&hrtc,&nowdate,RTC_FORMAT_BIN);
+    HW_DateTimeTypeDef datetime;
+    HW_RTC_Get_TimeDate(&datetime);
 
     ui_DateSetPage = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_DateSetPage, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_YearSetRoller = lv_roller_create(ui_DateSetPage);
     lv_roller_set_options(ui_YearSetRoller, yearoptions ,LV_ROLLER_MODE_NORMAL);
-    lv_roller_set_selected(ui_YearSetRoller, nowdate.Year-22, LV_ANIM_OFF);
+    lv_roller_set_selected(ui_YearSetRoller, datetime.Year-22, LV_ANIM_OFF);
     lv_obj_set_height(ui_YearSetRoller, 120);
     lv_obj_set_width(ui_YearSetRoller, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_x(ui_YearSetRoller, 8);
@@ -318,7 +317,7 @@ void ui_DateSetPage_screen_init(void)
 
     ui_MonthSetRoller = lv_roller_create(ui_DateSetPage);
     lv_roller_set_options(ui_MonthSetRoller, monthoptions, LV_ROLLER_MODE_NORMAL);
-    lv_roller_set_selected(ui_MonthSetRoller, nowdate.Month-1, LV_ANIM_OFF);
+    lv_roller_set_selected(ui_MonthSetRoller, datetime.Month-1, LV_ANIM_OFF);
     lv_obj_set_height(ui_MonthSetRoller, 120);
     lv_obj_set_width(ui_MonthSetRoller, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_x(ui_MonthSetRoller, 17);
@@ -341,7 +340,7 @@ void ui_DateSetPage_screen_init(void)
 
     ui_DaySetRoller = lv_roller_create(ui_DateSetPage);
     lv_roller_set_options(ui_DaySetRoller, day31options, LV_ROLLER_MODE_NORMAL);
-    lv_roller_set_selected(ui_DaySetRoller, nowdate.Date-1, LV_ANIM_OFF);
+    lv_roller_set_selected(ui_DaySetRoller, datetime.Date-1, LV_ANIM_OFF);
     lv_obj_set_height(ui_DaySetRoller, 120);
     lv_obj_set_width(ui_DaySetRoller, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_x(ui_DaySetRoller, -8);
@@ -390,17 +389,15 @@ void ui_DateSetPage_screen_init(void)
 void ui_TimeSetPage_screen_init(void)
 {
 
-    RTC_DateTypeDef nowdate;
-    RTC_TimeTypeDef nowtime;
-    HAL_RTC_GetTime(&hrtc,&nowtime,RTC_FORMAT_BIN);
-    HAL_RTC_GetDate(&hrtc,&nowdate,RTC_FORMAT_BIN);
+    HW_DateTimeTypeDef datetime;
+    HW_RTC_Get_TimeDate(&datetime);
 
     ui_TimeSetPage = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_TimeSetPage, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
 
     ui_HourSetRoller = lv_roller_create(ui_TimeSetPage);
     lv_roller_set_options(ui_HourSetRoller, houroptions, LV_ROLLER_MODE_NORMAL);
-    lv_roller_set_selected(ui_HourSetRoller, nowtime.Hours, LV_ANIM_OFF);
+    lv_roller_set_selected(ui_HourSetRoller, datetime.Hours, LV_ANIM_OFF);
     lv_obj_set_height(ui_HourSetRoller, 120);
     lv_obj_set_width(ui_HourSetRoller, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_x(ui_HourSetRoller, 5);
@@ -432,7 +429,7 @@ void ui_TimeSetPage_screen_init(void)
 
     ui_MinSetRoller = lv_roller_create(ui_TimeSetPage);
     lv_roller_set_options(ui_MinSetRoller, minoptions, LV_ROLLER_MODE_NORMAL);
-    lv_roller_set_selected(ui_MinSetRoller, nowtime.Minutes, LV_ANIM_OFF);
+    lv_roller_set_selected(ui_MinSetRoller, datetime.Minutes, LV_ANIM_OFF);
     lv_obj_set_height(ui_MinSetRoller, 120);
     lv_obj_set_width(ui_MinSetRoller, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_align(ui_MinSetRoller, LV_ALIGN_CENTER);
@@ -462,7 +459,7 @@ void ui_TimeSetPage_screen_init(void)
 
     ui_SecSetRoller = lv_roller_create(ui_TimeSetPage);
     lv_roller_set_options(ui_SecSetRoller, minoptions, LV_ROLLER_MODE_NORMAL);
-    lv_roller_set_selected(ui_SecSetRoller, nowtime.Seconds, LV_ANIM_OFF);
+    lv_roller_set_selected(ui_SecSetRoller, datetime.Seconds, LV_ANIM_OFF);
     lv_obj_set_height(ui_SecSetRoller, 120);
     lv_obj_set_width(ui_SecSetRoller, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_x(ui_SecSetRoller, -5);
@@ -502,7 +499,7 @@ void ui_TimeSetPage_screen_init(void)
     lv_obj_set_align(ui_TimeSetOKicon, LV_ALIGN_CENTER);
     lv_label_set_text(ui_TimeSetOKicon, "");
     lv_obj_set_style_text_font(ui_TimeSetOKicon, &ui_font_iconfont45, LV_PART_MAIN | LV_STATE_DEFAULT);
-		
+
 		lv_obj_add_event_cb(ui_TimeSetOKButton, ui_event_TimeSetOKButton, LV_EVENT_ALL, NULL);
 
 }

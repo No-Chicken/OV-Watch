@@ -9,7 +9,7 @@
 
 #include "PageStack.h"
 
-#include "rtc.h"
+#include "HWDataAccess.h"
 
 #define STACK_DEPTH 5
 #define MATRIX_SIZE 4
@@ -264,11 +264,11 @@ void addRandom(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
     uint16_t r, len = 0;
     uint16_t n, list[MATRIX_SIZE * MATRIX_SIZE][2];
 
-    if (!initialized) 
+    if (!initialized)
 		{
 			int time=0;
-			RTC_TimeTypeDef nowtime;
-			HAL_RTC_GetTime(&hrtc,&nowtime,RTC_FORMAT_BIN);
+            HW_DateTimeTypeDef nowtime;
+            HW_RTC_Get_TimeDate(&nowtime);
 			time = nowtime.Seconds;
       srand(time);
       initialized = 1;

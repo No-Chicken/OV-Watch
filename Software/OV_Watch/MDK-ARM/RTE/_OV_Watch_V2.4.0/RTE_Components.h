@@ -3,7 +3,7 @@
  * Auto generated Run-Time-Environment Configuration File
  *      *** Do not modify ! ***
  *
- * Project: 'OV_Watch_V2.4.0' 
+ * Project: 'OV_Watch_V2.4.2' 
  * Target:  'OV_Watch_V2.4.0' 
  */
 
