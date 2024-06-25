@@ -6,6 +6,8 @@
 #include "../Inc/ui_HRPage.h"
 #include "../Inc/ui_SetPage.h"
 
+#include "../../../Func/Inc/HWDataAccess.h"
+#include "../../../Func/Inc/PageStack.h"
 
 ///////////////////// VARIABLES ////////////////////
 //home page
@@ -51,11 +53,6 @@ lv_obj_t * ui_PowerSlider;
 lv_obj_t * ui_PowerDownLabel;
 
 
-#define DROPDOWN_HIDEED 0
-#define DROPDOWN_SHOWED 1
-
-uint8_t DropDown_Status = DROPDOWN_HIDEED;
-
 uint8_t ui_TimeHourValue = 11;
 uint8_t ui_TimeMinuteValue = 59;
 const char * ui_Days[7] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat.", "Sun."};
@@ -67,27 +64,26 @@ uint8_t ui_BatArcValue = 70;
 uint16_t ui_StepNumValue = 0;
 uint8_t ui_LightSliderValue = 50;
 
-uint8_t ui_HomePageBLEEN=1;
-uint8_t ui_HomePageNFCEN=0;
+uint8_t ui_HomePageBLEEN = 0;
+uint8_t ui_HomePageNFCEN = 0;
 
 ///////////////////// FUNCTIONS ////////////////////
 void ui_event_HomePage(lv_event_t * e)
 {
-  lv_event_code_t event_code = lv_event_get_code(e);
-  lv_obj_t * target = lv_event_get_target(e);
+    lv_event_code_t event_code = lv_event_get_code(e);
+    lv_obj_t * target = lv_event_get_target(e);
 
-  if(event_code == LV_EVENT_GESTURE)
-  {
-    if(lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT)
+    if(event_code == LV_EVENT_GESTURE)
     {
-        user_Stack_Pop(&ScrRenewStack);
-        ui_MenuPage_screen_init();
-        lv_scr_load_anim(ui_MenuPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
-        user_Stack_Push(&ScrRenewStack,(long long int)&ui_HomePage);
-        user_Stack_Push(&ScrRenewStack,(long long int)&ui_MenuPage);
-    }
-  }
-
+			if(lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT)
+      {
+				 user_Stack_Pop(&ScrRenewStack);
+         ui_MenuPage_screen_init();
+         lv_scr_load_anim(ui_MenuPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
+				 user_Stack_Push(&ScrRenewStack,(long long int)&ui_HomePage);
+				 user_Stack_Push(&ScrRenewStack,(long long int)&ui_MenuPage);
+      }
+		}
 }
 
 void ui_event_NFCButton(lv_event_t * e)
@@ -115,14 +111,14 @@ void ui_event_BLEButton(lv_event_t * e)
     if(event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target, LV_STATE_CHECKED))
     {
         //checked
-
+        HW_BLE_Enable();
         ui_HomePageBLEEN=1;
 
     }
     if(event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target, LV_STATE_CHECKED))
     {
         //released
-
+				HW_BLE_Disable();
         ui_HomePageBLEEN=0;
     }
 }
@@ -153,8 +149,7 @@ void ui_event_PowerSlider(lv_event_t * e)
 			//power down if slider value >= 90
 			if(lv_slider_get_value(ui_PowerSlider) >=90)
 			{
-			  //Power_DisEnable();
-        printf("power off!\r\n");
+				HW_Power_Shutdown();
 			}
 		}
 }
@@ -178,7 +173,7 @@ void ui_event_LightSlider(lv_event_t * e)
     if(event_code == LV_EVENT_VALUE_CHANGED)
     {
         ui_LightSliderValue = lv_slider_get_value(ui_LightSlider);
-				//LCD_Set_Light(ui_LightSliderValue);
+				HW_LCD_Set_Light(ui_LightSliderValue);
     }
 }
 
@@ -652,6 +647,7 @@ void ui_PowerPage_screen_init(void)
 
 		//events
 		lv_obj_add_event_cb(ui_PowerSlider, ui_event_PowerSlider, LV_EVENT_ALL, NULL);
+
 
 }
 

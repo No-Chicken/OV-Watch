@@ -17,7 +17,7 @@
 #include "lvgl/demos/lv_demos.h"
 #include "lv_drivers/sdl/sdl.h"
 
-#include "user_test/ui.h"
+#include "user_test/GUI_App/ui.h"
 /*********************
  *      DEFINES
  *********************/

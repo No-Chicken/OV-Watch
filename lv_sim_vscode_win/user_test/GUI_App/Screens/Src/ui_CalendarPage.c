@@ -1,6 +1,6 @@
-#include "ui.h"
-#include "ui_helpers.h"
-#include "HWDataAccess.h"
+#include "../../ui.h"
+#include "../../ui_helpers.h"
+#include "../../../Func/Inc/HWDataAccess.h"
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_CalendarPage;
 lv_obj_t * ui_CalendarPageCalendar;

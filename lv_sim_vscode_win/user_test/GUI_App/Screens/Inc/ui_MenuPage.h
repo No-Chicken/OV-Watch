@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include "ui.h"
+#include "../../ui.h"
 
 #define CALENDAR_PAGE_EN		1
 #define COMPUTER_PAGE_EN		1

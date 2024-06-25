@@ -55,8 +55,8 @@
 #define USER_CODE_DEFINE 1
 
 #if USER_CODE_DEFINE
-    #include "../../user_test/Func/pubsub.h"
-    #include "../../user_test/ui.h"
+    #include "../../user_test/Func/Inc/pubsub.h"
+    #include "../../user_test/GUI_App/ui.h"
 #endif
 
 /*********************

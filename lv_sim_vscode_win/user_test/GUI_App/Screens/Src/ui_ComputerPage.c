@@ -2,8 +2,8 @@
 #include "../../ui_helpers.h"
 #include "../Inc/ui_ComputerPage.h"
 
-#include "../../Func/StrCalculate.h"
-
+#include "../../../Func/Inc/StrCalculate.h"
+#include "../../../Func/Inc/PageStack.h"
 
 
 ///////////////////// VARIABLES ////////////////////

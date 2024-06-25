@@ -41,6 +41,11 @@
         "pubsub.h": "c",
         "lv_disp.h": "c",
         "ui_gameselectpage.h": "c",
-        "ui_datetimesetpage.h": "c"
+        "ui_datetimesetpage.h": "c",
+        "strcalculate.h": "c",
+        "version.h": "c",
+        "ui_computerpage.h": "c",
+        "ui_offtimepage.h": "c",
+        "hwdataaccess.h": "c"
     }
 }

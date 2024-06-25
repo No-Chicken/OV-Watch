@@ -2,14 +2,14 @@
 #include "stdlib.h"
 #include "string.h"
 
-#include "ui.h"
-#include "ui_helpers.h"
-#include "ui_MenuPage.h"
-#include "ui_Game2048Page.h"
+#include "../../ui.h"
+#include "../../ui_helpers.h"
+#include "../Inc/ui_MenuPage.h"
+#include "../Inc/ui_Game2048Page.h"
 
-#include "PageStack.h"
+#include "../../../Func/Inc/PageStack.h"
 
-#include "HWDataAccess.h"
+#include "../../../Func/Inc/HWDataAccess.h"
 
 #define STACK_DEPTH 5
 #define MATRIX_SIZE 4

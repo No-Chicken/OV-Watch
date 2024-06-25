@@ -16,6 +16,7 @@
 #include "../Inc/ui_SetPage.h"
 #include "../Inc/ui_AboutPage.h"
 
+#include "../../../Func/Inc/PageStack.h"
 
 ///////////////////// VARIABLES ////////////////////
 //menu page
@@ -96,7 +97,7 @@ void ui_event_MenuPage(lv_event_t * e)
     {
         if(lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT)
         {
-			user_Stack_Pop(&ScrRenewStack);
+						user_Stack_Pop(&ScrRenewStack);
             ui_HomePage_screen_init();
             lv_scr_load_anim(ui_HomePage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
         }

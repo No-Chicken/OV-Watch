@@ -1,12 +1,12 @@
-#include "ui.h"
-#include "ui_helpers.h"
-#include "ui_HomePage.h"
-#include "ui_SetPage.h"
-#include "ui_DateTimeSetPage.h"
+#include "../../ui.h"
+#include "../../ui_helpers.h"
+#include "../Inc/ui_HomePage.h"
+#include "../Inc/ui_SetPage.h"
+#include "../Inc/ui_DateTimeSetPage.h"
 
-#include "PageStack.h"
+#include "../../../Func/Inc/PageStack.h"
 
-#include "HWDataAccess.h"
+#include "../../../Func/Inc/HWDataAccess.h"
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_DateTimeSetPage;
 lv_obj_t * ui_APPSyPanel;
@@ -95,10 +95,11 @@ void ui_event_DateSetOKButton(lv_event_t * e)
 			uint8_t setyear = lv_roller_get_selected(ui_YearSetRoller)+22;
 			uint8_t setmonth = lv_roller_get_selected(ui_MonthSetRoller)+1;
 			uint8_t setday = lv_roller_get_selected(ui_DaySetRoller)+1;
-			RTC_SetDate(setyear, setmonth,setday);
+
+			HW_RTC_Set_Date(setyear, setmonth, setday);
 			ui_DateMonthValue = setmonth;
 			ui_DateDayValue = setday;
-			ui_DataWeekdayValue = weekday_cluculate(setyear,setmonth,setday,20);
+			ui_DataWeekdayValue = HW_weekday_calculate(setyear,setmonth,setday,20);
 
 			ui_DateTimeSetPage_screen_init();
       lv_scr_load_anim(ui_DateTimeSetPage,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
@@ -114,7 +115,7 @@ void ui_event_TimeSetOKButton(lv_event_t * e)
 			uint8_t sethour = lv_roller_get_selected(ui_HourSetRoller);
 			uint8_t setmin = lv_roller_get_selected(ui_MinSetRoller);
 			uint8_t setsec = lv_roller_get_selected(ui_SecSetRoller);
-			RTC_SetTime(sethour,setmin,setsec);
+			HW_RTC_Set_Time(sethour,setmin,setsec);
 			ui_TimeHourValue = sethour;
 			ui_TimeMinuteValue = setmin;
 

@@ -8,7 +8,7 @@
 #include "./screens/Inc/ui_SetPage.h"
 #include "./screens/Inc/ui_DateTimeSetPage.h"
 
-#include "./Func/pubsub.h"
+#include "../Func/Inc/pubsub.h"
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
 #if LV_COLOR_DEPTH != 16

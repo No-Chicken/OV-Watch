@@ -1,6 +1,6 @@
-#include "ui.h"
-#include "ui_helpers.h"
-#include "ui_TimerPage.h"
+#include "../../ui.h"
+#include "../../ui_helpers.h"
+#include "../Inc/ui_TimerPage.h"
 
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_TimerPage;
@@ -26,8 +26,33 @@ uint8_t ui_TimerPage_ms=0;
 ///////////////////// ANIMATIONS ////////////////////
 
 
+///////////////////// Data Init ////////////////////
+static void ui_TimerPage_Data_init(void)
+{
+    ui_TimerPageFlag=0;
+    ui_TimerPage_min=0;
+    ui_TimerPage_sec=0;
+	ui_TimerPage_10ms=0;
+    ui_TimerPage_ms=0;
+}
+
+/////////////////////// Timer //////////////////////
+static void LabelRefresh_timer(lv_timer_t * timer)
+{
+    uint8_t strbuf[2];
+
+    sprintf(strbuf,"%02d",ui_TimerPage_min);
+    lv_label_set_text(ui_TimerMinLabel, strbuf);
+    sprintf(strbuf,"%02d",ui_TimerPage_sec);
+    lv_label_set_text(ui_TimerSecLabel, strbuf);
+    sprintf(strbuf,"%02d",ui_TimerPage_10ms);
+    lv_label_set_text(ui_TimerMilSecLabel, strbuf);
+
+
+}
+
 ///////////////////// FUNCTIONS ////////////////////
-void ui_event_TimerStartBtn(lv_event_t * e)
+static void ui_event_TimerStartBtn(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
@@ -49,7 +74,7 @@ void ui_event_TimerStartBtn(lv_event_t * e)
     }
 }
 
-void ui_event_TimerReBtn(lv_event_t * e)
+static void ui_event_TimerReBtn(lv_event_t * e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
@@ -62,36 +87,18 @@ void ui_event_TimerReBtn(lv_event_t * e)
         lv_label_set_text(ui_TimerMilSecLabel, "00");
         ui_TimerPage_min = 0;
         ui_TimerPage_sec = 0;
-				ui_TimerPage_10ms = 0;
+		ui_TimerPage_10ms = 0;
         ui_TimerPage_ms = 0;
 
     }
 
 }
 
-
-void LabelRefresh_timer(lv_timer_t * timer)
-{
-    uint8_t strbuf[2];
-
-    sprintf(strbuf,"%02d",ui_TimerPage_min);
-    lv_label_set_text(ui_TimerMinLabel, strbuf);
-    sprintf(strbuf,"%02d",ui_TimerPage_sec);
-    lv_label_set_text(ui_TimerSecLabel, strbuf);
-    sprintf(strbuf,"%02d",ui_TimerPage_10ms);
-    lv_label_set_text(ui_TimerMilSecLabel, strbuf);
-
-
-}
-
+///////////////////// SCREENS ////////////////////
 void ui_TimerPage_screen_init(void)
 {
-    ui_TimerPageFlag=0;
-    ui_TimerPage_min=0;
-    ui_TimerPage_sec=0;
-		ui_TimerPage_10ms=0;
-    ui_TimerPage_ms=0;
 
+    ui_TimerPage_Data_init();
     ui_TimerPage = lv_obj_create(NULL);
 
     ui_TimerMeter = lv_meter_create(ui_TimerPage);

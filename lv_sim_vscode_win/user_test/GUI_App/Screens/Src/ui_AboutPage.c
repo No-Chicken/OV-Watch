@@ -1,7 +1,7 @@
-#include "ui.h"
-#include "ui_helpers.h"
-#include "ui_AboutPage.h"
-#include "version.h"
+#include "../../ui.h"
+#include "../../ui_helpers.h"
+#include "../Inc/ui_AboutPage.h"
+#include "../../../version.h"
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_AboutPage;
 

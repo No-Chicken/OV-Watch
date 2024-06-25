@@ -6,8 +6,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 INCLUDE_DIRECTORIES(${PROJECT_SOURCE_DIR})
 
-file(GLOB_RECURSE INCLUDES "lv_drivers/*.h" "lv_demos/*.h"  "lvgl/*.h" "user_test/*.h" "user_test/Screens/Inc/*.h" "user_test/Func/*.h" "./*.h" )
-file(GLOB_RECURSE SOURCES  "lv_drivers/*.c" "lv_demos/*.c"  "lvgl/*.c" "user_test/*.c" "user_test/Screens/Src/*.c" "user_test/Func/*.c")
+file(GLOB_RECURSE INCLUDES "lv_drivers/*.h" "lv_demos/*.h"  "lvgl/*.h" "user_test/*.h" "user_test/GUI_App/Screens/Inc/*.h" "user_test/Func/Inc/*.h" "./*.h" )
+file(GLOB_RECURSE SOURCES  "lv_drivers/*.c" "lv_demos/*.c"  "lvgl/*.c" "user_test/*.c" "user_test/GUI_App/Screens/Src/*.c" "user_test/Func/Src/*.c")
 
 SET(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 SET(CMAKE_CXX_FLAGS "-O3")

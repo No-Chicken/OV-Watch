@@ -5,6 +5,7 @@
 #include "../Inc/ui_Game2048Page.h"
 #include "../Inc/ui_GameMemPage.h"
 
+#include "../../../Func/Inc/PageStack.h"
 
 lv_obj_t * ui_GameSelectPage;
 lv_obj_t * ui_Game2048Panel;
@@ -20,7 +21,7 @@ void ui_event_GameSelectPage(lv_event_t * e)
     {
         if(lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT)
         {
-			//user_Stack_Pop(&ScrRenewStack);
+						user_Stack_Pop(&ScrRenewStack);
             ui_MenuPage_screen_init();
             lv_scr_load_anim(ui_MenuPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
         }
@@ -35,7 +36,7 @@ void ui_event_Game2048Panel(lv_event_t * e)
     {
         ui_Game2048Page_screen_init();
         lv_scr_load_anim(ui_Game2048Page,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
-        //user_Stack_Push(&ScrRenewStack,(long long int)&ui_Game2048Page);
+        user_Stack_Push(&ScrRenewStack,(long long int)&ui_Game2048Page);
     }
 }
 
@@ -47,7 +48,7 @@ void ui_event_GameMemPanel(lv_event_t * e)
     {
         ui_GameMemPage_screen_init();
         lv_scr_load_anim(ui_GameMem_Page,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-		//user_Stack_Push(&ScrRenewStack,(long long int)&ui_Game2048Page);
+				user_Stack_Push(&ScrRenewStack,(long long int)&ui_Game2048Page);
     }
 }
 

@@ -7,7 +7,7 @@
 #include "../Inc/ui_MenuPage.h"
 #include "../Inc/ui_GameMemPage.h"
 
-#include <time.h>
+#include "../../../Func/Inc/HWDataAccess.h"
 
 #define MATRIX_SIZE 4
 
@@ -154,14 +154,11 @@ void Game_Mem_Init(void)
 void list_rand_number(uint8_t arry[], uint8_t max_count, uint8_t count)
 {
     int w, t;
-	int time_now = 0;
-
-    time_now = time(NULL);
-
-    // RTC_TimeTypeDef nowtime;
-    // HAL_RTC_GetTime(&hrtc,&nowtime,RTC_FORMAT_BIN);
-    // time = nowtime.Seconds;
-    srand(time_now);
+	int time=0;
+	HW_DateTimeTypeDef nowtime;
+	HW_RTC_Get_TimeDate(&nowtime);
+	time = nowtime.Seconds;
+    srand(time);
 
     for (int i = 0; i < max_count; i++)
         arry[i] = (i % count) + 1;

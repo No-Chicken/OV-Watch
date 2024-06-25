@@ -3,7 +3,7 @@
 #include "../Inc/ui_HomePage.h"
 #include "../Inc/ui_SetPage.h"
 #include "../Inc/ui_OffTimePage.h"
-
+#include "../../../Func/Inc/PageStack.h"
 
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_LOffTimeSetPage;

@@ -1,5 +1,3 @@
-#include <stdlib.h>
-#include <unistd.h>
 #include <stdint.h>
 
 #define NUMBER_TYPE 0
