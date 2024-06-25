@@ -43,7 +43,7 @@ void MX_RTC_Init(void);
 /* USER CODE BEGIN Prototypes */
 void RTC_SetTime(uint8_t hours, uint8_t minutes, uint8_t seconds);
 void RTC_SetDate(uint8_t year, uint8_t month, uint8_t date);
-uint8_t weekday_cluculate(int y,int m,int d,int c);
+uint8_t weekday_calculate(int y,int m,int d,int c);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

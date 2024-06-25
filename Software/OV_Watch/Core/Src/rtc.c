@@ -57,7 +57,7 @@ void MX_RTC_Init(void)
 
   /* USER CODE BEGIN Check_RTC_BKUP */
 	if(HAL_RTCEx_BKUPRead(&hrtc,RTC_BKP_DR0)!=0X5050)//是否第一次配置
-  { 
+  {
   /* USER CODE END Check_RTC_BKUP */
 
   /** Initialize RTC and set the Time and Date
@@ -89,7 +89,7 @@ void MX_RTC_Init(void)
   }
   /* USER CODE BEGIN RTC_Init 2 */
 	HAL_RTCEx_BKUPWrite(&hrtc,RTC_BKP_DR0,0X5050);//标记已经初始化过了
-  } 
+  }
   /* USER CODE END RTC_Init 2 */
 
 }
@@ -145,7 +145,7 @@ void HAL_RTC_MspDeInit(RTC_HandleTypeDef* rtcHandle)
 }
 
 /* USER CODE BEGIN 1 */
-uint8_t weekday_cluculate(int y,int m,int d,int c)
+uint8_t weekday_calculate(int y,int m,int d,int c)
 {
 	int w;
 	if (m == 1 || m == 2)
@@ -176,10 +176,10 @@ void RTC_SetDate(uint8_t year, uint8_t month, uint8_t date)
 	setdate.Date=date;
 	setdate.Month=month;
 	setdate.Year=year;
-	
+
 	//culculat the weekday
-	setdate.WeekDay = weekday_cluculate(year,month,date,20);
-	
+	setdate.WeekDay = weekday_calculate(year,month,date,20);
+
 	if (HAL_RTC_SetDate(&hrtc, &setdate, RTC_FORMAT_BIN) != HAL_OK)
   {
     Error_Handler();

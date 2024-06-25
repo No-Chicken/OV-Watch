@@ -29,6 +29,26 @@
         "ui_compasspage.h": "c",
         "ui_timerpage.h": "c",
         "user_mpuchecktask.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "hwdataaccess.h": "c",
+        "user_tasksinit.h": "c",
+        "lv_timer.h": "c",
+        "pagestack.h": "c",
+        "ui_homepage.h": "c",
+        "ui_menupage.h": "c",
+        "ui_envpage.h": "c",
+        "ui_hrpage.h": "c",
+        "ui_setpage.h": "c",
+        "kt6328.h": "c",
+        "main.h": "c",
+        "ui_helpers.h": "c",
+        "ui_aboutpage.h": "c",
+        "ui_gamemempage.h": "c",
+        "ui_datetimesetpage.h": "c",
+        "ui_computerpage.h": "c",
+        "ui_game2048page.h": "c",
+        "ui_megboxes.h": "c",
+        "ui_offtimepage.h": "c",
+        "ui_spo2page.h": "c"
     }
 }

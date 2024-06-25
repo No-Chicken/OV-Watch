@@ -49,7 +49,7 @@
             <InvalidFlash>1</InvalidFlash>
           </TargetStatus>
           <OutputDirectory>.\output\</OutputDirectory>
-          <OutputName>OV_Watch</OutputName>
+          <OutputName>OV_Watch_V2.4.2</OutputName>
           <CreateExecutable>1</CreateExecutable>
           <CreateLib>0</CreateLib>
           <CreateHexFile>1</CreateHexFile>
@@ -340,7 +340,7 @@
               <MiscControls>--locale=english</MiscControls>
               <Define>USE_HAL_DRIVER,STM32F411xE</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../SYSTEM;../BSP/LCD;../BSP/AHT21;../BSP/BL24C02;../BSP/IIC;../BSP/LSM303DLH;../BSP/MPU6050;../BSP/OWDG;../BSP/POWER;../BSP/SPL06_001;../BSP/EM7028;../BSP/TOUCH;../BSP/KEY;../BSP/KT6328;..\User\Tasks\Inc;..\User\Func\Inc;../Middlewares/LVGL/GUI;../Middlewares/LVGL/GUI/lvgl/src;../Middlewares/LVGL/GUI/lvgl;../Middlewares/LVGL/GUI/porting;../Middlewares/LVGL/GUI_UserApp;../Middlewares/LVGL/GUI_UserApp/Screens/Inc;../BSP/MPU6050/eMPL;..\User</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Drivers/CMSIS/Include;../SYSTEM;../BSP/LCD;../BSP/AHT21;../BSP/BL24C02;../BSP/IIC;../BSP/LSM303DLH;../BSP/MPU6050;../BSP/OWDG;../BSP/POWER;../BSP/SPL06_001;../BSP/EM7028;../BSP/TOUCH;../BSP/KEY;../BSP/KT6328;../Middlewares/LVGL/GUI;../Middlewares/LVGL/GUI/lvgl/src;../Middlewares/LVGL/GUI/lvgl;../Middlewares/LVGL/GUI/porting;../BSP/MPU6050/eMPL;..\User;..\User\GUI_App\Screens\Inc;..\User\Tasks\Inc;..\User\Func\Inc;..\User\GUI_App</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -649,107 +649,107 @@
             <File>
               <FileName>ui.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\ui.c</FilePath>
+              <FilePath>..\User\GUI_App\ui.c</FilePath>
             </File>
             <File>
               <FileName>ui_helpers.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\ui_helpers.c</FilePath>
+              <FilePath>..\User\GUI_App\ui_helpers.c</FilePath>
             </File>
             <File>
               <FileName>ui_AboutPage.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_AboutPage.c</FilePath>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_AboutPage.c</FilePath>
             </File>
             <File>
               <FileName>ui_CalendarPage.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_CalendarPage.c</FilePath>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_CalendarPage.c</FilePath>
             </File>
             <File>
               <FileName>ui_ChargPage.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_ChargPage.c</FilePath>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_ChargPage.c</FilePath>
             </File>
             <File>
               <FileName>ui_CompassPage.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_CompassPage.c</FilePath>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_CompassPage.c</FilePath>
             </File>
             <File>
               <FileName>ui_ComputerPage.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_ComputerPage.c</FilePath>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_ComputerPage.c</FilePath>
             </File>
             <File>
               <FileName>ui_DateTimeSetPage.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_DateTimeSetPage.c</FilePath>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_DateTimeSetPage.c</FilePath>
             </File>
             <File>
               <FileName>ui_EnvPage.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_EnvPage.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_GameSelectPage.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_GameSelectPage.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_HomePage.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_HomePage.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_HRPage.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_HRPage.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_Megboxes.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_Megboxes.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_MenuPage.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_MenuPage.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_NFCCardPage.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_NFCCardPage.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_OffTimePage.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_OffTimePage.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_SetPage.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_SetPage.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_SPO2Page.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_SPO2Page.c</FilePath>
-            </File>
-            <File>
-              <FileName>ui_TimerPage.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_TimerPage.c</FilePath>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_EnvPage.c</FilePath>
             </File>
             <File>
               <FileName>ui_Game2048Page.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_Game2048Page.c</FilePath>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_Game2048Page.c</FilePath>
             </File>
             <File>
               <FileName>ui_GameMemPage.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Screens\Src\ui_GameMemPage.c</FilePath>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_GameMemPage.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_GameSelectPage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_GameSelectPage.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_HomePage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_HomePage.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_HRPage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_HRPage.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_Megboxes.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_Megboxes.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_MenuPage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_MenuPage.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_NFCCardPage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_NFCCardPage.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_OffTimePage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_OffTimePage.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_SetPage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_SetPage.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_SPO2Page.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_SPO2Page.c</FilePath>
+            </File>
+            <File>
+              <FileName>ui_TimerPage.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\GUI_App\Screens\Src\ui_TimerPage.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -759,82 +759,82 @@
             <File>
               <FileName>ui_font_Cuyuan18.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_Cuyuan18.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_Cuyuan18.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_Cuyuan20.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_Cuyuan20.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_Cuyuan20.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_Cuyuan24.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_Cuyuan24.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_Cuyuan24.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_Cuyuan30.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_Cuyuan30.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_Cuyuan30.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_Cuyuan38.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_Cuyuan38.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_Cuyuan38.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_Cuyuan48.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_Cuyuan48.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_Cuyuan48.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_Cuyuan80.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_Cuyuan80.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_Cuyuan80.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_Cuyuan100.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_Cuyuan100.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_Cuyuan100.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_iconfont16.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_iconfont16.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_iconfont16.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_iconfont24.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_iconfont24.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_iconfont24.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_iconfont28.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_iconfont28.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_iconfont28.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_iconfont30.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_iconfont30.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_iconfont30.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_iconfont32.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_iconfont32.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_iconfont32.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_iconfont34.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_iconfont34.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_iconfont34.c</FilePath>
             </File>
             <File>
               <FileName>ui_font_iconfont45.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\Fonts\ui_font_iconfont45.c</FilePath>
+              <FilePath>..\User\GUI_App\Fonts\ui_font_iconfont45.c</FilePath>
             </File>
             <File>
               <FileName>ui_img_compass_needle_png.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI_UserApp\IMGs\ui_img_compass_needle_png.c</FilePath>
+              <FilePath>..\User\GUI_App\IMGs\ui_img_compass_needle_png.c</FilePath>
             </File>
           </Files>
         </Group>

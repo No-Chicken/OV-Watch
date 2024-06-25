@@ -1,4 +1,4 @@
-#include "main.h"
+#include <stdint.h>
 
 #define NUMBER_TYPE 0
 #define SYMBOL_TYPE 1

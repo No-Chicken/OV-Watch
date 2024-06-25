@@ -5,7 +5,7 @@
 extern "C" {
 #endif
 
-#include "ui.h"
+#include "../../GUI_App/ui.h"
 
 #define MAX_DEPTH 6
 

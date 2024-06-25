@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "StrCalculate.h"
+#include "../Inc/StrCalculate.h"
 
 uint8_t strput(StrStack_t * st,char strin)
 {
@@ -134,22 +134,22 @@ void CalculateOne(NumStack_t * numstack, SymStack_t * symstack)
     //计算数字栈中的顶部两数,结果存到temp中
     if(symstack->data[symstack->Top_Point-1] == '+')
         temp.number = (numstack->data[numstack->Top_Point-2]) + (numstack->data[numstack->Top_Point-1]);
-    
+
     else if(symstack->data[symstack->Top_Point-1] == '-')
         temp.number = (numstack->data[numstack->Top_Point-2]) - (numstack->data[numstack->Top_Point-1]);
-    
+
     else if(symstack->data[symstack->Top_Point-1] == '*')
         temp.number = (numstack->data[numstack->Top_Point-2]) * (numstack->data[numstack->Top_Point-1]);
-    
+
     else if(symstack->data[symstack->Top_Point-1] == '/')
         temp.number = (numstack->data[numstack->Top_Point-2]) / (numstack->data[numstack->Top_Point-1]);
-    
+
     //运算前两数出栈,运算结果数入栈
     NumStackDel(numstack);
     NumStackDel(numstack);
     NumStackPut(numstack,temp.number);
     SymStackDel(symstack);
-    
+
 }
 
 uint8_t NumSymSeparate(char * str, uint8_t strlen, NumStack_t * NumStack, SymStack_t * SymStack)
@@ -172,12 +172,12 @@ uint8_t NumSymSeparate(char * str, uint8_t strlen, NumStack_t * NumStack, SymSta
         {
             temp.datatype = POINT_TYPE;
             if(temp_pre.datatype == NUMBER_TYPE)
-            {} 
+            {}
             else
             {return 2;}
             temp_pre = temp;
         }
-        if(str[i]<='9' && str[i]>='0') 
+        if(str[i]<='9' && str[i]>='0')
         {
             //溢出报错
             if(NumStack->Top_Point>CAL_DEPTH || SymStack->Top_Point>CAL_DEPTH)
@@ -196,8 +196,8 @@ uint8_t NumSymSeparate(char * str, uint8_t strlen, NumStack_t * NumStack, SymSta
                     NumBehindPoint_Flag += 1;
                     char i = NumBehindPoint_Flag;
                     while(i--)
-                    {temp.number /= 10;}  
-                    temp.number += NumStack->data[NumStack->Top_Point-1];   
+                    {temp.number /= 10;}
+                    temp.number += NumStack->data[NumStack->Top_Point-1];
                 }
                 NumStackDel(NumStack);
                 NumStackPut(NumStack,temp.number);
@@ -211,14 +211,14 @@ uint8_t NumSymSeparate(char * str, uint8_t strlen, NumStack_t * NumStack, SymSta
                 NumStackDel(NumStack);
                 NumStackPut(NumStack,temp.number);
             }
-            //前一位不是数字或小数点,现在读取的这一位是数字，直接入栈 
+            //前一位不是数字或小数点,现在读取的这一位是数字，直接入栈
             else
             {
                 NumStackPut(NumStack,temp.number);
             }
             temp_pre = temp;
         }
-        else if(str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/') 
+        else if(str[i] == '+' || str[i] == '-' || str[i] == '*' || str[i] == '/')
         {
             //溢出报错
             if(NumStack->Top_Point>CAL_DEPTH || SymStack->Top_Point>CAL_DEPTH)
@@ -232,7 +232,7 @@ uint8_t NumSymSeparate(char * str, uint8_t strlen, NumStack_t * NumStack, SymSta
             if(temp_pre.datatype == SYMBOL_TYPE)
             {
                 return 5 ;//erro
-            } 
+            }
             else
             {
                 if((!SymStack_isEmpty(SymStack)) && SymisHighPriority(SymStack->data[SymStack->Top_Point-1],temp.symbol))
@@ -250,7 +250,7 @@ uint8_t NumSymSeparate(char * str, uint8_t strlen, NumStack_t * NumStack, SymSta
         }
     }
     return 0;
-} 
+}
 
 uint8_t StrCalculate(char * str,NumStack_t * NumStack, SymStack_t * SymStack)
 {

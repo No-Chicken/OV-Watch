@@ -179,8 +179,13 @@ if(keystr == 1)
 
 参考链接: https://blog.csdn.net/weixin_49337111/article/details/136536375
 
-已经更改好的可以跑的代码放在了`lv_sim_vscode_win`这个文件夹中，应该可以直接使用vscode打开。
+已经更改好的可以跑的代码放在了`lv_sim_vscode_win`这个文件夹中，应该改一下配置的路径就可以直接使用vscode打开使用，记得改工程设置的路径。
 
 <p align="center">
 	<img border="1px" width="70%" src="./images/LVGL_sim.jpg">
 </p>
+
+
+### 7.LVGL在windows在vscode的仿真配置参考
+
+如果有更改UI App或者新加入UI App直接在仿真器中改好，然后直接复制`Func`文件夹和`GUI_App`文件夹去keil工程中的`User`文件夹即可。现在使用了一个`HWDataAccess.c`中间变量作为中间层，方便移植，如果是在仿真中，那么直接将`HW_USE_HARDWARE`设置为0即可跑通。
