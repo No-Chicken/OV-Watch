@@ -2,14 +2,17 @@
 #include "../../ui_helpers.h"
 #include "../Inc/ui_AboutPage.h"
 #include "../../../version.h"
+
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_AboutPage;
 
+///////////////////// Page Manager //////////////////
+Page_t Page_About = {ui_AboutPage_screen_init, ui_AboutPage_screen_deinit, &ui_AboutPage};
 
 ///////////////////// FUNCTIONS ////////////////////
 
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_AboutPage_screen_init(void)
 {
     lv_obj_t * ui_NameLabel;
@@ -176,5 +179,11 @@ void ui_AboutPage_screen_init(void)
     lv_obj_set_y(ui_AuthorGTextLabel, 390);
     lv_label_set_text(ui_AuthorGTextLabel, "Kingham");
     lv_obj_set_style_text_font(ui_AuthorGTextLabel, &lv_font_montserrat_18, LV_PART_MAIN | LV_STATE_DEFAULT);
+
+}
+
+//////////////////// SCREEN Deinit ////////////////////
+void ui_AboutPage_screen_deinit(void)
+{
 
 }

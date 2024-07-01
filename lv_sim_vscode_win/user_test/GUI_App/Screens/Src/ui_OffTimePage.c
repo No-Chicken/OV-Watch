@@ -3,7 +3,10 @@
 #include "../Inc/ui_HomePage.h"
 #include "../Inc/ui_SetPage.h"
 #include "../Inc/ui_OffTimePage.h"
-#include "../../../Func/Inc/PageStack.h"
+
+///////////////////// Page Manager //////////////////
+Page_t Page_LOffTimeSet = {ui_LOffTimeSetPage_screen_init, ui_LOffTimeSetPage_screen_deinit, &ui_LOffTimeSetPage};
+Page_t Page_TOffTimeSet = {ui_TOffTimeSetPage_screen_init, ui_TOffTimeSetPage_screen_deinit, &ui_TOffTimeSetPage};
 
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_LOffTimeSetPage;
@@ -35,17 +38,18 @@ void ui_event_LTimeSetOKButton(lv_event_t * e)
     {
       ui_LTimeSelected = lv_roller_get_selected(ui_LTimeSetRoller);
 			ui_LTimeValue = ui_LTimeOptions[ui_LTimeSelected];
-			if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HomePage)
-			{
-				ui_HomePage_screen_init();
-				lv_scr_load_anim(ui_HomePage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-			}
-			else
-			{
-				ui_SetPage_screen_init();
-				lv_scr_load_anim(ui_SetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-			}
-			user_Stack_Pop(&ScrRenewStack);
+      Page_Back();
+			// if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HomePage)
+			// {
+			// 	ui_HomePage_screen_init();
+			// 	lv_scr_load_anim(ui_HomePage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
+			// }
+			// else
+			// {
+			// 	ui_SetPage_screen_init();
+			// 	lv_scr_load_anim(ui_SetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
+			// }
+			// user_Stack_Pop(&ScrRenewStack);
     }
 }
 
@@ -56,21 +60,22 @@ void ui_event_TTimeSetOKButton(lv_event_t * e)
     {
 			ui_TTimeSelected = lv_roller_get_selected(ui_TTimeSetRoller);
       ui_TTimeValue = ui_LTimeOptions[ui_TTimeSelected];
-			if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HomePage)
-			{
-				ui_HomePage_screen_init();
-				lv_scr_load_anim(ui_HomePage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-			}
-			else
-			{
-				ui_SetPage_screen_init();
-				lv_scr_load_anim(ui_SetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-			}
-			user_Stack_Pop(&ScrRenewStack);
+      Page_Back();
+			// if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HomePage)
+			// {
+			// 	ui_HomePage_screen_init();
+			// 	lv_scr_load_anim(ui_HomePage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
+			// }
+			// else
+			// {
+			// 	ui_SetPage_screen_init();
+			// 	lv_scr_load_anim(ui_SetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
+			// }
+			// user_Stack_Pop(&ScrRenewStack);
     }
 }
 
-///////////////////// SCREENS /////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_LOffTimeSetPage_screen_init(void)
 {
     ui_LOffTimeSetPage = lv_obj_create(NULL);
@@ -210,5 +215,9 @@ void ui_TOffTimeSetPage_screen_init(void)
 
 }
 
+///////////////////// SCREEN deinit ////////////////////
+void ui_LOffTimeSetPage_screen_deinit(void)
+{}
 
-
+void ui_TOffTimeSetPage_screen_deinit(void)
+{}

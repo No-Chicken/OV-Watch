@@ -2,6 +2,9 @@
 #include "../../ui_helpers.h"
 #include "../Inc/ui_CompassPage.h"
 
+///////////////////// Page Manager //////////////////
+Page_t Page_Compass = {ui_CompassPage_screen_init, ui_CompassPage_screen_deinit, &ui_CompassPage};
+
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_CompassPage;
 lv_obj_t * ui_CompassMeter;
@@ -18,10 +21,11 @@ lv_obj_t * ui_EnvAltitudeIcon;
 uint16_t ui_CompassDirValue = 0;
 int16_t ui_EnvAltitudeValue = 0;
 
+
 ///////////////////// FUNCTIONS ////////////////////
 
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_CompassPage_screen_init(void)
 {
     uint8_t value_strbuf[10];
@@ -101,3 +105,7 @@ void ui_CompassPage_screen_init(void)
 
 
 }
+
+/////////////////// SCREEN deinit ////////////////////
+void ui_CompassPage_screen_deinit(void)
+{}

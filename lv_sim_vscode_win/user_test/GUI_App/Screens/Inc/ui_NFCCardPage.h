@@ -19,7 +19,10 @@ extern lv_obj_t * ui_Card3Btn;
 extern lv_obj_t * ui_Card3icon;
 extern lv_obj_t * ui_Card3Label;
 
-void ui_NFCCardPage_screen_Init(void);
+extern Page_t Page_NFCCard;
+
+void ui_NFCCardPage_screen_init(void);
+void ui_NFCCardPage_screen_deinit(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

@@ -1,6 +1,10 @@
 #include "../../ui.h"
 #include "../Inc/ui_ChargPage.h"
 #include "../Inc/ui_HomePage.h"
+
+///////////////////// Page Manager //////////////////
+Page_t Page_Charg = {ui_ChargPage_screen_init, ui_ChargPage_screen_deinit, &ui_ChargPage};
+
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_ChargPage;
 lv_obj_t * ui_CharPageBatArc;
@@ -18,7 +22,7 @@ lv_obj_t * ui_ChargPageTimePoint;
 
 
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_ChargPage_screen_init(void)
 {
 		uint8_t value_strbuf[5];
@@ -107,4 +111,6 @@ void ui_ChargPage_screen_init(void)
 
 }
 
-
+/////////////////// SCREEN deinit ////////////////////
+void ui_ChargPage_screen_deinit(void)
+{}

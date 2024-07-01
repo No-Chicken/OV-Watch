@@ -46,6 +46,8 @@
         "version.h": "c",
         "ui_computerpage.h": "c",
         "ui_offtimepage.h": "c",
-        "hwdataaccess.h": "c"
+        "hwdataaccess.h": "c",
+        "*.tcc": "c",
+        "pagemanager.h": "c"
     }
 }

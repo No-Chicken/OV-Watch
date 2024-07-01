@@ -26,8 +26,14 @@ extern const uint8_t ui_TTimeOptions[6];
 extern uint8_t ui_LTimeValue;
 extern uint8_t ui_TTimeValue;
 
+extern Page_t Page_LOffTimeSet;
+extern Page_t Page_TOffTimeSet;
+
 void ui_LOffTimeSetPage_screen_init(void);
 void ui_TOffTimeSetPage_screen_init(void);
+
+void ui_LOffTimeSetPage_screen_deinit(void);
+void ui_TOffTimeSetPage_screen_deinit(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

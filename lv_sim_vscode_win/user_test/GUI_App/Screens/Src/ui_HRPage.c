@@ -1,5 +1,9 @@
 #include "../../ui.h"
 #include "../../ui_helpers.h"
+#include "../Inc/ui_HRPage.h"
+
+///////////////////// Page Manager //////////////////
+Page_t Page_HR = {ui_HRPage_screen_init, ui_HRPage_screen_deinit, &ui_HRPage};
 
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_HRPage;
@@ -14,7 +18,7 @@ uint8_t ui_HRValue = 0;
 
 ///////////////////// FUNCTIONS ////////////////////
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_HRPage_screen_init(void)
 {
     uint8_t value_strbuf[5];
@@ -65,3 +69,6 @@ void ui_HRPage_screen_init(void)
 
 }
 
+/////////////////// SCREEN deinit ////////////////////
+void ui_HRPage_screen_deinit(void)
+{}

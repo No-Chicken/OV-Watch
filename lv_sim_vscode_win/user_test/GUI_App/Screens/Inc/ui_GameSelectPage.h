@@ -8,8 +8,10 @@ extern "C" {
 #include "../../ui.h"
 
 extern lv_obj_t * ui_GameSelectPage;
+extern Page_t Page_GameSelect;
 
 void ui_GameSelectPage_screen_init(void);
+void ui_GameSelectPage_screen_deinit(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

@@ -12,7 +12,7 @@ extern "C" {
 
 #include "stdio.h"
 
-#include "../Func/Inc/PageStack.h"
+#include "../Func/Inc/PageManager.h"
 
 LV_FONT_DECLARE(ui_font_Cuyuan18);
 LV_FONT_DECLARE(ui_font_Cuyuan20);

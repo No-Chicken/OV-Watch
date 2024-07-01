@@ -1,6 +1,10 @@
 #include "../../ui.h"
 #include "../../ui_helpers.h"
 #include "../Inc/ui_SPO2Page.h"
+
+///////////////////// Page Manager //////////////////
+Page_t Page_SPO2 = {ui_SPO2Page_screen_init, ui_SPO2Page_screen_deinit, &ui_SPO2Page};
+
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_SPO2Page;
 lv_obj_t * ui_SPO2NumLabel;
@@ -10,7 +14,7 @@ lv_obj_t * ui_SPO2Icon;
 
 uint8_t ui_SPO2Value = 99;
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_SPO2Page_screen_init(void)
 {
     uint8_t value_strbuf[5];
@@ -59,4 +63,6 @@ void ui_SPO2Page_screen_init(void)
 
 }
 
-
+/////////////////// SCREEN deinit ////////////////////
+void ui_SPO2Page_screen_deinit(void)
+{}

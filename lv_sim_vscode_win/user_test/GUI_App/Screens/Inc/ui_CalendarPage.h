@@ -9,8 +9,10 @@ extern "C" {
 extern lv_obj_t * ui_CalendarPage;
 extern lv_obj_t * ui_CalendarPageCalendar;
 
-void ui_CalendarPage_screen_init(void);
+extern Page_t Page_Calender;
 
+void ui_CalendarPage_screen_init(void);
+void ui_CalendarPage_screen_deinit(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

@@ -3,11 +3,6 @@
 #include "ui.h"
 #include "ui_helpers.h"
 #include "./screens/Inc/ui_HomePage.h"
-#include "./screens/Inc/ui_MenuPage.h"
-#include "./screens/Inc/ui_GameSelectPage.h"
-#include "./screens/Inc/ui_SetPage.h"
-#include "./screens/Inc/ui_DateTimeSetPage.h"
-
 #include "../Func/Inc/pubsub.h"
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
@@ -22,39 +17,16 @@
 void SDL_KeyBoard_Subscriber(PubSub_Message_t message)
 {
     printf("change screen\r\n");
-    user_Stack_Pop(&ScrRenewStack);
-    if(user_Stack_isEmpty(&ScrRenewStack))
-    {
-        ui_MenuPage_screen_init();
-        lv_scr_load_anim(ui_MenuPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
-        user_Stack_Push(&ScrRenewStack,(long long int)&ui_HomePage);
-        user_Stack_Push(&ScrRenewStack,(long long int)&ui_MenuPage);
-    }
-    else if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HomePage)
-    {
-        ui_HomePage_screen_init();
-        lv_scr_load_anim(ui_HomePage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
-    }
-    else if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_MenuPage)
-    {
-        ui_MenuPage_screen_init();
-        lv_scr_load_anim(ui_MenuPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
-    }
-    else if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_GameSelectPage)
-    {
-        ui_GameSelectPage_screen_init();
-        lv_scr_load_anim(ui_GameSelectPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
-    }
-    else if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_SetPage)
-    {
-        ui_SetPage_screen_init();
-        lv_scr_load_anim(ui_SetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
-    }
-    else if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_DateTimeSetPage)
-    {
-        ui_DateTimeSetPage_screen_init();
-        lv_scr_load_anim(ui_DateTimeSetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
-    }
+    Page_Back();
+}
+
+/////////////////////// Timer //////////////////////
+static void main_timer(lv_timer_t * timer)
+{
+    printf("timer\r\n");
+    printf("%d\r\n",&ui_HomePage);
+    printf("%d\r\n",Page_Get_NowPage()->page_obj);
+    printf("stacklen:%d\r\n",PageStack.top);
 }
 
 /////////////////////// ui_initialize //////////////////////
@@ -67,7 +39,7 @@ void ui_init(void)
     lv_theme_t * theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
                                                true, LV_FONT_DEFAULT);
     lv_disp_set_theme(dispp, theme);
-    user_Stack_Push(&ScrRenewStack,(long long int)&ui_HomePage);
-    ui_HomePage_screen_init();
-    lv_disp_load_scr(ui_HomePage);
+    Pages_init();
+    //timer
+    lv_timer_t * ui_MainTimer = lv_timer_create(main_timer, 1000,  NULL);
 }

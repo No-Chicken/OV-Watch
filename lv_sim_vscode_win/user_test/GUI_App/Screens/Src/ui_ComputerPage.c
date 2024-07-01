@@ -3,8 +3,9 @@
 #include "../Inc/ui_ComputerPage.h"
 
 #include "../../../Func/Inc/StrCalculate.h"
-#include "../../../Func/Inc/PageStack.h"
 
+///////////////////// Page Manager //////////////////
+Page_t Page_Computer = {ui_ComputerPage_screen_init, ui_ComputerPage_screen_deinit, &ui_Computerpage};
 
 ///////////////////// VARIABLES ////////////////////
 
@@ -186,7 +187,7 @@ void ui_CompageBackBtn_event_cb(lv_event_t * e)
 }
 
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_ComputerPage_screen_init(void)
 {
 		strclear(&CalStr);
@@ -242,4 +243,6 @@ void ui_ComputerPage_screen_init(void)
 
 }
 
-
+/////////////////// SCREEN deinit ////////////////////
+void ui_ComputerPage_screen_deinit(void)
+{}

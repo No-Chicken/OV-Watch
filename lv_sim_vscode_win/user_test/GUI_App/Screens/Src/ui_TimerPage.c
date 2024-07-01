@@ -2,6 +2,9 @@
 #include "../../ui_helpers.h"
 #include "../Inc/ui_TimerPage.h"
 
+///////////////////// Page Manager //////////////////
+Page_t Page_Timer = {ui_TimerPage_screen_init, ui_TimerPage_screen_deinit, &ui_TimerPage};
+
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_TimerPage;
 lv_obj_t * ui_TimerMeter;
@@ -94,7 +97,7 @@ static void ui_event_TimerReBtn(lv_event_t * e)
 
 }
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_TimerPage_screen_init(void)
 {
 
@@ -179,5 +182,6 @@ void ui_TimerPage_screen_init(void)
 
 }
 
-
-
+//////////////////// SCREEN deinit ////////////////////
+void ui_TimerPage_screen_deinit(void)
+{}

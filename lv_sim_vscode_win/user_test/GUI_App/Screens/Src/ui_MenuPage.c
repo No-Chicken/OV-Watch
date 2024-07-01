@@ -16,7 +16,9 @@
 #include "../Inc/ui_SetPage.h"
 #include "../Inc/ui_AboutPage.h"
 
-#include "../../../Func/Inc/PageStack.h"
+
+///////////////////// Page Manager //////////////////
+Page_t Page_Menu = {ui_MenuPage_screen_init, ui_MenuPage_screen_deinit, &ui_MenuPage};
 
 ///////////////////// VARIABLES ////////////////////
 //menu page
@@ -97,9 +99,7 @@ void ui_event_MenuPage(lv_event_t * e)
     {
         if(lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT)
         {
-						user_Stack_Pop(&ScrRenewStack);
-            ui_HomePage_screen_init();
-            lv_scr_load_anim(ui_HomePage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
+		    Page_Back();
         }
     }
 		if(event_code == LV_EVENT_SCROLL_END)
@@ -116,9 +116,7 @@ void ui_event_MenuCalPanel(lv_event_t * e)
 	if(event_code == LV_EVENT_CLICKED)
 	{
 		#if CALENDAR_PAGE_EN
-			ui_CalendarPage_screen_init();
-			lv_scr_load_anim(ui_CalendarPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-			user_Stack_Push(&ScrRenewStack,(long long int)&ui_CalendarPage);
+			Page_Load(&Page_Calender);
 		#else
 
 
@@ -133,9 +131,7 @@ void ui_event_MenuComPanel(lv_event_t * e)
 	if(event_code == LV_EVENT_CLICKED)
 	{
 			#if COMPUTER_PAGE_EN
-					ui_ComputerPage_screen_init();
-					lv_scr_load_anim(ui_Computerpage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-					user_Stack_Push(&ScrRenewStack,(long long int)&ui_Computerpage);
+					Page_Load(&Page_Computer);
 			#else
 
 
@@ -151,9 +147,7 @@ void ui_event_MenuTimPanel(lv_event_t * e)
 	if(event_code == LV_EVENT_CLICKED)
 	{
 			#if TIMER_PAGE_EN
-					ui_TimerPage_screen_init();
-					lv_scr_load_anim(ui_TimerPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-					user_Stack_Push(&ScrRenewStack,(long long int)&ui_TimerPage);
+					Page_Load(&Page_Timer);
 			#else
 
 
@@ -168,9 +162,7 @@ void ui_event_MenuCardPanel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED)
     {
         #if CARD_PAGE_EN
-            ui_NFCCardPage_screen_Init();
-            lv_scr_load_anim(ui_NFCCardPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-						user_Stack_Push(&ScrRenewStack,(long long int)&ui_NFCCardPage);
+            Page_Load(&Page_NFCCard);
         #else
 
 
@@ -201,9 +193,7 @@ void ui_event_MenuHRPanel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED)
     {
         #if HR_PAGE_EN
-					ui_HRPage_screen_init();
-					lv_scr_load_anim(ui_HRPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-					user_Stack_Push(&ScrRenewStack,(long long int)&ui_HRPage);
+					Page_Load(&Page_HR);
                     //send the sensor wakeup message
 
         #else
@@ -220,9 +210,7 @@ void ui_event_MenuO2Panel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED)
     {
         #if O2_PAGE_EN
-          ui_SPO2Page_screen_init();
-					lv_scr_load_anim(ui_SPO2Page,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-					user_Stack_Push(&ScrRenewStack,(long long int)&ui_SPO2Page);
+            Page_Load(&Page_SPO2);
         #else
 
 
@@ -237,9 +225,7 @@ void ui_event_MenuEnvPanel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED)
     {
         #if ENVIRONMENT_PAGE_EN
-          ui_EnvPage_screen_init();
-					lv_scr_load_anim(ui_EnvPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-					user_Stack_Push(&ScrRenewStack,(long long int)&ui_EnvPage);
+            Page_Load(&Page_Env);
         #else
 
 
@@ -254,9 +240,7 @@ void ui_event_MenuCPPanel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED)
     {
         #if COMPASS_PAGE_EN
-						ui_CompassPage_screen_init();
-						lv_scr_load_anim(ui_CompassPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-						user_Stack_Push(&ScrRenewStack,(long long int)&ui_CompassPage);
+			Page_Load(&Page_Compass);
         #else
 
 
@@ -271,9 +255,7 @@ void ui_event_MenuGamePanel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED)
     {
         #if GAME_PAGE_EN
-						ui_GameSelectPage_screen_init();
-						lv_scr_load_anim(ui_GameSelectPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-						user_Stack_Push(&ScrRenewStack,(long long int)&ui_GameSelectPage);
+			Page_Load(&Page_GameSelect);
         #else
 
 
@@ -289,9 +271,7 @@ void ui_event_MenuSetPanel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED)
     {
         #if SET_PAGE_EN
-            ui_SetPage_screen_init();
-						lv_scr_load_anim(ui_SetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-						user_Stack_Push(&ScrRenewStack,(long long int)&ui_SetPage);
+            Page_Load(&Page_Set);
         #else
 
 
@@ -307,9 +287,7 @@ void ui_event_MenuAbPanel(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED)
     {
         #if ABOUT_PAGE_EN
-            ui_AboutPage_screen_init();
-						lv_scr_load_anim(ui_AboutPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-						user_Stack_Push(&ScrRenewStack,(long long int)&ui_AboutPage);
+            Page_Load(&Page_About);
         #else
 
 
@@ -317,12 +295,7 @@ void ui_event_MenuAbPanel(lv_event_t * e)
     }
 }
 
-///////////////////// SCREENS ////////////////////
-void ui_SubPage_init(void)
-{
-
-}
-
+///////////////////// SCREEN init ////////////////////
 void ui_MenuPage_screen_init(void)
 {
     ui_MenuPage = lv_obj_create(NULL);
@@ -820,8 +793,6 @@ void ui_MenuPage_screen_init(void)
     lv_label_set_text(ui_MenuAbLabel, "关 于");
     lv_obj_set_style_text_font(ui_MenuAbLabel, &ui_font_Cuyuan20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
-	//subpages
-	ui_SubPage_init();
 
 	//scroll back
 	lv_obj_scroll_to(ui_MenuPage,0,ui_MenuScrollY,LV_ANIM_OFF);
@@ -844,5 +815,6 @@ void ui_MenuPage_screen_init(void)
 
 }
 
-
-
+/////////////////// SCREEN deinit ////////////////////
+void ui_MenuPage_screen_deinit(void)
+{}
