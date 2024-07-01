@@ -1,6 +1,12 @@
 #include "../../ui.h"
 #include "../../ui_helpers.h"
 #include "../Inc/ui_Megboxes.h"
+#include "../Inc/ui_NFCCardPage.h"
+
+
+///////////////////// Page Manager //////////////////
+Page_t Page_NFCCard = {ui_NFCCardPage_screen_init, ui_NFCCardPage_screen_deinit, &ui_NFCCardPage};
+
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_NFCCardPage;
 lv_obj_t * ui_Card1Panel;
@@ -51,8 +57,8 @@ void ui_event_ChooseBtn1(lv_event_t * e)
 	}
 }
 
-///////////////////// SCREENS ////////////////////
-void ui_NFCCardPage_screen_Init(void)
+///////////////////// SCREEN init ////////////////////
+void ui_NFCCardPage_screen_init(void)
 {
 	ui_NFCCardPage = lv_obj_create(NULL);
 
@@ -306,3 +312,7 @@ void ui_NFCCardPage_screen_Init(void)
 		lv_obj_add_event_cb(ui_ChooseBtn1, ui_event_ChooseBtn1, LV_EVENT_ALL, NULL);
 
 }
+
+///////////////////// SCREEN deinit ////////////////////
+void ui_NFCCardPage_screen_deinit(void)
+{}

@@ -13,6 +13,13 @@
     #error "LV_COLOR_16_SWAP should be 0 to match SquareLine Studio's settings"
 #endif
 
+/////////////////////// Timer //////////////////////
+static void main_timer(lv_timer_t * timer)
+{
+    // printf("timer\r\n");
+}
+
+
 /////////////////////// ui_initialize //////////////////////
 void ui_init(void)
 {
@@ -21,6 +28,7 @@ void ui_init(void)
     lv_theme_t * theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),
                                                true, LV_FONT_DEFAULT);
     lv_disp_set_theme(dispp, theme);
-    ui_HomePage_screen_init();
-    lv_disp_load_scr(ui_HomePage);
+    Pages_init();
+    //timer
+    lv_timer_t * ui_MainTimer = lv_timer_create(main_timer, 1000,  NULL);
 }

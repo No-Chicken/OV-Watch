@@ -28,7 +28,11 @@ extern lv_obj_t * ui_PasswordButton;
 extern lv_obj_t * ui_Passwordicon;
 extern lv_obj_t * ui_PasswordLabel;
 
+extern Page_t Page_Set;
+
 void ui_SetPage_screen_init(void);
+
+void ui_SetPage_screen_deinit(void);
 
 
 #ifdef __cplusplus

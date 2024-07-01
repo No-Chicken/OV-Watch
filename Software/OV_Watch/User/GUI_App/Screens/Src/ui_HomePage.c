@@ -7,7 +7,7 @@
 #include "../Inc/ui_SetPage.h"
 
 #include "../../../Func/Inc/HWDataAccess.h"
-#include "../../../Func/Inc/PageStack.h"
+
 
 ///////////////////// VARIABLES ////////////////////
 //home page
@@ -67,6 +67,11 @@ uint8_t ui_LightSliderValue = 50;
 uint8_t ui_HomePageBLEEN = 0;
 uint8_t ui_HomePageNFCEN = 0;
 
+
+///////////////////// Page Manager //////////////////
+Page_t Page_Home = {ui_HomePage_screen_init, ui_HomePage_screen_deinit, &ui_HomePage};
+Page_t Page_Power = {ui_PowerPage_screen_init, ui_PowerPage_screen_deinit, &ui_PowerPage};
+
 ///////////////////// FUNCTIONS ////////////////////
 void ui_event_HomePage(lv_event_t * e)
 {
@@ -77,11 +82,7 @@ void ui_event_HomePage(lv_event_t * e)
     {
 			if(lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT)
       {
-				 user_Stack_Pop(&ScrRenewStack);
-         ui_MenuPage_screen_init();
-         lv_scr_load_anim(ui_MenuPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
-				 user_Stack_Push(&ScrRenewStack,(long long int)&ui_HomePage);
-				 user_Stack_Push(&ScrRenewStack,(long long int)&ui_MenuPage);
+				Page_Load(&Page_Menu);
       }
 		}
 }
@@ -130,9 +131,10 @@ void ui_event_PowerButton(lv_event_t * e)
     if(event_code == LV_EVENT_CLICKED)
     {
 			//power slider
-			ui_PowerPage_screen_init();
-			lv_scr_load_anim(ui_PowerPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-			user_Stack_Push(&ScrRenewStack,(long long int)&ui_PowerPage);
+      Page_Load(&Page_Power);
+			// ui_PowerPage_screen_init();
+			// lv_scr_load_anim(ui_PowerPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
+			// user_Stack_Push(&ScrRenewStack,(long long int)&ui_PowerPage);
     }
 }
 
@@ -160,9 +162,7 @@ void ui_event_SetButton(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED)
     {
-			ui_SetPage_screen_init();
-			lv_scr_load_anim(ui_SetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-			user_Stack_Push(&ScrRenewStack,(long long int)&ui_SetPage);
+			Page_Load(&Page_Set);
     }
 }
 
@@ -177,7 +177,7 @@ void ui_event_LightSlider(lv_event_t * e)
     }
 }
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_HomePage_screen_init(void)
 {
 		ui_MenuScrollY = 0;
@@ -651,3 +651,8 @@ void ui_PowerPage_screen_init(void)
 
 }
 
+/////////////////// SCREEN deinit ////////////////////
+void ui_HomePage_screen_deinit(void)
+{}
+void ui_PowerPage_screen_deinit(void)
+{}

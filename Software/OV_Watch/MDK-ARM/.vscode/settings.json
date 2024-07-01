@@ -49,6 +49,8 @@
         "ui_game2048page.h": "c",
         "ui_megboxes.h": "c",
         "ui_offtimepage.h": "c",
-        "ui_spo2page.h": "c"
+        "ui_spo2page.h": "c",
+        "user_scrrenewtask.h": "c",
+        "pagemanager.h": "c"
     }
 }

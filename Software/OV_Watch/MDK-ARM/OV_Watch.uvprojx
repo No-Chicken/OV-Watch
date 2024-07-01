@@ -627,11 +627,6 @@
           <GroupName>Application/User/MidFunc</GroupName>
           <Files>
             <File>
-              <FileName>PageStack.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Func\Src\PageStack.c</FilePath>
-            </File>
-            <File>
               <FileName>StrCalculate.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Func\Src\StrCalculate.c</FilePath>
@@ -640,6 +635,11 @@
               <FileName>HWDataAccess.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Func\Src\HWDataAccess.c</FilePath>
+            </File>
+            <File>
+              <FileName>PageManager.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Func\Src\PageManager.c</FilePath>
             </File>
           </Files>
         </Group>

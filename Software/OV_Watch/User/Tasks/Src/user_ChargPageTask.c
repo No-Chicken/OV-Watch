@@ -31,18 +31,13 @@ void ChargPageEnterTask(void *argument)
 		{
 			IdleTimerCount = 0;
 			HardInt_Charg_flag = 0;
-			if((ChargeCheck()) && (ScrRenewStack.Data[ScrRenewStack.Top_Point-1] != (long long int)&ui_ChargPage))
+			if((ChargeCheck()) && (Page_Get_NowPage()->page_obj != &ui_ChargPage))
 			{
-				ui_ChargPage_screen_init();
-				lv_scr_load_anim(ui_ChargPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-				user_Stack_Push(&ScrRenewStack,(long long int)&ui_ChargPage);
+				Page_Load(&Page_Charg);
 			}
-			else if((!ChargeCheck()) && (ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_ChargPage))
+			else if((!ChargeCheck()) && (Page_Get_NowPage()->page_obj == &ui_ChargPage))
 			{
-				ui_HomePage_screen_init();
-				lv_scr_load_anim(ui_HomePage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-				user_Stack_Pop(&ScrRenewStack);
-				user_Stack_Push(&ScrRenewStack,(long long int)&ui_HomePage);
+				Page_Back();
 			}
 		}
 		osDelay(500);
@@ -53,7 +48,7 @@ void ChargPageRenewTask(void *argument)
 {
 	while(1)
 	{
-		if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_ChargPage)
+		if(Page_Get_NowPage()->page_obj == &ui_ChargPage)
 		{
 			uint8_t value_strbuf[5];
 

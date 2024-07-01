@@ -3,10 +3,13 @@
 #include "../Inc/ui_HomePage.h"
 #include "../Inc/ui_SetPage.h"
 #include "../Inc/ui_DateTimeSetPage.h"
-
-#include "../../../Func/Inc/PageStack.h"
-
 #include "../../../Func/Inc/HWDataAccess.h"
+
+///////////////////// Page Manager //////////////////
+Page_t Page_DateTimeSet = {ui_DateTimeSetPage_screen_init, ui_DateTimeSetPage_screen_deinit, &ui_DateTimeSetPage};
+Page_t Page_DateSet = {ui_DateSetPage_screen_init, ui_DateSetPage_screen_deinit, &ui_DateSetPage};
+Page_t Page_TimeSet = {ui_TimeSetPage_screen_init, ui_TimeSetPage_screen_deinit, &ui_TimeSetPage};
+
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_DateTimeSetPage;
 lv_obj_t * ui_APPSyPanel;
@@ -58,9 +61,10 @@ void ui_event_DateTimeSetPage(lv_event_t * e)
     {
 			if(lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT)
       {
-				 user_Stack_Pop(&ScrRenewStack);
-         ui_SetPage_screen_init();
-         lv_scr_load_anim(ui_SetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
+				//  user_Stack_Pop(&ScrRenewStack);
+        //  ui_SetPage_screen_init();
+        //  lv_scr_load_anim(ui_SetPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
+        Page_Back();
       }
 		}
 }
@@ -70,9 +74,10 @@ void ui_event_DateSetPanel(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     if(event_code == LV_EVENT_CLICKED)
     {
-        ui_DateSetPage_screen_init();
-        lv_scr_load_anim(ui_DateSetPage,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
-				user_Stack_Push(&ScrRenewStack,(long long int)&ui_DateSetPage);
+      Page_Load(&Page_DateSet);
+        // ui_DateSetPage_screen_init();
+        // lv_scr_load_anim(ui_DateSetPage,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
+				// user_Stack_Push(&ScrRenewStack,(long long int)&ui_DateSetPage);
     }
 }
 
@@ -81,9 +86,7 @@ void ui_event_TimeSetPanel(lv_event_t * e)
     lv_event_code_t event_code = lv_event_get_code(e);
     if(event_code == LV_EVENT_CLICKED)
     {
-        ui_TimeSetPage_screen_init();
-        lv_scr_load_anim(ui_TimeSetPage,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
-				user_Stack_Push(&ScrRenewStack,(long long int)&ui_TimeSetPage);
+      Page_Load(&Page_TimeSet);
     }
 }
 
@@ -101,9 +104,7 @@ void ui_event_DateSetOKButton(lv_event_t * e)
 			ui_DateDayValue = setday;
 			ui_DataWeekdayValue = HW_weekday_calculate(setyear,setmonth,setday,20);
 
-			ui_DateTimeSetPage_screen_init();
-      lv_scr_load_anim(ui_DateTimeSetPage,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
-			user_Stack_Pop(&ScrRenewStack);
+			Page_Back();
     }
 }
 
@@ -119,9 +120,7 @@ void ui_event_TimeSetOKButton(lv_event_t * e)
 			ui_TimeHourValue = sethour;
 			ui_TimeMinuteValue = setmin;
 
-			ui_DateTimeSetPage_screen_init();
-      lv_scr_load_anim(ui_DateTimeSetPage,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
-			user_Stack_Pop(&ScrRenewStack);
+			Page_Back();
     }
 }
 
@@ -144,7 +143,7 @@ void ui_event_APPSySwitch(lv_event_t * e)
     }
 }
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_DateTimeSetPage_screen_init(void)
 {
     ui_DateTimeSetPage = lv_obj_create(NULL);
@@ -505,3 +504,12 @@ void ui_TimeSetPage_screen_init(void)
 
 }
 
+/////////////////// SCREEN deinit ////////////////////
+void ui_DateTimeSetPage_screen_deinit(void)
+{}
+
+void ui_DateSetPage_screen_deinit(void)
+{}
+
+void ui_TimeSetPage_screen_deinit(void)
+{}

@@ -15,7 +15,10 @@ extern lv_obj_t * ui_ChargPagebHourLabel;
 extern lv_obj_t * ui_ChargPagebMinLabel;
 extern lv_obj_t * ui_ChargPageTimePoint;
 
+extern Page_t Page_Charg;
+
 void ui_ChargPage_screen_init(void);
+void ui_ChargPage_screen_deinit(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

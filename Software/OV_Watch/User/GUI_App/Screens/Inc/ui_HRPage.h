@@ -15,7 +15,10 @@ extern lv_obj_t * ui_HRPageNoticeLabel;
 
 extern uint8_t ui_HRValue;
 
+extern Page_t Page_HR;
+
 void ui_HRPage_screen_init(void);
+void ui_HRPage_screen_deinit(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

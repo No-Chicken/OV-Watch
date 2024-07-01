@@ -5,8 +5,8 @@
 extern "C" {
 #endif
 
-#include "PageStack.h"
-	
+#include "PageManager.h"
+
 void ScrRenewTask(void *argument);
 
 

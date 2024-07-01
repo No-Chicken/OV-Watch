@@ -37,7 +37,7 @@ void ui_mbox2_event_cb(lv_event_t * e)
     }
 }
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_mbox_create(uint8_t * text)
 {
     lv_obj_clear_flag(lv_scr_act(), LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -123,4 +123,6 @@ void ui_mbox_create(uint8_t * text)
     lv_obj_add_event_cb(ui_ApplyPanel, ui_mbox1_event_cb, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_CancelPanel, ui_mbox2_event_cb, LV_EVENT_ALL, NULL);
 }
+
+/////////////////// SCREEN deinit ////////////////////
 

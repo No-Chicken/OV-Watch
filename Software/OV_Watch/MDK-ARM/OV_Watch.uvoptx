@@ -514,8 +514,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\User\Func\Src\PageStack.c</PathWithFileName>
-      <FilenameWithoutPath>PageStack.c</FilenameWithoutPath>
+      <PathWithFileName>..\User\Func\Src\StrCalculate.c</PathWithFileName>
+      <FilenameWithoutPath>StrCalculate.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -526,8 +526,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\User\Func\Src\StrCalculate.c</PathWithFileName>
-      <FilenameWithoutPath>StrCalculate.c</FilenameWithoutPath>
+      <PathWithFileName>..\User\Func\Src\HWDataAccess.c</PathWithFileName>
+      <FilenameWithoutPath>HWDataAccess.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -538,8 +538,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\User\Func\Src\HWDataAccess.c</PathWithFileName>
-      <FilenameWithoutPath>HWDataAccess.c</FilenameWithoutPath>
+      <PathWithFileName>..\User\Func\Src\PageManager.c</PathWithFileName>
+      <FilenameWithoutPath>PageManager.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>

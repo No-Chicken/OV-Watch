@@ -2,6 +2,9 @@
 #include "../../ui_helpers.h"
 #include "../Inc/ui_EnvPage.h"
 
+///////////////////// Page Manager //////////////////
+Page_t Page_Env = {ui_EnvPage_screen_init, ui_EnvPage_screen_deinit, &ui_EnvPage};
+
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_EnvPage;
 lv_obj_t * ui_EnvTempBar;
@@ -16,7 +19,7 @@ lv_obj_t * ui_EnvTempIcon;
 int8_t ui_EnvTempValue = 25;
 int8_t ui_EnvHumiValue = 67;
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_EnvPage_screen_init(void)
 {
 		uint8_t strbuf[5];
@@ -111,4 +114,6 @@ void ui_EnvPage_screen_init(void)
 
 }
 
-
+/////////////////// SCREEN deinit ////////////////////
+void ui_EnvPage_screen_deinit(void)
+{}

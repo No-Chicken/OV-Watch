@@ -78,7 +78,10 @@ extern lv_obj_t * ui_MenuAbLabel;
 
 extern int16_t ui_MenuScrollY;
 
+extern Page_t Page_Menu;
+
 void ui_MenuPage_screen_init(void);
+void ui_MenuPage_screen_deinit(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

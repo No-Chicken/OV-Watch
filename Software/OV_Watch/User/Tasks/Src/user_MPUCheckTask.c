@@ -45,9 +45,9 @@ void MPUCheckTask(void *argument)
 				if(user_MPU_Wrist_State == WRIST_UP)
 				{
 					user_MPU_Wrist_State = WRIST_DOWN;
-					if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HomePage || 
-						ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_MenuPage ||
-						ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_SetPage)
+					if( Page_Get_NowPage()->page_obj == &ui_HomePage ||
+						Page_Get_NowPage()->page_obj == &ui_MenuPage ||
+						Page_Get_NowPage()->page_obj == &ui_SetPage )
 					{
 						uint8_t Stopstr;
 						osMessageQueuePut(Stop_MessageQueue, &Stopstr, 0, 1);//sleep

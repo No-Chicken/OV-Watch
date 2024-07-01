@@ -55,6 +55,8 @@ extern uint8_t ui_BatArcValue;
 extern uint16_t ui_StepNumValue;
 extern uint8_t ui_LightSliderValue;
 
+extern Page_t Page_Home;
+
 void ui_event_HomePage_DropDownPanel(lv_event_t * e);
 void ui_event_NFCButton(lv_event_t * e);
 void ui_event_BLEButton(lv_event_t * e);
@@ -63,6 +65,9 @@ void ui_event_SetButton(lv_event_t * e);
 
 void ui_HomePage_screen_init(void);
 void ui_PowerPage_screen_init(void);
+
+void ui_HomePage_screen_deinit(void);
+void ui_PowerPage_screen_deinit(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

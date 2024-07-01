@@ -5,8 +5,10 @@
 #include "../Inc/ui_Game2048Page.h"
 #include "../Inc/ui_GameMemPage.h"
 
-#include "../../../Func/Inc/PageStack.h"
+///////////////////// Page Manager //////////////////
+Page_t Page_GameSelect = {ui_GameSelectPage_screen_init, ui_GameSelectPage_screen_deinit, &ui_GameSelectPage};
 
+///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_GameSelectPage;
 lv_obj_t * ui_Game2048Panel;
 lv_obj_t * ui_GameMemPanel;
@@ -21,9 +23,7 @@ void ui_event_GameSelectPage(lv_event_t * e)
     {
         if(lv_indev_get_gesture_dir(lv_indev_get_act()) == LV_DIR_RIGHT)
         {
-						user_Stack_Pop(&ScrRenewStack);
-            ui_MenuPage_screen_init();
-            lv_scr_load_anim(ui_MenuPage,LV_SCR_LOAD_ANIM_MOVE_RIGHT,100,0,true);
+			Page_Back();
         }
     }
 }
@@ -34,9 +34,7 @@ void ui_event_Game2048Panel(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED)
     {
-        ui_Game2048Page_screen_init();
-        lv_scr_load_anim(ui_Game2048Page,LV_SCR_LOAD_ANIM_MOVE_LEFT,0,0,true);
-        user_Stack_Push(&ScrRenewStack,(long long int)&ui_Game2048Page);
+        Page_Load(&Page_Game_2048);
     }
 }
 
@@ -46,14 +44,12 @@ void ui_event_GameMemPanel(lv_event_t * e)
     lv_obj_t * target = lv_event_get_target(e);
     if(event_code == LV_EVENT_CLICKED)
     {
-        ui_GameMemPage_screen_init();
-        lv_scr_load_anim(ui_GameMem_Page,LV_SCR_LOAD_ANIM_MOVE_RIGHT,0,0,true);
-				user_Stack_Push(&ScrRenewStack,(long long int)&ui_Game2048Page);
+        Page_Load(&Page_GameMem);
     }
 }
 
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_GameSelectPage_screen_init(void)
 {
     ui_GameSelectPage = lv_obj_create(NULL);
@@ -186,5 +182,6 @@ void ui_GameSelectPage_screen_init(void)
 
 }
 
-
-
+///////////////////// SCREEN deinit ////////////////////
+void ui_GameSelectPage_screen_deinit(void)
+{}

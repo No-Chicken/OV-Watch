@@ -13,7 +13,10 @@ extern lv_obj_t * ui_SPO2Icon;
 
 extern uint8_t ui_SPO2Value;
 
+extern Page_t Page_SPO2;
+
 void ui_SPO2Page_screen_init(void);
+void ui_SPO2Page_screen_deinit(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

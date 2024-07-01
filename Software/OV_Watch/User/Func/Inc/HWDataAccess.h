@@ -31,7 +31,7 @@ extern "C" {
  *
  */
 
-#define HW_USE_HARDWARE 1
+#define HW_USE_HARDWARE 0
 
 #if HW_USE_HARDWARE
   #define HW_USE_RTC 1

@@ -26,6 +26,8 @@ void list_rand_number(uint8_t arry[], uint8_t max_count, uint8_t count);
 void updata_btnm(char * btnm_map[], uint8_t matrix[MATRIX_SIZE * MATRIX_SIZE + 1]);
 uint8_t Game_Mem_Finish(void);
 
+///////////////////// Page Manager //////////////////
+Page_t Page_GameMem = {ui_GameMemPage_screen_init, ui_GameMemPage_screen_deinit, &ui_GameMem_Page};
 
 ///////////////////// VARIABLES ////////////////////
 memory_game_t Game_Mem;
@@ -100,7 +102,7 @@ void ui_event_NewGameBtn_handler(lv_event_t * e)
     }
 }
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_GameMemPage_screen_init(void)
 {
 
@@ -130,6 +132,9 @@ void ui_GameMemPage_screen_init(void)
     lv_obj_add_event_cb(ui_new_game_btn, ui_event_NewGameBtn_handler, LV_EVENT_ALL, NULL);
 }
 
+///////////////////// SCREEN deinit ////////////////////
+void ui_GameMemPage_screen_deinit(void)
+{}
 
 ///////////////////// FUNCTIONS ////////////////////
 void Game_Mem_Init(void)

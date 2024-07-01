@@ -44,7 +44,7 @@ void HRDataRenewTask(void *argument)
 	uint8_t hr_temp=0;
 	while(1)
 	{
-		if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HRPage)
+		if(Page_Get_NowPage()->page_obj == &ui_HRPage)
 		{
 			osMessageQueuePut(IdleBreak_MessageQueue, &IdleBreakstr, 0, 1);
 			//sensor wake up
@@ -81,11 +81,11 @@ void SensorDataRenewTask(void *argument)
 	uint8_t IdleBreakstr=0;
 	while(1)
 	{
-		if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_SPO2Page)
+		if(Page_Get_NowPage()->page_obj == &ui_SPO2Page)
 		{
 			osMessageQueuePut(IdleBreak_MessageQueue, &IdleBreakstr, 0, 1);
 			//sensor wake up
-			
+
 			//receive the sensor wakeup message, sensor wakeup
 			if(0)
 			{
@@ -96,7 +96,7 @@ void SensorDataRenewTask(void *argument)
 				lv_label_set_text(ui_SPO2NumLabel, value_strbuf);
 			}
 		}
-		else if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_EnvPage)
+		else if(Page_Get_NowPage()->page_obj == &ui_EnvPage)
 		{
 			osMessageQueuePut(IdleBreak_MessageQueue, &IdleBreakstr, 0, 1);
 			//receive the sensor wakeup message, sensor wakeup
@@ -121,7 +121,7 @@ void SensorDataRenewTask(void *argument)
 			}
 
 		}
-		else if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_CompassPage)
+		else if(Page_Get_NowPage()->page_obj == &ui_CompassPage)
 		{
 			osMessageQueuePut(IdleBreak_MessageQueue, &IdleBreakstr, 0, 1);
 			//receive the sensor wakeup message, sensor wakeup
@@ -162,7 +162,7 @@ void SensorDataRenewTask(void *argument)
 				lv_label_set_text(ui_EnvAltitudeLabel, value_strbuf);
 			}
 		}
-		
+
 		osDelay(300);
 	}
 }

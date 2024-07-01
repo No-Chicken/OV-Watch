@@ -6,6 +6,7 @@ extern "C" {
 #endif
 
 #include "lvgl/lvgl.h"
+#include "../../ui.h"
 
 extern lv_obj_t * ui_DateTimeSetPage;
 extern lv_obj_t * ui_APPSyPanel;
@@ -36,9 +37,17 @@ extern lv_obj_t * ui_SecSetRoller;
 extern lv_obj_t * ui_TimeSetOKButton;
 extern lv_obj_t * ui_TimeSetOKicon;
 
+extern Page_t Page_DateTimeSet;
+extern Page_t Page_DateSet;
+extern Page_t Page_TimeSet;
+
 void ui_DateTimeSetPage_screen_init(void);
 void ui_DateSetPage_screen_init(void);
 void ui_TimeSetPage_screen_init(void);
+
+void ui_DateTimeSetPage_screen_deinit(void);
+void ui_DateSetPage_screen_deinit(void);
+void ui_TimeSetPage_screen_deinit(void);
 
 extern uint8_t user_APPSy_EN;
 

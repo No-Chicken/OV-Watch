@@ -35,9 +35,9 @@ void KeyTask(void *argument)
 				osMessageQueuePut(Key_MessageQueue, &keystr, 0, 1);
 				osMessageQueuePut(IdleBreak_MessageQueue, &IdleBreakstr, 0, 1);
 				break;
-				
+
 			case 2:
-				if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HomePage)
+				if(Page_Get_NowPage()->page_obj == &ui_HomePage)
 				{
 					osMessageQueuePut(Stop_MessageQueue, &Stopstr, 0, 1);
 				}

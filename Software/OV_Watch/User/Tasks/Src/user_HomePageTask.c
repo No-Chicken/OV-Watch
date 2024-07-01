@@ -30,7 +30,7 @@ void TimeRenewTask(void *argument)
 	uint8_t value_strbuf[10];
 	while(1)
 	{
-		if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HomePage)
+		if(Page_Get_NowPage()->page_obj  == &ui_HomePage)
 		{
 			/*
 			lv_obj_set_style_text_opa(ui_TimeColonLabel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
@@ -123,7 +123,7 @@ void HomeUpdata_Task(void *argument)
 			}
 
 			//set text
-			if(ScrRenewStack.Data[ScrRenewStack.Top_Point-1] == (long long int)&ui_HomePage)
+			if(Page_Get_NowPage()->page_obj == &ui_HomePage)
 			{
 				//bat set text
 				lv_arc_set_value(ui_BatArc, ui_BatArcValue);

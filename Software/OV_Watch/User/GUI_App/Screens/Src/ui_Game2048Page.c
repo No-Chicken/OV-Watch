@@ -6,9 +6,6 @@
 #include "../../ui_helpers.h"
 #include "../Inc/ui_MenuPage.h"
 #include "../Inc/ui_Game2048Page.h"
-
-#include "../../../Func/Inc/PageStack.h"
-
 #include "../../../Func/Inc/HWDataAccess.h"
 
 #define STACK_DEPTH 5
@@ -21,11 +18,11 @@ typedef struct
 
 }Stack_T;
 
-void Stack_init(Stack_T* stack);
-uint8_t Stack_Push(Stack_T* stack, uint16_t datain);
-uint8_t Stack_Pop(Stack_T* stack);
-uint8_t Stack_isEmpty(Stack_T* stack);
-void Stack_Clear(Stack_T* stack);
+static void Stack_init(Stack_T* stack);
+static uint8_t Stack_Push(Stack_T* stack, uint16_t datain);
+static uint8_t Stack_Pop(Stack_T* stack);
+static uint8_t Stack_isEmpty(Stack_T* stack);
+static void Stack_Clear(Stack_T* stack);
 
 typedef struct {
     uint16_t score;
@@ -52,17 +49,20 @@ typedef struct {
 
 static char *Str2048Nums[]={"2","4","8","16","32","64","128","256","512","1024","2048"};
 
-void Game_2048_init(void);
-void init_matrix_num(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
-void update_btnm_map(char * btnm_map[], uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
-void addRandom(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
-uint8_t move_up(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
-uint8_t move_down(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
-uint8_t move_right(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
-uint8_t move_left(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
-uint8_t game_over(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
-lv_color_t get_num_color(uint16_t num);
+static void Game_2048_init(void);
+static void init_matrix_num(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
+static void update_btnm_map(char * btnm_map[], uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
+static void addRandom(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
+static uint8_t move_up(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
+static uint8_t move_down(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
+static uint8_t move_right(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
+static uint8_t move_left(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
+static uint8_t game_over(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE]);
+static lv_color_t get_num_color(uint16_t num);
 
+
+///////////////////// Page Manager //////////////////
+Page_t Page_Game_2048 = {ui_Game2048Page_screen_init, ui_Game2048Page_screen_deinit, &ui_Game2048Page};
 
 ///////////////////// VARIABLES ////////////////////
 ui_Game2048_t Game_2048;
@@ -72,7 +72,7 @@ lv_obj_t * ui_Game2048BtnM;
 lv_obj_t * ui_Game2048ScLabel;
 
 ///////////////////// FUNCTIONS ////////////////////
-void ui_event_Game2048Page(lv_event_t * e)
+static void ui_event_Game2048Page(lv_event_t * e)
 {
    lv_event_code_t event_code = lv_event_get_code(e);
     lv_obj_t * target = lv_event_get_target(e);
@@ -112,7 +112,7 @@ void ui_event_Game2048Page(lv_event_t * e)
     }
 }
 
-void ui_event_Game2048BtnM(lv_event_t * e)
+static void ui_event_Game2048BtnM(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     lv_obj_t * obj = lv_event_get_target(e);
@@ -144,7 +144,7 @@ void ui_event_Game2048BtnM(lv_event_t * e)
     }
 }
 
-void ui_event_new_game_btn(lv_event_t * e)
+static void ui_event_new_game_btn(lv_event_t * e)
 {
     lv_event_code_t code = lv_event_get_code(e);
     if(code == LV_EVENT_LONG_PRESSED)
@@ -157,7 +157,7 @@ void ui_event_new_game_btn(lv_event_t * e)
 }
 
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_Game2048Page_screen_init(void)
 {
 
@@ -198,9 +198,12 @@ void ui_Game2048Page_screen_init(void)
 
 }
 
+/////////////////// SCREEN deinit ////////////////////
+void ui_Game2048Page_screen_deinit(void)
+{}
 
 ///////////////////// FUNCTIONS ////////////////////
-void Game_2048_init(void)
+static void Game_2048_init(void)
 {
     Game_2048.score = 0;
     Game_2048.game_over = 0;
@@ -218,7 +221,7 @@ void Game_2048_init(void)
 
 }
 
-void init_matrix_num(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
+static void init_matrix_num(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 {
     uint8_t x, y;
 
@@ -233,7 +236,7 @@ void init_matrix_num(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
     addRandom(matrix);
 }
 
-void update_btnm_map(char * btnm_map[], uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
+static void update_btnm_map(char * btnm_map[], uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 {
     uint8_t x, y, index;
     index = 0;
@@ -257,7 +260,7 @@ void update_btnm_map(char * btnm_map[], uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE
     }
 }
 
-void addRandom(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
+static void addRandom(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 {
     static uint8_t initialized = 0;
     uint16_t x, y;
@@ -293,7 +296,7 @@ void addRandom(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
     }
 }
 
-uint8_t move_up(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
+static uint8_t move_up(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 {
     uint8_t moved = 0;
     uint8_t x,y;
@@ -342,7 +345,7 @@ uint8_t move_up(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
     return moved;
 }
 
-uint8_t move_down(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
+static uint8_t move_down(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 {
     uint8_t moved = 0;
     uint8_t x,y;
@@ -391,7 +394,7 @@ uint8_t move_down(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
     return moved;
 }
 
-uint8_t move_right(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
+static uint8_t move_right(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 {
     uint8_t moved = 0;
     uint8_t x,y;
@@ -440,7 +443,7 @@ uint8_t move_right(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
     return moved;
 }
 
-uint8_t move_left(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
+static uint8_t move_left(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 {
     uint8_t moved = 0;
     uint8_t x,y;
@@ -489,7 +492,7 @@ uint8_t move_left(uint16_t * score, uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
     return moved;
 }
 
-uint8_t game_over(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
+static uint8_t game_over(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 {
   uint8_t x, y;
 	uint8_t count = 0;
@@ -508,7 +511,7 @@ uint8_t game_over(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 	return 0;
 }
 
-lv_color_t get_num_color(uint16_t num)
+static lv_color_t get_num_color(uint16_t num)
 {
     lv_color_t color;
 
@@ -532,13 +535,13 @@ lv_color_t get_num_color(uint16_t num)
     return color;
 }
 
-void Stack_init(Stack_T* stack)
+static void Stack_init(Stack_T* stack)
 {
     memset(stack->Data,0,STACK_DEPTH);
     stack->Top_Point = 0;
 }
 
-uint8_t Stack_Push(Stack_T* stack, uint16_t datain)
+static uint8_t Stack_Push(Stack_T* stack, uint16_t datain)
 {
   if(stack->Top_Point == STACK_DEPTH - 1)
     {return -1;}
@@ -547,7 +550,7 @@ uint8_t Stack_Push(Stack_T* stack, uint16_t datain)
     return 0;
 }
 
-uint8_t Stack_Pop(Stack_T* stack)
+static uint8_t Stack_Pop(Stack_T* stack)
 {
   if(stack->Top_Point == 0)
     {return -1;}
@@ -556,7 +559,7 @@ uint8_t Stack_Pop(Stack_T* stack)
     return 0;
 }
 
-uint8_t Stack_isEmpty(Stack_T* stack)
+static uint8_t Stack_isEmpty(Stack_T* stack)
 {
     if(stack->Top_Point == 0)
     {return 1;}
@@ -564,7 +567,7 @@ uint8_t Stack_isEmpty(Stack_T* stack)
     return 0;
 }
 
-void Stack_Clear(Stack_T* stack)
+static void Stack_Clear(Stack_T* stack)
 {
     while(!Stack_isEmpty(stack))
     {

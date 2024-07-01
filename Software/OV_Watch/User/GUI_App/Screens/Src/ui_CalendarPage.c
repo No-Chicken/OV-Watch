@@ -1,6 +1,11 @@
 #include "../../ui.h"
 #include "../../ui_helpers.h"
+#include "../Inc/ui_CalendarPage.h"
 #include "../../../Func/Inc/HWDataAccess.h"
+
+///////////////////// Page Manager //////////////////
+Page_t Page_Calender = {ui_CalendarPage_screen_init, ui_CalendarPage_screen_deinit, &ui_CalendarPage};
+
 ///////////////////// VARIABLES ////////////////////
 lv_obj_t * ui_CalendarPage;
 lv_obj_t * ui_CalendarPageCalendar;
@@ -8,7 +13,7 @@ lv_obj_t * ui_CalendarPageCalendar;
 ///////////////////// FUNCTIONS ////////////////////
 
 
-///////////////////// SCREENS ////////////////////
+///////////////////// SCREEN init ////////////////////
 void ui_CalendarPage_screen_init(void)
 {
     HW_DateTimeTypeDef DateTime;
@@ -28,3 +33,7 @@ void ui_CalendarPage_screen_init(void)
     lv_obj_set_style_border_width(ui_CalendarPageCalendar, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
 
 }
+
+///////////////////// SCREEN deinit ////////////////////
+void ui_CalendarPage_screen_deinit(void)
+{}
