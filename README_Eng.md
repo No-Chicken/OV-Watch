@@ -46,6 +46,14 @@ FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 </p>
 <br>
 
+## :black_nib:How to download BootLoader  and upgrad APP：
+
+Please refer to the README file in the `Firmware` folder for details: [BootLoader & APP Instructions](./Firmware/README.md)
+
+If you find the version 2.3.3 with BootLoader too complicated, you can download branch [ver2.3.2](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2) and use the previous code.
+
+<br>
+
 
 ## :rocket: Additional Features 
 ### The features modified in V2.4.1 include:
@@ -60,14 +68,6 @@ FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi
 2. Added BootLoader program.
 3. Added IAP OTA functionality, which enables program upgrades via Bluetooth.
 4. Fixed some bugs.
-
-<br>
-
-## :black_nib:How to download BootLoader  and upgrad APP：
-
-Please refer to the README file in the `Firmware` folder for details: [BootLoader & APP Instructions](./Firmware/README.md)
-
-If you find the version 2.3.3 with BootLoader too complicated, you can download branch [ver2.3.2](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2) and use the previous code.
 
 <br>
 
@@ -91,8 +91,23 @@ If you find the version 2.3.3 with BootLoader too complicated, you can download 
 |      Stopwatch       |     ❌     |     ❌     |    ✔     |    ✔     |    ✔     |    ✔     |
 |         Game         |     ❌     |     ❌     |    ❌     |    ❌     |    ❌     |    ✔     |
 
+<br>
 
-## :star2:V2.3 Pictures
+## :file_folder:Software Structure：
+
+<p align="center">
+	<img border="1px" width="60%" src="./images/software structure.jpg">
+</p>
+
+<br>
+
+<p align="center">
+	<img border="1px" width="60%" src="./images/storage.jpg">
+</p>
+
+<br>
+
+## :star2: Pictures
 
 <p align="center">
 	<img border="1px" width="50%" src="./images/实物图.jpg">

@@ -44,6 +44,14 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 </p>
 <br>
 
+## :black_nib:如何烧录：
+
+由于具体的步骤太多这里不放了, 详细见Firmware中的README文件: [BootLoader和APP烧录说明](./Firmware/README.md)
+
+如果你觉得带BootLoader的V2.4.0版本太麻烦了, 可以自行去下载[ver2.3.2分支](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2), 用以前的代码.
+
+<br>
+
 ## :rocket: 增加的功能说明
 #### V2.4.1相对V2.4.0修改的功能包括: 
 
@@ -65,19 +73,25 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 <br>
 
-## :black_nib:如何烧录：
-
-由于具体的步骤太多这里不放了, 详细见Firmware中的README文件: [BootLoader和APP烧录说明](./Firmware/README.md)
-
-如果你觉得带BootLoader的V2.4.0版本太麻烦了, 可以自行去下载[ver2.3.2分支](https://github.com/No-Chicken/OV-Watch/tree/ver2.3.2), 用以前的代码.
-
-<br>
-
-## :bookmark_tabs:功能表如下图所示：
+## :bookmark_tabs:功能表：
 
 <p align="center">
 	<img border="1px" width="75%" src="./images/功能表.jpg">
 </p>
+<br>
+
+## :file_folder:软件架构：
+
+<p align="center">
+	<img border="1px" width="60%" src="./images/software structure.jpg">
+</p>
+
+<br>
+
+<p align="center">
+	<img border="1px" width="60%" src="./images/storage.jpg">
+</p>
+
 <br>
 
 
