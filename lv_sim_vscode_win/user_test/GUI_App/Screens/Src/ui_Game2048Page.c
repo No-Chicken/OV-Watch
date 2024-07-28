@@ -271,7 +271,7 @@ static void addRandom(uint16_t matrix[MATRIX_SIZE][MATRIX_SIZE])
 		{
 			int time=0;
             HW_DateTimeTypeDef nowtime;
-            HW_RTC_Get_TimeDate(&nowtime);
+            HWInterface.RealTimeClock.GetTimeDate(&nowtime);
 			time = nowtime.Seconds;
       srand(time);
       initialized = 1;

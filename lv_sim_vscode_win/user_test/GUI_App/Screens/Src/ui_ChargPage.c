@@ -1,6 +1,7 @@
 #include "../../ui.h"
 #include "../Inc/ui_ChargPage.h"
 #include "../Inc/ui_HomePage.h"
+#include "../../../Func/Inc/HWDataAccess.h"
 
 ///////////////////// Page Manager //////////////////
 Page_t Page_Charg = {ui_ChargPage_screen_init, ui_ChargPage_screen_deinit, &ui_ChargPage};
@@ -14,12 +15,48 @@ lv_obj_t * ui_ChargPagebHourLabel;
 lv_obj_t * ui_ChargPagebMinLabel;
 lv_obj_t * ui_ChargPageTimePoint;
 
+lv_timer_t * ui_ChargPageTimer;
 
 ///////////////////// Data Init ////////////////////
 
 
 /////////////////////// Timer //////////////////////
+// need to be destroyed when the page is destroyed
+static void ChargPage_timer_cb(lv_timer_t * timer)
+{
+    if(Page_Get_NowPage()->page_obj == &ui_ChargPage)
+		{
+			uint8_t value_strbuf[5];
 
+			HW_DateTimeTypeDef DateTime;
+      HWInterface.RealTimeClock.GetTimeDate(&DateTime);
+
+			if(ui_TimeMinuteValue != DateTime.Minutes)
+			{
+				ui_TimeMinuteValue = DateTime.Minutes;
+				sprintf(value_strbuf,"%02d",ui_TimeMinuteValue);
+				lv_label_set_text(ui_ChargPagebMinLabel, value_strbuf);
+			}
+
+			if(ui_TimeHourValue != DateTime.Hours)
+			{
+				ui_TimeHourValue = DateTime.Hours;
+				sprintf(value_strbuf,"%02d",ui_TimeHourValue);
+				lv_label_set_text(ui_ChargPagebHourLabel, value_strbuf);
+			}
+
+			ui_BatArcValue = HWInterface.Power.BatCalculate();
+			if(ui_BatArcValue>0 && ui_BatArcValue<=100)
+			{
+				lv_arc_set_value(ui_CharPageBatArc, ui_BatArcValue);
+				sprintf(value_strbuf,"%2d%%",ui_BatArcValue);
+				lv_label_set_text(ui_ChargPageBatNum, value_strbuf);
+			}
+			else
+			{ui_BatArcValue=0;}
+
+		}
+}
 
 
 ///////////////////// SCREEN init ////////////////////
@@ -109,8 +146,13 @@ void ui_ChargPage_screen_init(void)
     lv_obj_set_style_text_opa(ui_ChargPageTimePoint, 160, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_ChargPageTimePoint, &ui_font_Cuyuan100, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    //timer
+    ui_ChargPageTimer = lv_timer_create(ChargPage_timer_cb, 2000,  NULL);
+
 }
 
 /////////////////// SCREEN deinit ////////////////////
 void ui_ChargPage_screen_deinit(void)
-{}
+{
+  lv_timer_del(ui_ChargPageTimer);
+}

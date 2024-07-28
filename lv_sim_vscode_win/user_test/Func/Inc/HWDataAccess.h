@@ -34,11 +34,15 @@ extern "C" {
 #define HW_USE_HARDWARE 0
 
 #if HW_USE_HARDWARE
-  #define HW_USE_RTC 1
-  #define HW_USE_IMU 1
-  #define HW_USE_BLE 1
-  #define HW_USE_BAT 1
-  #define HW_USE_LCD 1
+  #define HW_USE_RTC    1
+  #define HW_USE_BLE    1
+  #define HW_USE_BAT    1
+  #define HW_USE_LCD    1
+  #define HW_USE_IMU    1
+  #define HW_USE_AHT21  1
+  #define HW_USE_SPL06  1
+  #define HW_USE_LSM303 1
+  #define HW_USE_EM7028 1
 #endif
 
 /***************************
@@ -52,10 +56,6 @@ extern "C" {
   #include "rtc.h"
 #endif
 
-#if HW_USE_IMU
-  #include "user_MPUCheckTask.h"
-#endif
-
 #if HW_USE_BLE
   #include "kt6328.h"
 #endif
@@ -66,6 +66,28 @@ extern "C" {
 
 #if HW_USE_LCD
   #include "lcd_init.h"
+#endif
+
+#if HW_USE_IMU
+  #include "MPU6050.h"
+  #include "inv_mpu.h"
+  #include "inv_mpu_dmp_motion_driver.h"
+#endif
+
+#if HW_USE_AHT21
+  #include "AHT21.h"
+#endif
+
+#if HW_USE_SPL06
+  #include "SPL06_001.h"
+#endif
+
+#if HW_USE_LSM303
+  #include "LSM303.h"
+#endif
+
+#if HW_USE_EM7028
+  #include "em70x8.h"
 #endif
 
 /***************************
@@ -101,26 +123,152 @@ typedef struct
 } HW_DateTimeTypeDef;
 
 
+/**
+  * @brief  HW RTC Interface definition
+  */
+typedef struct
+{
+    void (*GetTimeDate)(HW_DateTimeTypeDef *nowdatetime);
+    void (*SetDate)(uint8_t year, uint8_t month, uint8_t date);
+    void (*SetTime)(uint8_t hours, uint8_t minutes, uint8_t seconds);
+    uint8_t (*CalculateWeekday)(uint8_t setyear, uint8_t setmonth, uint8_t setday, uint8_t century);
+} HW_RTC_InterfaceTypeDef;
+
+
+/**
+  * @brief  HW BLE Interface definition
+  */
+typedef struct
+{
+    void (*Enable)(void);
+    void (*Disable)(void);
+} HW_BLE_InterfaceTypeDef;
+
+
+/**
+  * @brief  HW Power Interface definition
+  */
+typedef struct
+{
+    uint8_t power_remain;
+
+    void (*Init)(void);
+    void (*Shutdown)(void);
+    uint8_t (*BatCalculate)(void);
+} HW_Power_InterfaceTypeDef;
+
+
+/**
+  * @brief  HW LCD Interface definition
+  */
+typedef struct
+{
+    void (*SetLight)(uint8_t dc);
+} HW_LCD_InterfaceTypeDef;
+
+
+/**
+  * @brief  HW IMU wrist state defines
+  */
+#define WRIST_UP 1
+#define WRIST_DOWN 0
+
+/**
+  * @brief  HW IMU Interface definition
+  */
+typedef struct
+{
+    uint8_t ConnectionError;
+    uint16_t Steps;
+    uint8_t wrist_state;
+    uint8_t wrist_is_enabled;
+
+    int (*Init)(void);
+    void (*WristEnable)(void);
+    void (*WristDisable)(void);
+    uint16_t (*GetSteps)(void);
+    int (*SetSteps)(unsigned long count);
+} HW_IMU_InterfaceTypeDef;
+
+
+/**
+  * @brief  HW AHT21 Interface definition
+  */
+typedef struct
+{
+  uint8_t ConnectionError;
+  uint8_t temperature;
+  uint8_t humidity;
+  uint8_t (*Init)(void);
+  void (*GetHumiTemp)(float *humi, float *temp);
+} HW_AHT21_InterfaceTypeDef;
+
+
+/**
+  * @brief  HW SPL06-001 Barometer Interface definition
+  */
+typedef struct
+{
+  uint8_t ConnectionError;
+  uint16_t altitude;
+  uint8_t (*Init)(void);
+
+} HW_Barometer_InterfaceTypeDef;
+
+/**
+  * @brief  HW LSM_303 E-compass Interface definition
+  */
+typedef struct
+{
+  uint8_t ConnectionError;
+  uint16_t direction;
+  uint8_t (*Init)(void);
+  void (*Sleep)(void);
+
+} HW_Ecompass_InterfaceTypeDef;
+
+/**
+  * @brief  HW EM7028 heart rate meter Interface definition
+  */
+typedef struct
+{
+  uint8_t ConnectionError;
+  uint8_t HrRate;
+  uint8_t SPO2;
+  uint8_t (*Init)(void);
+  void (*Sleep)(void);
+
+} HW_HRmeter_InterfaceTypeDef;
+
+/**
+  * @brief  Hardware Interface structure definition
+  */
+typedef struct
+{
+    HW_RTC_InterfaceTypeDef RealTimeClock;
+    HW_BLE_InterfaceTypeDef BLE;
+    HW_Power_InterfaceTypeDef Power;
+    HW_LCD_InterfaceTypeDef LCD;
+    HW_IMU_InterfaceTypeDef IMU;
+    HW_AHT21_InterfaceTypeDef AHT21;
+    HW_Barometer_InterfaceTypeDef Barometer;
+    HW_Ecompass_InterfaceTypeDef Ecompass;
+    HW_HRmeter_InterfaceTypeDef HR_meter;
+} HW_InterfaceTypeDef;
+
+
+
 /***************************
  *  PROTOTYPES
  ***************************/
 
-//RTC
-void HW_RTC_Get_TimeDate(HW_DateTimeTypeDef * nowdatetime);
-void HW_RTC_Set_Date(uint8_t year, uint8_t month, uint8_t date);
-void HW_RTC_Set_Time(uint8_t hours, uint8_t minutes, uint8_t seconds);
-uint8_t HW_weekday_calculate(uint8_t setyear, uint8_t setmonth, uint8_t setday, uint8_t century);
-//IMU
-uint8_t HW_MPU_Wrist_is_Enabled(void);
-void HW_MPU_Wrist_Enable(void);
-void HW_MPU_Wrist_Disable(void);
-//BLE
-void HW_BLE_Enable(void);
-void HW_BLE_Disable(void);
-//POW
-void HW_Power_Shutdown(void);
-//LCD
-void HW_LCD_Set_Light(uint8_t dc);
+
+/***************************
+ *  External Variables
+ ***************************/
+extern HW_InterfaceTypeDef HWInterface;
+
+
 
 #ifdef __cplusplus
 } /*extern "C"*/

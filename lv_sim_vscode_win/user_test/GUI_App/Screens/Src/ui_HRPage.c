@@ -1,6 +1,7 @@
 #include "../../ui.h"
 #include "../../ui_helpers.h"
 #include "../Inc/ui_HRPage.h"
+#include "../../../Func/Inc/HWDataAccess.h"
 
 ///////////////////// Page Manager //////////////////
 Page_t Page_HR = {ui_HRPage_screen_init, ui_HRPage_screen_deinit, &ui_HRPage};
@@ -12,9 +13,20 @@ lv_obj_t * ui_HRPageUnitLabel;
 lv_obj_t * ui_HRPaggiconLabel;
 lv_obj_t * ui_HRPageNoticeLabel;
 
-uint8_t ui_HRValue = 0;
+lv_timer_t * ui_HRPageTimer;
 
 ///////////////////// ANIMATIONS ////////////////////
+
+
+/////////////////// private timer ///////////////////
+// need to be destroyed when the page is destroyed
+static void HRPage_timer_cb(lv_timer_t * timer)
+{
+    uint8_t value_strbuf[6];
+    //set text
+    sprintf(value_strbuf, "%d", HWInterface.HR_meter.HrRate);
+    lv_label_set_text(ui_HRPageNumLabel, value_strbuf);
+}
 
 ///////////////////// FUNCTIONS ////////////////////
 
@@ -30,7 +42,7 @@ void ui_HRPage_screen_init(void)
     lv_obj_set_width(ui_HRPageNumLabel, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_HRPageNumLabel, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_HRPageNumLabel, LV_ALIGN_CENTER);
-    sprintf(value_strbuf, "%d", ui_HRValue);
+    sprintf(value_strbuf, "%d", HWInterface.HR_meter.HrRate);
     lv_label_set_text(ui_HRPageNumLabel, value_strbuf);
     lv_obj_set_style_text_font(ui_HRPageNumLabel, &ui_font_Cuyuan80, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -67,8 +79,13 @@ void ui_HRPage_screen_init(void)
     lv_obj_set_style_text_opa(ui_HRPageNoticeLabel, 220, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_HRPageNoticeLabel, &ui_font_Cuyuan20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    //timer
+    ui_HRPageTimer = lv_timer_create(HRPage_timer_cb, 50,  NULL);
+
 }
 
 /////////////////// SCREEN deinit ////////////////////
 void ui_HRPage_screen_deinit(void)
-{}
+{
+    lv_timer_del(ui_HRPageTimer);
+}

@@ -41,7 +41,7 @@ lv_obj_t * ui_TimeSetOKButton;
 lv_obj_t * ui_TimeSetOKicon;
 
 
-uint8_t user_APPSy_EN=0;
+uint8_t ui_APPSy_EN = 0;
 
 const char  yearoptions[] = "2022\n2023\n2024\n2025\n2026\n2027\n2028\n2029\n2030\n2031\n2032\n2033\n2034\n2035";
 const char  monthoptions[] = "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12";
@@ -99,10 +99,10 @@ void ui_event_DateSetOKButton(lv_event_t * e)
 			uint8_t setmonth = lv_roller_get_selected(ui_MonthSetRoller)+1;
 			uint8_t setday = lv_roller_get_selected(ui_DaySetRoller)+1;
 
-			HW_RTC_Set_Date(setyear, setmonth, setday);
+      HWInterface.RealTimeClock.SetDate(setyear, setmonth, setday);
 			ui_DateMonthValue = setmonth;
 			ui_DateDayValue = setday;
-			ui_DataWeekdayValue = HW_weekday_calculate(setyear,setmonth,setday,20);
+			ui_DataWeekdayValue =  HWInterface.RealTimeClock.CalculateWeekday(setyear,setmonth,setday,20);
 
 			Page_Back();
     }
@@ -116,7 +116,7 @@ void ui_event_TimeSetOKButton(lv_event_t * e)
 			uint8_t sethour = lv_roller_get_selected(ui_HourSetRoller);
 			uint8_t setmin = lv_roller_get_selected(ui_MinSetRoller);
 			uint8_t setsec = lv_roller_get_selected(ui_SecSetRoller);
-			HW_RTC_Set_Time(sethour,setmin,setsec);
+      HWInterface.RealTimeClock.SetTime(sethour,setmin,setsec);
 			ui_TimeHourValue = sethour;
 			ui_TimeMinuteValue = setmin;
 
@@ -133,12 +133,12 @@ void ui_event_APPSySwitch(lv_event_t * e)
        if(lv_obj_has_state(ui_APPSySwitch,LV_STATE_CHECKED))
        {
             //open
-                 user_APPSy_EN=1;
+                 ui_APPSy_EN=1;
        }
        else
        {
             //close
-                 user_APPSy_EN=0;
+                 ui_APPSy_EN=0;
        }
     }
 }
@@ -163,7 +163,7 @@ void ui_DateTimeSetPage_screen_init(void)
     lv_obj_set_width(ui_APPSySwitch, 55);
     lv_obj_set_height(ui_APPSySwitch, 25);
     lv_obj_set_align(ui_APPSySwitch, LV_ALIGN_RIGHT_MID);
-    if(user_APPSy_EN)
+    if(ui_APPSy_EN)
     {lv_obj_add_state(ui_APPSySwitch, LV_STATE_CHECKED);}
 
     ui_APPSyLabel = lv_label_create(ui_APPSyPanel);
@@ -287,7 +287,7 @@ void ui_DateSetPage_screen_init(void)
 {
 
     HW_DateTimeTypeDef datetime;
-    HW_RTC_Get_TimeDate(&datetime);
+    HWInterface.RealTimeClock.GetTimeDate(&datetime);
 
     ui_DateSetPage = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_DateSetPage, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
@@ -390,7 +390,7 @@ void ui_TimeSetPage_screen_init(void)
 {
 
     HW_DateTimeTypeDef datetime;
-    HW_RTC_Get_TimeDate(&datetime);
+    HWInterface.RealTimeClock.GetTimeDate(&datetime);
 
     ui_TimeSetPage = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_TimeSetPage, LV_OBJ_FLAG_SCROLLABLE);      /// Flags

@@ -23,10 +23,7 @@ void SDL_KeyBoard_Subscriber(PubSub_Message_t message)
 /////////////////////// Timer //////////////////////
 static void main_timer(lv_timer_t * timer)
 {
-    printf("timer\r\n");
-    printf("%d\r\n",&ui_HomePage);
-    printf("%d\r\n",Page_Get_NowPage()->page_obj);
-    printf("stacklen:%d\r\n",PageStack.top);
+    // do something in main timer
 }
 
 /////////////////////// ui_initialize //////////////////////

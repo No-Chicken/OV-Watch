@@ -161,7 +161,7 @@ void list_rand_number(uint8_t arry[], uint8_t max_count, uint8_t count)
     int w, t;
 	int time=0;
 	HW_DateTimeTypeDef nowtime;
-	HW_RTC_Get_TimeDate(&nowtime);
+	HWInterface.RealTimeClock.GetTimeDate(&nowtime);
 	time = nowtime.Seconds;
     srand(time);
 

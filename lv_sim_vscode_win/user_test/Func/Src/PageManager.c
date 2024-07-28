@@ -112,7 +112,7 @@ void Page_Load(Page_t *newPage) {
 
     // 如果堆栈非空，反初始化当前页面
     if (PageStack.top > 0) {
-        // PageStack.pages[PageStack.top - 1]->deinit();
+        PageStack.pages[PageStack.top - 1]->deinit();
     }
 
     // 将新页面推入堆栈
