@@ -29,31 +29,6 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "stm32f4xx_it.h"
-#include "delay.h"
-
-
-
-#include "mpu6050.h"
-#include "AHT21.h"
-
-#include "BL24C02.h"
-#include "DataSave.h"
-#include "power.h"
-
-#include "KT6328.h"
-#include "inv_mpu.h"
-#include "inv_mpu_dmp_motion_driver.h"
-//gui
-#include "lvgl.h"
-#include "lv_port_disp.h"
-#include "lv_port_indev.h"
-#include "ui.h"
-
-//APP SYS setting
-#include "ui_DateTimeSetPage.h"
-
-
 
 /* USER CODE END Includes */
 
