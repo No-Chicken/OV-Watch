@@ -17,11 +17,11 @@ extern "C" {
  */
 #define VERSION_MAJOR 2
 #define VERSION_MINOR 4
-#define VERSION_PATCH 2
+#define VERSION_PATCH 3
 #define VERSION_INFO ""
 
 /**
- * No-Chicken的意思是no spring chicken, 不再年轻...
+ * No-Chicken的意思是no spring chicken any more...
  * 
  */
 #define VERSION_AUTHOR_ENG_NAME    "No-Chicken"

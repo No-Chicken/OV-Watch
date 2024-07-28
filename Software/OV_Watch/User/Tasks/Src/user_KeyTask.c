@@ -1,8 +1,6 @@
 /* Private includes -----------------------------------------------------------*/
 //includes
 #include "user_TasksInit.h"
-#include "user_StopEnterTask.h"
-#include "user_ScrRenewTask.h"
 #include "ui_HomePage.h"
 #include "main.h"
 #include "key.h"

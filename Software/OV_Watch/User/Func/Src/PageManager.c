@@ -93,7 +93,6 @@ void Page_Back_Bottom(void) {
     // 弹出除栈底的所有页面
     while(PageStack.top > 1)
         page_stack_pop(&PageStack);
-
     PageStack.pages[PageStack.top - 1]->init(); // 初始化新页面
     lv_scr_load_anim(*PageStack.pages[PageStack.top - 1]->page_obj, LV_SCR_LOAD_ANIM_MOVE_RIGHT, 100, 0, true); // 加载并应用动画
 }
@@ -113,7 +112,7 @@ void Page_Load(Page_t *newPage) {
 
     // 如果堆栈非空，反初始化当前页面
     if (PageStack.top > 0) {
-        // PageStack.pages[PageStack.top - 1]->deinit();
+        PageStack.pages[PageStack.top - 1]->deinit();
     }
 
     // 将新页面推入堆栈

@@ -53,11 +53,7 @@ extern "C" {
 void Error_Handler(void);
 
 /* USER CODE BEGIN EFP */
-extern uint8_t Sensor_LSM303_Erro;
-extern uint8_t Sensor_AHT21_Erro;
-extern uint8_t Sensor_SPL_Erro;
-extern uint8_t Sensor_EM_Erro;
-extern uint8_t Sensor_MPU_Erro;
+
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/

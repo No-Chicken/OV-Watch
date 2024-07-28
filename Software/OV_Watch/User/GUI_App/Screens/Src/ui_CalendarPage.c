@@ -17,7 +17,7 @@ lv_obj_t * ui_CalendarPageCalendar;
 void ui_CalendarPage_screen_init(void)
 {
     HW_DateTimeTypeDef DateTime;
-    HW_RTC_Get_TimeDate(&DateTime);
+    HWInterface.RealTimeClock.GetTimeDate(&DateTime);
 
     ui_CalendarPage = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_CalendarPage, LV_OBJ_FLAG_SCROLLABLE);      /// Flags

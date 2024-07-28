@@ -31,18 +31,16 @@
 /* USER CODE BEGIN Includes */
 #include "stm32f4xx_it.h"
 #include "delay.h"
-#include "lcd.h"
-#include "lcd_init.h"
-#include "CST816.h"
-#include "SPL06_001.h"
-#include "LSM303.h"
+
+
+
 #include "mpu6050.h"
 #include "AHT21.h"
-#include "em70x8.h"
+
 #include "BL24C02.h"
 #include "DataSave.h"
 #include "power.h"
-#include "key.h"
+
 #include "KT6328.h"
 #include "inv_mpu.h"
 #include "inv_mpu_dmp_motion_driver.h"
@@ -52,12 +50,10 @@
 #include "lv_port_indev.h"
 #include "ui.h"
 
-//Wrist setting
-#include "user_MPUCheckTask.h"
 //APP SYS setting
 #include "ui_DateTimeSetPage.h"
 
-#include "version.h"
+
 
 /* USER CODE END Includes */
 
@@ -78,11 +74,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-uint8_t Sensor_LSM303_Erro=1;
-uint8_t Sensor_AHT21_Erro=1;
-uint8_t Sensor_SPL_Erro=1;
-uint8_t Sensor_EM_Erro=1;
-uint8_t Sensor_MPU_Erro=1;
 
 /* USER CODE END PV */
 
@@ -106,7 +97,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	//this must set same as keil setting
-	SCB->VTOR = 0x0000C000U;
+	SCB->VTOR = 0x00000000U;
   /* USER CODE END 1 */
 
   /* MCU Configuration--------------------------------------------------------*/
@@ -134,133 +125,6 @@ int main(void)
   MX_TIM3_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-	//RTC Wake
-	if(HAL_RTCEx_SetWakeUpTimer_IT(&hrtc, 2000, RTC_WAKEUPCLOCK_RTCCLK_DIV16) != HAL_OK)
-  {
-    Error_Handler();
-  }
-	//usart start
-	HAL_UART_Receive_DMA(&huart1,(uint8_t*)HardInt_receive_str,25);
-	__HAL_UART_ENABLE_IT(&huart1,UART_IT_IDLE);
-
-	//PWM Start
-	HAL_TIM_PWM_Start(&htim3,TIM_CHANNEL_3);
-
-	//sys delay
-	delay_init();
-	//wait
-	// delay_ms(1000);
-
-	//power
-	Power_Init();
-
-	//key
-	Key_Port_Init();
-
-	//sensor
-	uint8_t num = 3;
-	while(num && Sensor_AHT21_Erro)
-	{
-		num--;
-		Sensor_AHT21_Erro = AHT_Init();
-	}
-
-	num = 3;
-	while(num && Sensor_LSM303_Erro)
-	{
-		num--;
-		Sensor_LSM303_Erro = LSM303DLH_Init();
-	}
-	if(!Sensor_LSM303_Erro)
-		LSM303DLH_Sleep();
-
-	num = 3;
-	while(num && Sensor_SPL_Erro)
-	{
-		num--;
-		Sensor_SPL_Erro = SPL_init();
-	}
-
-	num = 3;
-	while(num && Sensor_MPU_Erro)
-	{
-		num--;
-		Sensor_MPU_Erro = mpu_dmp_init();
-		//Sensor_MPU_Erro = MPU_Init();
-	}
-
-	num = 3;
-	while(num && Sensor_EM_Erro)
-	{
-		num--;
-		Sensor_EM_Erro = EM7028_hrs_init();
-	}
-	if(!Sensor_EM_Erro)
-		EM7028_hrs_DisEnable();
-
-
-
-	//EEPROM
-	EEPROM_Init();
-	if(!EEPROM_Check())
-	{
-		uint8_t recbuf[3];
-		SettingGet(recbuf,0x10,2);
-		if((recbuf[0]!=0 && recbuf[0]!=1) || (recbuf[1]!=0 && recbuf[1]!=1))
-		{
-			user_MPU_Wrist_EN = 0;
-			user_APPSy_EN = 0;
-		}
-		else
-		{
-			user_MPU_Wrist_EN = recbuf[0];
-			user_APPSy_EN = recbuf[1];
-		}
-
-		RTC_DateTypeDef nowdate;
-		HAL_RTC_GetDate(&hrtc,&nowdate,RTC_FORMAT_BIN);
-
-		SettingGet(recbuf,0x20,3);
-		if(recbuf[0] == nowdate.Date)
-		{
-			uint16_t steps=0;
-			steps = recbuf[1]&0x00ff;
-			steps = steps<<8 | recbuf[2];
-			if(!Sensor_MPU_Erro)
-				dmp_set_pedometer_step_count((unsigned long)steps);
-		}
-	}
-
-
-	//BLE
-	KT6328_GPIO_Init();
-	KT6328_Disable();
-
-	//set the KT6328 BautRate 9600
-	//default is 115200
-	//printf("AT+CT01\r\n");
-
-	//touch
-	CST816_GPIO_Init();
-	CST816_RESET();
-
-	//lcd
-	LCD_Init();
-	LCD_Fill(0,0,LCD_W,LCD_H,BLACK);
-	delay_ms(10);
-	LCD_Set_Light(50);
-	LCD_ShowString(72,LCD_H/2,(uint8_t*)"Welcome!",WHITE,BLACK,24,0);//12*6,16*8,24*12,32*16
-  uint8_t lcd_buf_str[17];
-  sprintf(lcd_buf_str, "OV-Watch V%d.%d.%d", watch_version_major(), watch_version_minor(), watch_version_patch());
-	LCD_ShowString(36, LCD_H/2+48, (uint8_t*)lcd_buf_str, WHITE, BLACK, 24, 0);
-	delay_ms(1000);
-	LCD_Fill(0,LCD_H/2-24,LCD_W,LCD_H/2+49,BLACK);
-
-	//LVGL init
-	lv_init();
-	lv_port_disp_init();
-	lv_port_indev_init();
-	ui_init();
 
   /* USER CODE END 2 */
 

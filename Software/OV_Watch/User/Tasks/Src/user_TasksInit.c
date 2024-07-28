@@ -10,14 +10,13 @@
 #include "lvgl.h"
 #include "ui_TimerPage.h"
 //tasks
-#include "user_StopEnterTask.h"
+#include "user_HardwareInitTask.h"
+#include "user_RunModeTasks.h"
 #include "user_KeyTask.h"
 #include "user_ScrRenewTask.h"
-#include "user_HomePageTask.h"
-#include "user_SensorPageTask.h"
-#include "user_ChargPageTask.h"
+#include "user_SensUpdateTask.h"
+#include "user_ChargCheckTask.h"
 #include "user_MessageSendTask.h"
-#include "user_MPUCheckTask.h"
 #include "user_DataSaveTask.h"
 
 /* Private typedef -----------------------------------------------------------*/
@@ -27,13 +26,21 @@
 
 
 /* Private variables ---------------------------------------------------------*/
- 
+
 
 /* Timers --------------------------------------------------------------------*/
 osTimerId_t IdleTimerHandle;
 
 
 /* Tasks ---------------------------------------------------------------------*/
+// Hardwares initialization
+osThreadId_t HardwareInitTaskHandle;
+const osThreadAttr_t HardwareInitTask_attributes = {
+  .name = "HardwareInitTask",
+  .stack_size = 128 * 10,
+  .priority = (osPriority_t) osPriorityHigh3,
+};
+
 //LVGL Handler task
 osThreadId_t LvHandlerTaskHandle;
 const osThreadAttr_t LvHandlerTask_attributes = {
@@ -82,22 +89,6 @@ const osThreadAttr_t ScrRenewTask_attributes = {
   .priority = (osPriority_t) osPriorityLow1,
 };
 
-//TimeRenew task
-osThreadId_t TimeRenewTaskHandle;
-const osThreadAttr_t TimeRenewTask_attributes = {
-  .name = "TimeRenewTask",
-  .stack_size = 128 * 5,
-  .priority = (osPriority_t) osPriorityLow1,
-};
-
-//HomeUpdata task
-osThreadId_t HomeUpdataTaskHandle;
-const osThreadAttr_t HomeUpdataTask_attributes = {
-  .name = "HomeUpdataTask",
-  .stack_size = 128 * 5,
-  .priority = (osPriority_t) osPriorityLow1,
-};
-
 //SensorDataRenew task
 osThreadId_t SensorDataTaskHandle;
 const osThreadAttr_t SensorDataTask_attributes = {
@@ -119,14 +110,6 @@ osThreadId_t ChargPageEnterTaskHandle;
 const osThreadAttr_t ChargPageEnterTask_attributes = {
   .name = "ChargPageEnterTask",
   .stack_size = 128 * 10,
-  .priority = (osPriority_t) osPriorityLow1,
-};
-
-//ChargPageRenewTask
-osThreadId_t ChargPageRenewTaskHandle;
-const osThreadAttr_t ChargPageRenewTask_attributes = {
-  .name = "ChargPageRenewTask",
-  .stack_size = 128 * 5,
   .priority = (osPriority_t) osPriorityLow1,
 };
 
@@ -173,17 +156,17 @@ void WDOGFeedTask(void *argument);
   * @param  None
   * @retval None
   */
-void User_Tasks_Init(void) 
+void User_Tasks_Init(void)
 {
   /* add mutexes, ... */
 
   /* add semaphores, ... */
 
   /* start timers, add new ones, ... */
-	
+
 	IdleTimerHandle = osTimerNew(IdleTimerCallback, osTimerPeriodic, NULL, NULL);
 	osTimerStart(IdleTimerHandle,100);//100ms
-	
+
   /* add queues, ... */
 	Key_MessageQueue  = osMessageQueueNew(1, 1, NULL);
 	Idle_MessageQueue = osMessageQueueNew(1, 1, NULL);
@@ -191,31 +174,29 @@ void User_Tasks_Init(void)
 	IdleBreak_MessageQueue = osMessageQueueNew(1, 1, NULL);
 	HomeUpdata_MessageQueue = osMessageQueueNew(1, 1, NULL);
 	DataSave_MessageQueue = osMessageQueueNew(2, 1, NULL);
-	
+
 	/* add threads, ... */
+  HardwareInitTaskHandle  = osThreadNew(HardwareInitTask, NULL, &HardwareInitTask_attributes);
   LvHandlerTaskHandle  = osThreadNew(LvHandlerTask, NULL, &LvHandlerTask_attributes);
   WDOGFeedTaskHandle   = osThreadNew(WDOGFeedTask, NULL, &WDOGFeedTask_attributes);
 	IdleEnterTaskHandle  = osThreadNew(IdleEnterTask, NULL, &IdleEnterTask_attributes);
 	StopEnterTaskHandle  = osThreadNew(StopEnterTask, NULL, &StopEnterTask_attributes);
 	KeyTaskHandle 			 = osThreadNew(KeyTask, NULL, &KeyTask_attributes);
 	ScrRenewTaskHandle   = osThreadNew(ScrRenewTask, NULL, &ScrRenewTask_attributes);
-	TimeRenewTaskHandle  = osThreadNew(TimeRenewTask, NULL, &TimeRenewTask_attributes);
-	HomeUpdataTaskHandle = osThreadNew(HomeUpdata_Task, NULL, &HomeUpdataTask_attributes);
-	SensorDataTaskHandle = osThreadNew(SensorDataRenewTask, NULL, &SensorDataTask_attributes);
-	HRDataTaskHandle		 = osThreadNew(HRDataRenewTask, NULL, &HRDataTask_attributes);
+	SensorDataTaskHandle = osThreadNew(SensorDataUpdateTask, NULL, &SensorDataTask_attributes);
+	HRDataTaskHandle		 = osThreadNew(HRDataUpdateTask, NULL, &HRDataTask_attributes);
 	ChargPageEnterTaskHandle = osThreadNew(ChargPageEnterTask, NULL, &ChargPageEnterTask_attributes);
-	ChargPageRenewTaskHandle = osThreadNew(ChargPageRenewTask, NULL, &ChargPageRenewTask_attributes);
   MessageSendTaskHandle = osThreadNew(MessageSendTask, NULL, &MessageSendTask_attributes);
 	MPUCheckTaskHandle		= osThreadNew(MPUCheckTask, NULL, &MPUCheckTask_attributes);
 	DataSaveTaskHandle		= osThreadNew(DataSaveTask, NULL, &DataSaveTask_attributes);
 
   /* add events, ... */
-	
-	
+
+
 	/* add  others ... */
 	uint8_t HomeUpdataStr;
 	osMessageQueuePut(HomeUpdata_MessageQueue, &HomeUpdataStr, 0, 1);
-	
+
 }
 
 

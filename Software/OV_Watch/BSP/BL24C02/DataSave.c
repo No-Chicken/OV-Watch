@@ -6,8 +6,8 @@ EEPROM Data description:
 [0x00]:0x55 for check
 [0x01]:0xAA for check
 
-[0x10]:user wrist setting, user_MPU_Wrist_EN
-[0x11]:user user_APPSy_EN setting
+[0x10]:user wrist setting, HWInterface.IMU.wrist_is_enabled
+[0x11]:user ui_APPSy_EN setting
 
 [0x20]:Last Save Day(0-31)
 [0x21]:Day Steps

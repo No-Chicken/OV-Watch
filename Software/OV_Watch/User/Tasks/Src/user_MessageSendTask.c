@@ -17,16 +17,18 @@
 #include "ui_HomePage.h"
 #include "ui_DateTimeSetPage.h"
 
+#include "HWDataAccess.h"
+#include "version.h"
 
 /* Private typedef -----------------------------------------------------------*/
 
 /* Private define ------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
-struct 
+struct
 {
 	RTC_DateTypeDef nowdate;
-	RTC_TimeTypeDef nowtime; 
+	RTC_TimeTypeDef nowtime;
 	int8_t humi;
 	int8_t temp;
 	uint8_t HR;
@@ -34,10 +36,10 @@ struct
 	uint16_t stepNum;
 }BLEMessage;
 
-struct 
+struct
 {
 	RTC_DateTypeDef nowdate;
-	RTC_TimeTypeDef nowtime; 
+	RTC_TimeTypeDef nowtime;
 }TimeSetMessage;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -61,7 +63,7 @@ uint8_t TimeFormat_Get(uint8_t * str)
 	TimeSetMessage.nowtime.Hours = (str[14]-'0')*10+str[15]-'0';
 	TimeSetMessage.nowtime.Minutes = (str[16]-'0')*10+str[17]-'0';
 	TimeSetMessage.nowtime.Seconds = (str[18]-'0')*10+str[19]-'0';
-	if(TimeSetMessage.nowdate.Year>0 && TimeSetMessage.nowdate.Year<99 
+	if(TimeSetMessage.nowdate.Year>0 && TimeSetMessage.nowdate.Year<99
 		&& TimeSetMessage.nowdate.Month>0 && TimeSetMessage.nowdate.Month<=12
 		&& TimeSetMessage.nowdate.Date>0 && TimeSetMessage.nowdate.Date<=31
 		&& TimeSetMessage.nowtime.Hours>=0 && TimeSetMessage.nowtime.Hours<=23
@@ -72,7 +74,7 @@ uint8_t TimeFormat_Get(uint8_t * str)
 		RTC_SetTime(TimeSetMessage.nowtime.Hours,TimeSetMessage.nowtime.Minutes,TimeSetMessage.nowtime.Seconds);
 		printf("TIMESETOK\r\n");
 	}
-		
+
 }
 
 /**
@@ -96,17 +98,17 @@ void MessageSendTask(void *argument)
 			}
 			else if(!strcmp(HardInt_receive_str,"OV+VERSION"))
 			{
-				printf("VERSION=V2.4\r\n");
+				printf("VERSION=V%d.%d.%d\r\n", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH);
 			}
 			else if(!strcmp(HardInt_receive_str,"OV+SEND"))
 			{
 				HAL_RTC_GetTime(&hrtc,&(BLEMessage.nowtime),RTC_FORMAT_BIN);
 				HAL_RTC_GetDate(&hrtc,&BLEMessage.nowdate,RTC_FORMAT_BIN);
-				BLEMessage.humi = ui_EnvHumiValue;
-				BLEMessage.temp = ui_EnvTempValue;
-				BLEMessage.HR = ui_HRValue;
-				BLEMessage.SPO2 = ui_SPO2Value;
-				BLEMessage.stepNum = ui_StepNumValue;
+				BLEMessage.humi = HWInterface.AHT21.humidity;
+				BLEMessage.temp = HWInterface.AHT21.temperature;
+				BLEMessage.HR = HWInterface.HR_meter.HrRate;
+				BLEMessage.SPO2 = HWInterface.HR_meter.SPO2;
+				BLEMessage.stepNum = HWInterface.IMU.Steps;
 
 				printf("data:%2d-%02d\r\n",BLEMessage.nowdate.Month,BLEMessage.nowdate.Date);
 				printf("time:%02d:%02d:%02d\r\n",BLEMessage.nowtime.Hours,BLEMessage.nowtime.Minutes,BLEMessage.nowtime.Seconds);
@@ -122,7 +124,7 @@ void MessageSendTask(void *argument)
 				uint8_t cmd[10];
 				memset(cmd,0,sizeof(cmd));
 				StrCMD_Get(HardInt_receive_str,cmd);
-				if(user_APPSy_EN && !strcmp(cmd,"OV+ST"))
+				if(ui_APPSy_EN && !strcmp(cmd,"OV+ST"))
 				{
 					TimeFormat_Get(HardInt_receive_str);
 				}

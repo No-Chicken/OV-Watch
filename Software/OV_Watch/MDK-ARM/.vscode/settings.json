@@ -51,6 +51,21 @@
         "ui_offtimepage.h": "c",
         "ui_spo2page.h": "c",
         "user_scrrenewtask.h": "c",
-        "pagemanager.h": "c"
+        "pagemanager.h": "c",
+        "aht21.h": "c",
+        "user_sensorpagetask.h": "c",
+        "user_sensupdatetask.h": "c",
+        "mpu6050.h": "c",
+        "inv_mpu_dmp_motion_driver.h": "c",
+        "usart.h": "c",
+        "spi.h": "c",
+        "tim.h": "c",
+        "stm32f4xx_it.h": "c",
+        "lcd.h": "c",
+        "spl06_001.h": "c",
+        "lsm303.h": "c",
+        "inv_mpu.h": "c",
+        "bl24c02.h": "c",
+        "datasave.h": "c"
     }
 }

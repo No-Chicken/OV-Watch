@@ -14,9 +14,13 @@
 #endif
 
 /////////////////////// Timer //////////////////////
+/**
+ * Main timer for Refreshing the screens
+ */
 static void main_timer(lv_timer_t * timer)
 {
     // printf("timer\r\n");
+
 }
 
 

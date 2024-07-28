@@ -49,7 +49,7 @@ void ui_DateTimeSetPage_screen_deinit(void);
 void ui_DateSetPage_screen_deinit(void);
 void ui_TimeSetPage_screen_deinit(void);
 
-extern uint8_t user_APPSy_EN;
+extern uint8_t ui_APPSy_EN;
 
 #ifdef __cplusplus
 } /*extern "C"*/

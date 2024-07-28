@@ -1,6 +1,7 @@
 #include "../../ui.h"
 #include "../../ui_helpers.h"
 #include "../Inc/ui_CompassPage.h"
+#include "../../../Func/Inc/HWDataAccess.h"
 
 ///////////////////// Page Manager //////////////////
 Page_t Page_Compass = {ui_CompassPage_screen_init, ui_CompassPage_screen_deinit, &ui_CompassPage};
@@ -18,12 +19,25 @@ lv_obj_t * ui_EnvAltitudeBtn;
 lv_obj_t * ui_EnvAltitudeLabel;
 lv_obj_t * ui_EnvAltitudeIcon;
 
-uint16_t ui_CompassDirValue = 0;
-int16_t ui_EnvAltitudeValue = 0;
-
+lv_timer_t * ui_EcompassPageTimer;
 
 ///////////////////// FUNCTIONS ////////////////////
 
+
+/////////////////// private Timer ///////////////////
+// need to be destroyed when the page is destroyed
+static void EcompassPage_timer_cb(lv_timer_t * timer)
+{
+    uint8_t value_strbuf[6];
+    //set text
+    lv_img_set_angle(ui_Compassneedle, HWInterface.Ecompass.direction * 10);
+    sprintf(value_strbuf,":%d", HWInterface.Ecompass.direction);
+    lv_label_set_text(ui_CompassDirLabel, value_strbuf);
+
+    //set text
+    sprintf(value_strbuf,":%dm", HWInterface.Barometer.altitude);
+    lv_label_set_text(ui_EnvAltitudeLabel, value_strbuf);
+}
 
 ///////////////////// SCREEN init ////////////////////
 void ui_CompassPage_screen_init(void)
@@ -54,7 +68,7 @@ void ui_CompassPage_screen_init(void)
     lv_obj_set_align(ui_Compassneedle, LV_ALIGN_CENTER);
     lv_obj_add_flag(ui_Compassneedle, LV_OBJ_FLAG_ADV_HITTEST);     /// Flags
     lv_obj_clear_flag(ui_Compassneedle, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-    lv_img_set_angle(ui_Compassneedle, ui_CompassDirValue*10);
+    lv_img_set_angle(ui_Compassneedle, HWInterface.Ecompass.direction * 10);
 
 
     ui_EnvAltitudeBtn = lv_btn_create(ui_CompassPage);
@@ -76,7 +90,7 @@ void ui_CompassPage_screen_init(void)
     ui_EnvAltitudeLabel = lv_label_create(ui_EnvAltitudeBtn);
     lv_obj_set_align(ui_EnvAltitudeLabel,LV_ALIGN_LEFT_MID);
     lv_obj_set_pos(ui_EnvAltitudeLabel,17,0);
-		sprintf(value_strbuf,":%dm",ui_EnvAltitudeValue);
+		sprintf(value_strbuf,":%dm", HWInterface.Barometer.altitude);
     lv_label_set_text(ui_EnvAltitudeLabel, value_strbuf);
     lv_obj_set_style_text_font(ui_EnvAltitudeLabel, &ui_font_Cuyuan20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -99,13 +113,17 @@ void ui_CompassPage_screen_init(void)
     ui_CompassDirLabel = lv_label_create(ui_CompassDirBtn);
     lv_obj_set_align(ui_CompassDirLabel,LV_ALIGN_LEFT_MID);
     lv_obj_set_pos(ui_CompassDirLabel,17,0);
-		sprintf(value_strbuf,":%d",ui_CompassDirValue);
+		sprintf(value_strbuf,":%d", HWInterface.Ecompass.direction);
     lv_label_set_text(ui_CompassDirLabel, value_strbuf);
     lv_obj_set_style_text_font(ui_CompassDirLabel, &ui_font_Cuyuan20, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    //timer
+    ui_EcompassPageTimer = lv_timer_create(EcompassPage_timer_cb, 500,  NULL);
 
 }
 
 /////////////////// SCREEN deinit ////////////////////
 void ui_CompassPage_screen_deinit(void)
-{}
+{
+  lv_timer_del(ui_EcompassPageTimer);
+}

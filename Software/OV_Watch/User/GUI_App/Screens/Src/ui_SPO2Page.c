@@ -1,6 +1,7 @@
 #include "../../ui.h"
 #include "../../ui_helpers.h"
 #include "../Inc/ui_SPO2Page.h"
+#include "../../../Func/Inc/HWDataAccess.h"
 
 ///////////////////// Page Manager //////////////////
 Page_t Page_SPO2 = {ui_SPO2Page_screen_init, ui_SPO2Page_screen_deinit, &ui_SPO2Page};
@@ -12,7 +13,17 @@ lv_obj_t * ui_SPO2UnitLabel;
 lv_obj_t * ui_SPO2NoticeLabel;
 lv_obj_t * ui_SPO2Icon;
 
-uint8_t ui_SPO2Value = 99;
+lv_timer_t * ui_SPO2PageTimer;
+
+/////////////////// private Timer ///////////////////
+// need to be destroyed when the page is destroyed
+static void SPO2Page_timer_cb(lv_timer_t * timer)
+{
+    uint8_t value_strbuf[6];
+    //set text
+    sprintf(value_strbuf, "%d", HWInterface.HR_meter.SPO2);
+    lv_label_set_text(ui_SPO2NumLabel, value_strbuf);
+}
 
 ///////////////////// SCREEN init ////////////////////
 void ui_SPO2Page_screen_init(void)
@@ -26,7 +37,7 @@ void ui_SPO2Page_screen_init(void)
     lv_obj_set_width(ui_SPO2NumLabel, LV_SIZE_CONTENT);   /// 1
     lv_obj_set_height(ui_SPO2NumLabel, LV_SIZE_CONTENT);    /// 1
     lv_obj_set_align(ui_SPO2NumLabel, LV_ALIGN_CENTER);
-    sprintf(value_strbuf, "%d", ui_SPO2Value);
+    sprintf(value_strbuf, "%d", HWInterface.HR_meter.SPO2);
     lv_label_set_text(ui_SPO2NumLabel, value_strbuf);
     lv_obj_set_style_text_font(ui_SPO2NumLabel, &ui_font_Cuyuan80, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -61,8 +72,13 @@ void ui_SPO2Page_screen_init(void)
     lv_obj_set_style_text_opa(ui_SPO2Icon, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
     lv_obj_set_style_text_font(ui_SPO2Icon, &ui_font_iconfont34, LV_PART_MAIN | LV_STATE_DEFAULT);
 
+    //timer
+    ui_SPO2PageTimer = lv_timer_create(SPO2Page_timer_cb, 500,  NULL);
+
 }
 
 /////////////////// SCREEN deinit ////////////////////
 void ui_SPO2Page_screen_deinit(void)
-{}
+{
+    lv_timer_del(ui_SPO2PageTimer);
+}

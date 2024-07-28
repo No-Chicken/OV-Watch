@@ -6,10 +6,7 @@
 #include "lvgl.h"
 #include "ui_HomePage.h"
 #include "ui_MenuPage.h"
-#include "ui_GameSelectPage.h"
-#include "ui_SetPage.h"
-#include "ui_OffTimePage.h"
-#include "ui_DateTimeSetPage.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 

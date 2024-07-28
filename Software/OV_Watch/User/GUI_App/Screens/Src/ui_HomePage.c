@@ -2,7 +2,6 @@
 #include "../../ui_helpers.h"
 #include "../Inc/ui_HomePage.h"
 #include "../Inc/ui_MenuPage.h"
-#include "../Inc/ui_EnvPage.h"
 #include "../Inc/ui_HRPage.h"
 #include "../Inc/ui_SetPage.h"
 
@@ -52,7 +51,9 @@ lv_obj_t * ui_PowerPage;
 lv_obj_t * ui_PowerSlider;
 lv_obj_t * ui_PowerDownLabel;
 
+lv_timer_t * ui_HomePageTimer;
 
+// variables
 uint8_t ui_TimeHourValue = 11;
 uint8_t ui_TimeMinuteValue = 59;
 const char * ui_Days[7] = {"Mon.", "Tue.", "Wed.", "Thu.", "Fri.", "Sat.", "Sun."};
@@ -67,10 +68,97 @@ uint8_t ui_LightSliderValue = 50;
 uint8_t ui_HomePageBLEEN = 0;
 uint8_t ui_HomePageNFCEN = 0;
 
+int8_t ui_HomePageTempValue = 25;
+int8_t ui_HomePageHumiValue = 67;
+
 
 ///////////////////// Page Manager //////////////////
 Page_t Page_Home = {ui_HomePage_screen_init, ui_HomePage_screen_deinit, &ui_HomePage};
 Page_t Page_Power = {ui_PowerPage_screen_init, ui_PowerPage_screen_deinit, &ui_PowerPage};
+
+/////////////////// private timer ///////////////////
+// need to be destroyed when the page is destroyed
+static void HomePage_timer_cb(lv_timer_t * timer)
+{
+  uint8_t value_strbuf[10];
+  if(Page_Get_NowPage()->page_obj  == &ui_HomePage)
+	{
+			/*
+			lv_obj_set_style_text_opa(ui_TimeColonLabel, 0, LV_PART_MAIN | LV_STATE_DEFAULT);
+			osDelay(500);
+			lv_obj_set_style_text_opa(ui_TimeColonLabel, 255, LV_PART_MAIN | LV_STATE_DEFAULT);
+			*/
+
+			HW_DateTimeTypeDef DateTime;
+      HWInterface.RealTimeClock.GetTimeDate(&DateTime);
+
+			if(ui_TimeMinuteValue != DateTime.Minutes)
+			{
+				ui_TimeMinuteValue = DateTime.Minutes;
+				sprintf(value_strbuf,"%02d",ui_TimeMinuteValue);
+				lv_label_set_text(ui_TimeMinuteLabel, value_strbuf);
+			}
+
+			if(ui_TimeHourValue != DateTime.Hours)
+			{
+				ui_TimeHourValue = DateTime.Hours;
+				sprintf(value_strbuf,"%2d",ui_TimeHourValue);
+				lv_label_set_text(ui_TimeHourLabel, value_strbuf);
+			}
+
+			if(ui_DateDayValue != DateTime.Date)
+			{
+				ui_DateDayValue = DateTime.Date;
+				ui_DataWeekdayValue = DateTime.WeekDay;
+				sprintf(value_strbuf,"%2d-%02d",ui_DateMonthValue,ui_DateDayValue);
+				lv_label_set_text(ui_DateLabel, value_strbuf);
+				lv_label_set_text(ui_DayLabel, ui_Days[ui_DataWeekdayValue-1]);
+
+			}
+			if(ui_DateMonthValue != DateTime.Month)
+			{
+				ui_DateMonthValue = DateTime.Month;
+				ui_DateDayValue = DateTime.Date;
+				ui_DataWeekdayValue = DateTime.WeekDay;
+				sprintf(value_strbuf,"%2d-%02d",ui_DateMonthValue,ui_DateDayValue);
+				lv_label_set_text(ui_DateLabel, value_strbuf);
+				lv_label_set_text(ui_DayLabel, ui_Days[ui_DataWeekdayValue-1]);
+			}
+
+      if(ui_BatArcValue != HWInterface.Power.power_remain)
+      {
+        ui_BatArcValue = HWInterface.Power.power_remain;
+        lv_arc_set_value(ui_BatArc, ui_BatArcValue);
+				sprintf(value_strbuf,"%2d%%",ui_BatArcValue);
+				lv_label_set_text(ui_BatNumLabel, value_strbuf);
+      }
+
+      if(ui_StepNumValue != HWInterface.IMU.Steps)
+      {
+        ui_StepNumValue = HWInterface.IMU.Steps;
+        sprintf(value_strbuf,"%d",ui_StepNumValue);
+				lv_label_set_text(ui_StepNumLabel, value_strbuf);
+      }
+
+      if( ui_HomePageTempValue != (int8_t)HWInterface.AHT21.temperature )
+      {
+        ui_HomePageTempValue = (int8_t)HWInterface.AHT21.temperature;
+        lv_arc_set_value(ui_TempArc, ui_HomePageTempValue);
+        sprintf(value_strbuf,"%d",ui_HomePageTempValue);
+				lv_label_set_text(ui_TempNumLabel, value_strbuf);
+      }
+
+      if( ui_HomePageHumiValue != (int8_t)HWInterface.AHT21.humidity )
+      {
+        ui_HomePageHumiValue = (int8_t)HWInterface.AHT21.humidity;
+        lv_arc_set_value(ui_HumiArc, ui_HomePageHumiValue);
+				sprintf(value_strbuf,"%d",ui_HomePageHumiValue);
+				lv_label_set_text(ui_HumiNumLabel, value_strbuf);
+      }
+
+	}
+}
+
 
 ///////////////////// FUNCTIONS ////////////////////
 void ui_event_HomePage(lv_event_t * e)
@@ -112,14 +200,14 @@ void ui_event_BLEButton(lv_event_t * e)
     if(event_code == LV_EVENT_VALUE_CHANGED &&  lv_obj_has_state(target, LV_STATE_CHECKED))
     {
         //checked
-        HW_BLE_Enable();
+        HWInterface.BLE.Enable();
         ui_HomePageBLEEN=1;
 
     }
     if(event_code == LV_EVENT_VALUE_CHANGED &&  !lv_obj_has_state(target, LV_STATE_CHECKED))
     {
         //released
-				HW_BLE_Disable();
+				HWInterface.BLE.Disable();
         ui_HomePageBLEEN=0;
     }
 }
@@ -151,7 +239,7 @@ void ui_event_PowerSlider(lv_event_t * e)
 			//power down if slider value >= 90
 			if(lv_slider_get_value(ui_PowerSlider) >=90)
 			{
-				HW_Power_Shutdown();
+        HWInterface.Power.Shutdown();
 			}
 		}
 }
@@ -173,7 +261,7 @@ void ui_event_LightSlider(lv_event_t * e)
     if(event_code == LV_EVENT_VALUE_CHANGED)
     {
         ui_LightSliderValue = lv_slider_get_value(ui_LightSlider);
-				HW_LCD_Set_Light(ui_LightSliderValue);
+        HWInterface.LCD.SetLight(ui_LightSliderValue);
     }
 }
 
@@ -333,7 +421,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_align(ui_TempArc, LV_ALIGN_CENTER);
     lv_obj_clear_flag(ui_TempArc, LV_OBJ_FLAG_CLICKABLE);      /// Flags
     lv_arc_set_range(ui_TempArc, -20, 60);
-    lv_arc_set_value(ui_TempArc, ui_EnvTempValue);
+    lv_arc_set_value(ui_TempArc, ui_HomePageTempValue);
     lv_obj_set_style_arc_width(ui_TempArc, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     lv_obj_set_style_arc_color(ui_TempArc, lv_color_hex(0xF5A73A), LV_PART_INDICATOR | LV_STATE_DEFAULT);
@@ -364,7 +452,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_x(ui_TempNumLabel, -73);
     lv_obj_set_y(ui_TempNumLabel, 125);
     lv_obj_set_align(ui_TempNumLabel, LV_ALIGN_CENTER);
-    sprintf(value_strbuf,"%d",ui_EnvTempValue);
+    sprintf(value_strbuf,"%d",ui_HomePageTempValue);
     lv_label_set_text(ui_TempNumLabel, value_strbuf);
 
     ui_HumiiconLabel = lv_label_create(ui_HomePage);
@@ -385,7 +473,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_y(ui_HumiArc, 90);
     lv_obj_set_align(ui_HumiArc, LV_ALIGN_CENTER);
     lv_obj_clear_flag(ui_HumiArc, LV_OBJ_FLAG_CLICKABLE);      /// Flags
-    lv_arc_set_value(ui_HumiArc, ui_EnvHumiValue);
+    lv_arc_set_value(ui_HumiArc, ui_HomePageHumiValue);
     lv_arc_set_bg_angles(ui_HumiArc, 270, 620);
     lv_obj_set_style_arc_width(ui_HumiArc, 5, LV_PART_MAIN | LV_STATE_DEFAULT);
 
@@ -406,7 +494,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_x(ui_HumiNumLabel, 0);
     lv_obj_set_y(ui_HumiNumLabel, 125);
     lv_obj_set_align(ui_HumiNumLabel, LV_ALIGN_CENTER);
-    sprintf(value_strbuf,"%d",ui_EnvHumiValue);
+    sprintf(value_strbuf,"%d",ui_HomePageHumiValue);
     lv_label_set_text(ui_HumiNumLabel, value_strbuf);
 
 		ui_HRArc = lv_arc_create(ui_HomePage);
@@ -448,7 +536,7 @@ void ui_HomePage_screen_init(void)
     lv_obj_set_x(ui_HRNumLabel, 70);
     lv_obj_set_y(ui_HRNumLabel, 125);
     lv_obj_set_align(ui_HRNumLabel, LV_ALIGN_CENTER);
-    sprintf(value_strbuf,"%d",ui_HRValue);
+    sprintf(value_strbuf,"%d", HWInterface.HR_meter.HrRate);
     lv_label_set_text(ui_HRNumLabel, value_strbuf);
 
 
@@ -615,6 +703,9 @@ void ui_HomePage_screen_init(void)
     lv_obj_add_event_cb(ui_SetButton, ui_event_SetButton, LV_EVENT_ALL, NULL);
     lv_obj_add_event_cb(ui_LightSlider,ui_event_LightSlider, LV_EVENT_ALL, NULL);
 
+    //timer
+    ui_HomePageTimer = lv_timer_create(HomePage_timer_cb, 500,  NULL);
+
 }
 
 
@@ -648,11 +739,13 @@ void ui_PowerPage_screen_init(void)
 		//events
 		lv_obj_add_event_cb(ui_PowerSlider, ui_event_PowerSlider, LV_EVENT_ALL, NULL);
 
-
 }
 
 /////////////////// SCREEN deinit ////////////////////
 void ui_HomePage_screen_deinit(void)
-{}
+{
+  lv_timer_del(ui_HomePageTimer);
+}
+
 void ui_PowerPage_screen_deinit(void)
 {}

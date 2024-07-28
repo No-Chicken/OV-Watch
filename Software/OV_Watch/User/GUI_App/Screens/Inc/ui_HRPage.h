@@ -13,8 +13,6 @@ extern lv_obj_t * ui_HRPageUnitLabel;
 extern lv_obj_t * ui_HRPaggiconLabel;
 extern lv_obj_t * ui_HRPageNoticeLabel;
 
-extern uint8_t ui_HRValue;
-
 extern Page_t Page_HR;
 
 void ui_HRPage_screen_init(void);

@@ -276,7 +276,7 @@
               </OCR_RVCT3>
               <OCR_RVCT4>
                 <Type>1</Type>
-                <StartAddress>0x800c000</StartAddress>
+                <StartAddress>0x8000000</StartAddress>
                 <Size>0x74000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
@@ -572,19 +572,19 @@
           <GroupName>Application/User/Tasks</GroupName>
           <Files>
             <File>
-              <FileName>user_ChargPageTask.c</FileName>
+              <FileName>user_TasksInit.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\Tasks\Src\user_ChargPageTask.c</FilePath>
+              <FilePath>..\User\Tasks\Src\user_TasksInit.c</FilePath>
             </File>
             <File>
-              <FileName>user_DataSaveTask.c</FileName>
+              <FileName>user_HardwareInitTask.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\Tasks\Src\user_DataSaveTask.c</FilePath>
+              <FilePath>..\User\Tasks\Src\user_HardwareInitTask.c</FilePath>
             </File>
             <File>
-              <FileName>user_HomePageTask.c</FileName>
+              <FileName>user_RunModeTasks.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\Tasks\Src\user_HomePageTask.c</FilePath>
+              <FilePath>..\User\Tasks\Src\user_RunModeTasks.c</FilePath>
             </File>
             <File>
               <FileName>user_KeyTask.c</FileName>
@@ -592,34 +592,29 @@
               <FilePath>..\User\Tasks\Src\user_KeyTask.c</FilePath>
             </File>
             <File>
+              <FileName>user_DataSaveTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Tasks\Src\user_DataSaveTask.c</FilePath>
+            </File>
+            <File>
               <FileName>user_MessageSendTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Tasks\Src\user_MessageSendTask.c</FilePath>
             </File>
             <File>
-              <FileName>user_MPUCheckTask.c</FileName>
+              <FileName>user_ChargCheckTask.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\User\Tasks\Src\user_MPUCheckTask.c</FilePath>
+              <FilePath>..\User\Tasks\Src\user_ChargCheckTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>user_SensUpdateTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Tasks\Src\user_SensUpdateTask.c</FilePath>
             </File>
             <File>
               <FileName>user_ScrRenewTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\Tasks\Src\user_ScrRenewTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>user_SensorPageTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Tasks\Src\user_SensorPageTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>user_StopEnterTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Tasks\Src\user_StopEnterTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>user_TasksInit.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\User\Tasks\Src\user_TasksInit.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -1643,6 +1638,11 @@
               <FilePath>..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_style_gen.c</FilePath>
             </File>
             <File>
+              <FileName>lv_table.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Middlewares\LVGL\GUI\lvgl\src\widgets\lv_table.c</FilePath>
+            </File>
+            <File>
               <FileName>lv_templ.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Middlewares\LVGL\GUI\lvgl\src\misc\lv_templ.c</FilePath>
@@ -1756,11 +1756,6 @@
               <FileName>lv_port_indev.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Middlewares\LVGL\GUI\porting\lv_port_indev.c</FilePath>
-            </File>
-            <File>
-              <FileName>lv_table.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Middlewares\LVGL\GUI\lvgl\src\widgets\lv_table.c</FilePath>
             </File>
           </Files>
         </Group>
