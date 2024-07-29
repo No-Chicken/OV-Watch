@@ -219,3 +219,12 @@ The code that has been modified and can run is placed in the folder named `lv_si
 <p align="center">
 	<img border="1px" width="70%" src="./images/LVGL_sim.jpg">
 </p>
+
+
+## Contributing
+
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request!

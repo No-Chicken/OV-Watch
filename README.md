@@ -207,3 +207,12 @@ if(keystr == 1)
 ### 7.UI App如何移植
 
 如果有更改UI App或者新加入UI App直接在仿真器中改好，然后直接复制`Func`文件夹和`GUI_App`文件夹去`keil`工程中的`User`文件夹即可。现在使用了一个`HWDataAccess.c`文件作为中间层，方便移植，如果是在仿真中，那么直接将`HW_USE_HARDWARE`设置为0即可跑通。
+
+
+
+## Contributing
+1. Fork it!
+2. Create your feature branch: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push to the branch: `git push origin my-new-feature`
+5. Submit a pull request!
