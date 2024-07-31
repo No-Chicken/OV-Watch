@@ -100,7 +100,7 @@ void HardwareInitTask(void *argument)
     while(num && HWInterface.IMU.ConnectionError)
     {
       num--;
-      HWInterface.IMU.ConnectionError = (uint8_t)HWInterface.IMU.Init;
+      HWInterface.IMU.ConnectionError = HWInterface.IMU.Init();
       // Sensor_MPU_Erro = MPU_Init();
     }
 

@@ -183,7 +183,7 @@ typedef struct
     uint8_t wrist_state;
     uint8_t wrist_is_enabled;
 
-    int (*Init)(void);
+    uint8_t (*Init)(void);
     void (*WristEnable)(void);
     void (*WristDisable)(void);
     uint16_t (*GetSteps)(void);

@@ -239,7 +239,7 @@ void HW_LCD_Set_Light(uint8_t dc)
 	@return 0 if successful
 */
 /**************************************************************************/
-int HW_MPU_Init(void)
+uint8_t HW_MPU_Init(void)
 {
 	#if HW_USE_IMU
 		return mpu_dmp_init();
