@@ -8,6 +8,7 @@
         <img src=https://img.shields.io/badge/version-2.4.3-blue>
         <img src=https://img.shields.io/badge/License-GPL3.0-green)>
         <img src=https://img.shields.io/github/stars/No-Chicken/OV-Watch.svg>
+    	<img src=https://img.shields.io/github/downloads/No-Chicken/OV-Watch/total.svg>
     <br>
         <img src=https://img.shields.io/badge/MCU-STM32F411CEU6-lightblue>
         <img src=https://img.shields.io/badge/UI-LVGL_v8.2-red>
