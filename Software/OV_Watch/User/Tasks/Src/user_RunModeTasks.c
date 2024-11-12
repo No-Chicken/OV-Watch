@@ -69,7 +69,7 @@ void StopEnterTask(void *argument)
 		if(osMessageQueueGet(Stop_MessageQueue,&Stopstr,NULL,0)==osOK)
 		{
 
-			/****************************** your sleep operations *****************************/
+			/*************************** your operations before sleep***************************/
 			sleep:
 			IdleTimerCount = 0;
 
@@ -86,6 +86,8 @@ void StopEnterTask(void *argument)
 
 			/***********************************************************************************/
 
+			/****************************** enter wakeup operations *****************************/
+
 			vTaskSuspendAll();
 			//Disnable Watch Dog
 			WDOG_Disnable();
@@ -96,6 +98,10 @@ void StopEnterTask(void *argument)
 
 			//here is the sleep period
 
+			/***********************************************************************************/
+
+			/****************************** quit wakeup operations *****************************/
+
 			//resume run mode and reset the sysclk
 			SET_BIT(SysTick->CTRL, SysTick_CTRL_TICKINT_Msk);
 			HAL_SYSTICK_Config(SystemCoreClock / (1000U / uwTickFreq));
@@ -103,7 +109,9 @@ void StopEnterTask(void *argument)
 			WDOG_Feed();
 			xTaskResumeAll();
 
-			/****************************** your wakeup operations ******************************/
+			/***********************************************************************************/
+
+			/****************************** your wakeup operations *****************************/
 
 			//MPU Check
 			if(HWInterface.IMU.wrist_is_enabled)
