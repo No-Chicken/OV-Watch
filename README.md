@@ -51,7 +51,7 @@ FriPi炸鸡派：https://github.com/No-Chicken/FryPi
 
 ## :black_nib:如何烧录：
 
-建议直接使用Firmware中的固件下载, 自行编译下载需要看烧录说明注意事项, software中放的两个工程是Bootloader和APP的keil工程.
+建议直接使用`Firmware`中的固件下载!!! 自行编译下载需要看烧录说明注意事项, software中放的两个工程是Bootloader和APP的keil工程.
 
 由于具体的步骤太多这里不放了, 详细见Firmware中的README文件: [BootLoader和APP烧录说明](./Firmware/README.md)
 
