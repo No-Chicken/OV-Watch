@@ -50,7 +50,7 @@ uint8_t EEPROM_Check(void)
 //to Save the settings
 uint8_t SettingSave(uint8_t *buf, uint8_t addr, uint8_t lenth)
 {
-	if(!EEPROM_Check())
+	if(addr > 1 && !EEPROM_Check())
 	{
 		delay_ms(10);
 		BL24C02_Write(addr,lenth,buf);
@@ -63,7 +63,7 @@ uint8_t SettingSave(uint8_t *buf, uint8_t addr, uint8_t lenth)
 //to Get the settings
 uint8_t SettingGet(uint8_t *buf, uint8_t addr, uint8_t lenth)
 {
-	if(!EEPROM_Check())
+	if(addr > 1 && !EEPROM_Check())
 	{
 		delay_ms(10);
 		BL24C02_Read(addr,lenth,buf);
