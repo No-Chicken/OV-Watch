@@ -1,6 +1,6 @@
 #include "CST816.h" 
 
-#define TOUCH_OFFSET_Y 15
+#define TOUCH_OFFSET_Y 0
 
 CST816_Info	CST816_Instance;
 
