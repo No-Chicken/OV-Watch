@@ -140,6 +140,7 @@ typedef struct
   */
 typedef struct
 {
+    void (*Init)(void);
     void (*Enable)(void);
     void (*Disable)(void);
 } HW_BLE_InterfaceTypeDef;

@@ -172,6 +172,21 @@ uint8_t HW_Power_BatCalculate(void)
 
 /**************************************************************************/
 /*!
+	@brief  initialize the BLE
+
+	@param	NULL
+
+	@return NULL
+*/
+void HW_BLE_Init(void)
+{
+	#if HW_USE_BLE
+		KT6328_GPIO_Init();
+	#endif
+}
+
+/**************************************************************************/
+/*!
     @brief  enable BLE
 
     @param	NULL
