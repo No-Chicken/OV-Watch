@@ -492,6 +492,7 @@ HW_InterfaceTypeDef HWInterface = {
         .CalculateWeekday = HW_weekday_calculate
     },
     .BLE = {
+		.Init = HW_BLE_Init,
         .Enable = HW_BLE_Enable,
         .Disable = HW_BLE_Disable
     },
