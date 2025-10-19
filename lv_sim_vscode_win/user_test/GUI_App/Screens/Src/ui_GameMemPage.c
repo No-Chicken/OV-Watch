@@ -96,7 +96,7 @@ void ui_event_NewGameBtn_handler(lv_event_t * e)
     if(code == LV_EVENT_CLICKED)
     {
         Game_Mem_Init();
-        lv_btnmatrix_set_map(ui_GameMem_BtnM, Game_Mem.btnm_map);
+        lv_btnmatrix_set_map(ui_GameMem_BtnM, (const char **)Game_Mem.btnm_map);
         lv_btnmatrix_clear_btn_ctrl_all(ui_GameMem_BtnM,LV_BTNMATRIX_CTRL_HIDDEN);
         lv_obj_add_flag(ui_new_game_btn,LV_OBJ_FLAG_HIDDEN);
     }
@@ -109,7 +109,7 @@ void ui_GameMemPage_screen_init(void)
     Game_Mem_Init();
     ui_GameMem_Page = lv_obj_create(NULL);;
     ui_GameMem_BtnM = lv_btnmatrix_create(ui_GameMem_Page);
-    lv_btnmatrix_set_map(ui_GameMem_BtnM, Game_Mem.btnm_map);
+    lv_btnmatrix_set_map(ui_GameMem_BtnM, (const char **)Game_Mem.btnm_map);
     lv_obj_set_style_text_font(ui_GameMem_BtnM, &ui_font_Cuyuan24, 0);
     lv_btnmatrix_set_one_checked(ui_GameMem_BtnM,true);
     lv_obj_set_style_border_width(ui_GameMem_BtnM,0,0);
