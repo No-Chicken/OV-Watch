@@ -103,7 +103,7 @@ static void ui_event_Game2048Page(lv_event_t * e)
 					{
 							addRandom(Game_2048.matrix);
 							update_btnm_map(Game_2048.btnm_map, Game_2048.matrix);
-							lv_btnmatrix_set_map(ui_Game2048BtnM, Game_2048.btnm_map);
+							lv_btnmatrix_set_map(ui_Game2048BtnM, (const char **)Game_2048.btnm_map);
 							uint8_t strbuf[10];
 							sprintf(strbuf,"Score:%d",Game_2048.score);
 							lv_label_set_text(ui_Game2048ScLabel,strbuf);
@@ -217,7 +217,7 @@ static void Game_2048_init(void)
 
     init_matrix_num(Game_2048.matrix);
     update_btnm_map(Game_2048.btnm_map, Game_2048.matrix);
-    lv_btnmatrix_set_map(ui_Game2048BtnM, Game_2048.btnm_map);
+    lv_btnmatrix_set_map(ui_Game2048BtnM, (const char **)Game_2048.btnm_map);
 
 }
 
@@ -555,7 +555,7 @@ static uint8_t Stack_Pop(Stack_T* stack)
   if(stack->Top_Point == 0)
     {return -1;}
 
-    stack->Data[stack->Top_Point--] = NULL;
+    stack->Data[stack->Top_Point--] = '0';
     return 0;
 }
 

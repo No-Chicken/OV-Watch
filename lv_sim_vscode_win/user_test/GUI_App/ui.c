@@ -2,7 +2,7 @@
 
 #include "ui.h"
 #include "ui_helpers.h"
-#include "./screens/Inc/ui_HomePage.h"
+#include "./Screens/Inc/ui_HomePage.h"
 #include "../Func/Inc/pubsub.h"
 
 ///////////////////// TEST LVGL SETTINGS ////////////////////
