@@ -22,6 +22,8 @@
 
 This is A powerful Smart Watch.
 
+my website for tech details：https://no-chicken.com
+
 If you find the hardware of this watch difficult to solder or replicate, if hard to make, and you want to focus on learning coding or LVGL UI instead, you can try a new STM32F411 development board：
 
 FriPi STM32F411 dev-kit：https://github.com/No-Chicken/FryPi

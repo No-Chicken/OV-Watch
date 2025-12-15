@@ -23,7 +23,7 @@
 
 A powerful Smart Watch
 
-说明手册看这里：https://no-chicken.xyz
+说明手册看这里：https://no-chicken.com
 
 如果你觉得这个手表的硬件难焊接难复刻，又想进行代码的学习，可以试一下新的STM32F411开发板：
 
