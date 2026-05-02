@@ -25,6 +25,7 @@ uint8_t ui_TimerPage_min=0;
 uint8_t ui_TimerPage_sec=0;
 uint8_t ui_TimerPage_10ms=0;
 uint8_t ui_TimerPage_ms=0;
+uint32_t ui_TimerPage_elapsed_ms=0;
 
 ///////////////////// ANIMATIONS ////////////////////
 
@@ -37,12 +38,19 @@ static void ui_TimerPage_Data_init(void)
     ui_TimerPage_sec=0;
 	ui_TimerPage_10ms=0;
     ui_TimerPage_ms=0;
+    ui_TimerPage_elapsed_ms=0;
 }
 
 /////////////////////// Timer //////////////////////
 static void LabelRefresh_timer(lv_timer_t * timer)
 {
+    uint32_t elapsed = ui_TimerPage_elapsed_ms;
     uint8_t strbuf[2];
+
+    ui_TimerPage_min = (elapsed / 60000U) % 60U;
+    ui_TimerPage_sec = (elapsed / 1000U) % 60U;
+    ui_TimerPage_10ms = (elapsed / 10U) % 100U;
+    ui_TimerPage_ms = elapsed % 10U;
 
     sprintf(strbuf,"%02d",ui_TimerPage_min);
     lv_label_set_text(ui_TimerMinLabel, strbuf);
@@ -88,6 +96,7 @@ static void ui_event_TimerReBtn(lv_event_t * e)
         lv_label_set_text(ui_TimerMinLabel, "00");
         lv_label_set_text(ui_TimerSecLabel, "00");
         lv_label_set_text(ui_TimerMilSecLabel, "00");
+        ui_TimerPage_elapsed_ms = 0;
         ui_TimerPage_min = 0;
         ui_TimerPage_sec = 0;
 		ui_TimerPage_10ms = 0;

@@ -5,6 +5,7 @@
 #include "ui.h"
 #include "ui_HomePage.h"
 #include "ui_OffTimePage.h"
+#include "ui_TimerPage.h"
 
 #include "main.h"
 #include "stm32f4xx_it.h"
@@ -166,6 +167,18 @@ void StopEnterTask(void *argument)
 
 void IdleTimerCallback(void *argument)
 {
+	// Keep timer page awake: pause idle accumulation and wake backlight once if needed.
+	if(ui_TimerPageFlag)
+	{
+		if(IdleTimerCount != 0)
+		{
+			uint8_t IdleBreakstr = 0;
+			IdleTimerCount = 0;
+			osMessageQueuePut(IdleBreak_MessageQueue, &IdleBreakstr, 0, 0);
+		}
+		return;
+	}
+
 	IdleTimerCount+=1;
 	//make sure the LightOffTime<TurnOffTime
 	if(IdleTimerCount == (ui_LTimeValue*10))

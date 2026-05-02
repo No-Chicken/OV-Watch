@@ -212,28 +212,7 @@ void TaskTickHook(void)
 	//to increase the timerpage's timer(put in here is to ensure the Real Time)
 	if(ui_TimerPageFlag)
 	{
-			ui_TimerPage_ms+=1;
-			if(ui_TimerPage_ms>=10)
-			{
-				ui_TimerPage_ms=0;
-				ui_TimerPage_10ms+=1;
-			}
-			if(ui_TimerPage_10ms>=100)
-			{
-					ui_TimerPage_10ms=0;
-					ui_TimerPage_sec+=1;
-					uint8_t IdleBreakstr = 0;
-					osMessageQueuePut(IdleBreak_MessageQueue, &IdleBreakstr, 0, 0);
-			}
-			if(ui_TimerPage_sec>=60)
-			{
-					ui_TimerPage_sec=0;
-					ui_TimerPage_min+=1;
-			}
-			if(ui_TimerPage_min>=60)
-			{
-					ui_TimerPage_min=0;
-			}
+    ui_TimerPage_elapsed_ms += 1;
 	}
 	user_HR_timecount+=1;
 }

@@ -10,10 +10,7 @@ extern "C" {
 extern lv_obj_t * ui_TimerPage;
 
 extern uint8_t ui_TimerPageFlag;
-extern uint8_t ui_TimerPage_min;
-extern uint8_t ui_TimerPage_sec;
-extern uint8_t ui_TimerPage_10ms;
-extern uint8_t ui_TimerPage_ms;
+extern uint32_t ui_TimerPage_elapsed_ms;
 
 extern Page_t Page_Timer;
 
