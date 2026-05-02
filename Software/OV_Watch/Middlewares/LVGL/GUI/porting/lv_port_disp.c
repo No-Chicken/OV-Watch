@@ -14,6 +14,7 @@
 
 #include "lcd.h"
 #include "lcd_init.h"
+#include "spi.h"
 
 /*********************
  *      DEFINES
@@ -35,6 +36,8 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 /**********************
  *  STATIC VARIABLES
  **********************/
+static lv_disp_drv_t * s_pending_disp_drv = NULL;
+static lv_disp_drv_t * g_current_disp_drv = NULL;
 
 /**********************
  *      MACROS
@@ -76,7 +79,7 @@ void lv_port_disp_init(void)
      *      This way LVGL will always provide the whole rendered screen in `flush_cb`
      *      and you only need to change the frame buffer's address.
      */
-	 
+
 	static lv_disp_drv_t disp_drv;                         /*Descriptor of a display driver*/
     lv_disp_drv_init(&disp_drv);                    /*Basic initialization*/
 
@@ -137,10 +140,21 @@ void lv_port_disp_init(void)
  *   STATIC FUNCTIONS
  **********************/
 
+void lcd_flush_ready_callback(void)
+{
+    if (g_current_disp_drv != NULL)
+    {
+        lv_disp_flush_ready(g_current_disp_drv);
+        g_current_disp_drv = NULL;
+        s_pending_disp_drv = NULL;
+    }
+}
+
 /*Initialize your display and the required peripherals.*/
 static void disp_init(void)
 {
     /*You code here*/
+    LCD_Set_Flush_Complete_Callback(lcd_flush_ready_callback);
 }
 
 /*Flush the content of the internal buffer the specific area on the display
@@ -148,14 +162,17 @@ static void disp_init(void)
  *'lv_disp_flush_ready()' has to be called when finished.*/
 static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_color_t * color_p)
 {
-    /*The most simple case (but also the slowest) to put all pixels to the screen one-by-one*/
+    if (g_current_disp_drv != NULL)
+    {
+        LCD_Color_Fill(area->x1, area->y1, area->x2, area->y2, (u16 *)color_p);
+        return;
+    }
 
-    LCD_Color_Fill(area->x1,area->y1,area->x2,area->y2,(u16*)color_p);
-	
-    /*IMPORTANT!!!
-     *Inform the graphics library that you are ready with the flushing*/
-    lv_disp_flush_ready(disp_drv);
+    g_current_disp_drv = disp_drv;
+    s_pending_disp_drv = disp_drv;
+    LCD_Color_Fill(area->x1, area->y1, area->x2, area->y2, (u16 *)color_p);
 }
+
 
 /*OPTIONAL: GPU INTERFACE*/
 

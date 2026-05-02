@@ -8,6 +8,8 @@
 #define OFFSET_Y 20
 
 extern osSemaphoreId_t DMA_SemaphoreHandle;
+static LCD_CallbackFunc_t lcd_ready_cb = NULL;
+
 /******************************************************************************
       函数说明：在指定区域填充颜色
       入口数据：xsta,ysta   起始坐标
@@ -46,7 +48,26 @@ void LCD_Color_Fill(u16 xsta,u16 ysta,u16 xend,u16 yend,u16 *color_p)
 	LCD_Address_Set(xsta,ysta+OFFSET_Y,xend,yend+OFFSET_Y);
 
 	HAL_SPI_Transmit_DMA(&hspi1,(uint8_t*)color_p,byte_count);
-	while(__HAL_DMA_GET_COUNTER(&hdma_spi1_tx)!=0);
+}
+
+// 设置通知的回调函数
+void LCD_Set_Flush_Complete_Callback(LCD_CallbackFunc_t cb)
+{
+	lcd_ready_cb = cb;
+}
+
+// DMA 传输完成中断回调
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+	if (hspi->Instance == SPI1)
+	{
+		// 确保最后一位数据离开 STM32 的移位寄存器
+		while (hspi->Instance->SR & SPI_FLAG_BSY);
+		if (lcd_ready_cb)
+		{
+			lcd_ready_cb();
+		}
+	}
 }
 
 /******************************************************************************
