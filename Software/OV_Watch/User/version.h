@@ -17,12 +17,12 @@ extern "C" {
  */
 #define VERSION_MAJOR 2
 #define VERSION_MINOR 4
-#define VERSION_PATCH 4
-#define VERSION_INFO ""
+#define VERSION_PATCH 5
+#define VERSION_INFO "LCD flush use synchronous DMA, fixed some bugs."
 
 /**
  * No-Chicken的意思是no spring chicken any more...
- * 
+ *
  */
 #define VERSION_AUTHOR_ENG_NAME    "No-Chicken"
 #define VERSION_AUTHOR_CN_NAME     "不吃油炸鸡"
