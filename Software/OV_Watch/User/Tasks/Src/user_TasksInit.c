@@ -233,8 +233,10 @@ void LvHandlerTask(void *argument)
 			//Idle time break, set to 0
 			osMessageQueuePut(IdleBreak_MessageQueue, &IdleBreakstr, 0, 0);
 		}
-		lv_task_handler();
-    osDelay(1);
+    uint32_t wait = lv_task_handler();
+    if(wait < 1U) wait = 1U;
+    if(wait > 30U) wait = 30U;
+    osDelay(wait);
 	}
 }
 
