@@ -152,7 +152,7 @@ void StopEnterTask(void *argument)
 			}
 
 			//
-			if(!KEY1 || KEY2 || HardInt_Charg_flag || Wrist_Flag)
+			if(!KEY1 || KEY2 || ChargeCheck() || Wrist_Flag)
 			{
 				Wrist_Flag = 0;
 				//resume, go on
@@ -172,7 +172,7 @@ void StopEnterTask(void *argument)
 			CST816_Wakeup();
 			//check if is Charging
 			if(ChargeCheck())
-			{HardInt_Charg_flag = 1;}
+			{osEventFlagsSet(HardIntEventHandle, HARDINT_EVENT_CHARG);}
 			//send the Home Updata message
 			osMessageQueuePut(HomeUpdata_MessageQueue, &HomeUpdataStr, 0, 1);
 

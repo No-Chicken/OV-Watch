@@ -26,11 +26,11 @@ void ChargPageEnterTask(void *argument)
 {
 	while(1)
 	{
-		// 硬件中断发生
-		if(HardInt_Charg_flag)
+		uint32_t hardint_flags = osEventFlagsWait(HardIntEventHandle, HARDINT_EVENT_CHARG, osFlagsWaitAny, osWaitForever);
+		if((hardint_flags & HARDINT_EVENT_CHARG) != 0U)
 		{
-			IdleTimerCount = 0;
-			HardInt_Charg_flag = 0;
+			uint8_t IdleBreakstr = 0;
+			osMessageQueuePut(IdleBreak_MessageQueue,&IdleBreakstr,NULL,1);
 			if((ChargeCheck()) && (Page_Get_NowPage()->page_obj != &ui_ChargPage))
 			{
 				Page_Load(&Page_Charg);
@@ -40,7 +40,6 @@ void ChargPageEnterTask(void *argument)
 				Page_Back();
 			}
 		}
-		osDelay(500);
 	}
 }
 

@@ -24,6 +24,7 @@
 /* USER CODE BEGIN Includes */
 #include "key.h"
 #include "power.h"
+#include "user_TasksInit.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -66,9 +67,6 @@ extern TIM_HandleTypeDef htim1;
 
 /* USER CODE BEGIN EV */
 uint8_t HardInt_receive_str[25];
-uint8_t HardInt_uart_flag=0;
-uint8_t HardInt_mpu_flag=0;
-uint8_t HardInt_Charg_flag=0;
 
 /* USER CODE END EV */
 
@@ -217,7 +215,10 @@ void USART1_IRQHandler(void)
   /* USER CODE BEGIN USART1_IRQn 0 */
   if(__HAL_UART_GET_FLAG(&huart1,UART_FLAG_IDLE)!=RESET)
   {
-    HardInt_uart_flag = 1;
+    if(HardIntEventHandle != NULL)
+    {
+      osEventFlagsSet(HardIntEventHandle, HARDINT_EVENT_UART);
+    }
     __HAL_UART_CLEAR_FLAG(&huart1,UART_FLAG_IDLE);
     HAL_UART_DMAStop(&huart1);
     HAL_UART_Receive_DMA(&huart1, HardInt_receive_str, 25);
@@ -275,8 +276,10 @@ void DMA2_Stream7_IRQHandler(void)
 
 void EXTI2_IRQHandler(void)
 {
-
-  HardInt_Charg_flag = 1;
+  if(HardIntEventHandle != NULL)
+  {
+    osEventFlagsSet(HardIntEventHandle, HARDINT_EVENT_CHARG);
+  }
 
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_2);
 
@@ -289,7 +292,7 @@ void EXTI4_IRQHandler(void)
 {
 
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_4);
-  
+
 }
 
 
@@ -298,7 +301,7 @@ void EXTI4_IRQHandler(void)
   */
 void EXTI9_5_IRQHandler(void)
 {
-  
+
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_5);
 
 }
@@ -308,7 +311,10 @@ void EXTI9_5_IRQHandler(void)
   */
 void EXTI15_10_IRQHandler(void)
 {
-  HardInt_mpu_flag = 1;
+  if(HardIntEventHandle != NULL)
+  {
+    osEventFlagsSet(HardIntEventHandle, HARDINT_EVENT_MPU);
+  }
   HAL_GPIO_EXTI_IRQHandler(GPIO_PIN_12);
 
 }

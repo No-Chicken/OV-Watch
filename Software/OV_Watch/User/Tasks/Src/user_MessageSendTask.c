@@ -86,9 +86,9 @@ void MessageSendTask(void *argument)
 {
 	while(1)
 	{
-		if(HardInt_uart_flag)
+		uint32_t hardint_flags = osEventFlagsWait(HardIntEventHandle, HARDINT_EVENT_UART, osFlagsWaitAny, osWaitForever);
+		if((hardint_flags & HARDINT_EVENT_UART) != 0U)
 		{
-			HardInt_uart_flag = 0;
 			uint8_t IdleBreakstr = 0;
 			osMessageQueuePut(IdleBreak_MessageQueue,&IdleBreakstr,NULL,1);
 			printf("RecStr:%s\r\n",HardInt_receive_str);
@@ -131,7 +131,6 @@ void MessageSendTask(void *argument)
 			}
 			memset(HardInt_receive_str,0,sizeof(HardInt_receive_str));
 		}
-		osDelay(1000);
 	}
 }
 

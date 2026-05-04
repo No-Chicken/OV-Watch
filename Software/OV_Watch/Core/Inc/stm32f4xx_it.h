@@ -43,9 +43,6 @@
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
 extern uint8_t HardInt_receive_str[25];
-extern uint8_t HardInt_uart_flag;
-extern uint8_t HardInt_mpu_flag;
-extern uint8_t HardInt_Charg_flag;
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

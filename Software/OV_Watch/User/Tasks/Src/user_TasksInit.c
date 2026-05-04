@@ -142,6 +142,7 @@ osMessageQueueId_t Stop_MessageQueue;
 osMessageQueueId_t IdleBreak_MessageQueue;
 osMessageQueueId_t HomeUpdata_MessageQueue;
 osMessageQueueId_t DataSave_MessageQueue;
+osEventFlagsId_t HardIntEventHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 void LvHandlerTask(void *argument);
@@ -167,6 +168,7 @@ void User_Tasks_Init(void)
 	IdleBreak_MessageQueue = osMessageQueueNew(1, 1, NULL);
 	HomeUpdata_MessageQueue = osMessageQueueNew(1, 1, NULL);
 	DataSave_MessageQueue = osMessageQueueNew(2, 1, NULL);
+  HardIntEventHandle = osEventFlagsNew(NULL);
 
 	/* add threads, ... */
   HardwareInitTaskHandle  = osThreadNew(HardwareInitTask, NULL, &HardwareInitTask_attributes);
