@@ -23,7 +23,7 @@
 /* Private define ------------------------------------------------------------*/
 
 /* Private variables ---------------------------------------------------------*/
-uint16_t IdleTimerCount = 0;
+uint32_t IdleTimerCount = 0;
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -31,26 +31,44 @@ uint16_t IdleTimerCount = 0;
 
 /**
 	* @brief  Enter Idle state
-  * @param  argument: Not used
-  * @retval None
-  */
+	* @param  argument: Not used
+	* @retval None
+	*/
 void IdleEnterTask(void *argument)
 {
 	uint8_t Idlestr=0;
 	uint8_t IdleBreakstr=0;
+	uint8_t light_off_sent = 0;
 	while(1)
 	{
 		//light get dark
 		if(osMessageQueueGet(Idle_MessageQueue,&Idlestr,NULL,1)==osOK)
 		{
 			LCD_Set_Light(5);
+			light_off_sent = 1;
 		}
 		//resume light if light got dark and idle state breaked by key pressing or screen touching
 		if(osMessageQueueGet(IdleBreak_MessageQueue,&IdleBreakstr,NULL,1)==osOK)
 		{
 			IdleTimerCount = 0;
+			light_off_sent = 0;
 			LCD_Set_Light(ui_LightSliderValue);
 		}
+
+		if((!light_off_sent) && (IdleTimerCount >= ((uint32_t)ui_LTimeValue * 1000U)))
+		{
+			uint8_t IdleMsg = 0;
+			osMessageQueuePut(Idle_MessageQueue, &IdleMsg, 0, 0);
+		}
+
+		if(IdleTimerCount >= ((uint32_t)ui_TTimeValue * 1000U))
+		{
+			uint8_t Stopstr = 1;
+			IdleTimerCount = 0;
+			light_off_sent = 0;
+			osMessageQueuePut(Stop_MessageQueue, &Stopstr, 0, 0);
+		}
+
 		osDelay(10);
 	}
 }
@@ -164,37 +182,4 @@ void StopEnterTask(void *argument)
 		osDelay(100);
 	}
 }
-
-void IdleTimerCallback(void *argument)
-{
-	// Keep timer page awake: pause idle accumulation and wake backlight once if needed.
-	if(ui_TimerPageFlag)
-	{
-		if(IdleTimerCount != 0)
-		{
-			uint8_t IdleBreakstr = 0;
-			IdleTimerCount = 0;
-			osMessageQueuePut(IdleBreak_MessageQueue, &IdleBreakstr, 0, 0);
-		}
-		return;
-	}
-
-	IdleTimerCount+=1;
-	//make sure the LightOffTime<TurnOffTime
-	if(IdleTimerCount == (ui_LTimeValue*10))
-	{
-		uint8_t Idlestr=0;
-		//send the Light off message
-		osMessageQueuePut(Idle_MessageQueue, &Idlestr, 0, 1);
-
-	}
-	if(IdleTimerCount == (ui_TTimeValue*10))
-	{
-		uint8_t Stopstr = 1;
-		IdleTimerCount  = 0;
-		//send the Stop message
-		osMessageQueuePut(Stop_MessageQueue, &Stopstr, 0, 1);
-	}
-}
-
 

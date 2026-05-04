@@ -28,10 +28,6 @@
 /* Private variables ---------------------------------------------------------*/
 
 
-/* Timers --------------------------------------------------------------------*/
-osTimerId_t IdleTimerHandle;
-
-
 /* Tasks ---------------------------------------------------------------------*/
 // Hardwares initialization
 osThreadId_t HardwareInitTaskHandle;
@@ -164,9 +160,6 @@ void User_Tasks_Init(void)
 
   /* start timers, add new ones, ... */
 
-	IdleTimerHandle = osTimerNew(IdleTimerCallback, osTimerPeriodic, NULL, NULL);
-	osTimerStart(IdleTimerHandle,100);//100ms
-
   /* add queues, ... */
 	Key_MessageQueue  = osMessageQueueNew(1, 1, NULL);
 	Idle_MessageQueue = osMessageQueueNew(1, 1, NULL);
@@ -212,8 +205,13 @@ void TaskTickHook(void)
 	//to increase the timerpage's timer(put in here is to ensure the Real Time)
 	if(ui_TimerPageFlag)
 	{
+    IdleTimerCount = 0;
     ui_TimerPage_elapsed_ms += 1;
 	}
+  else
+  {
+    IdleTimerCount += 1;
+  }
 	user_HR_timecount+=1;
 }
 

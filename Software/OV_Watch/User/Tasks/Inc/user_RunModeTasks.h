@@ -9,9 +9,8 @@ extern "C" {
 
 void IdleEnterTask(void *argument);
 void StopEnterTask(void *argument);
-void IdleTimerCallback(void *argument);
 
-extern uint16_t IdleTimerCount;
+extern uint32_t IdleTimerCount;
 
 #ifdef __cplusplus
 }
