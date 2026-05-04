@@ -28,9 +28,9 @@ void Power_Pins_Init()
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   HAL_GPIO_Init(CHARGE_PORT, &GPIO_InitStruct);
 
-  HAL_NVIC_SetPriority(EXTI2_IRQn, 0, 0);
+  HAL_NVIC_SetPriority(EXTI2_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(EXTI2_IRQn);
-	
+
 }
 
 void Power_Enable()
@@ -83,10 +83,10 @@ uint8_t PowerCalculate()
 	uint8_t power;
 	float voltage;
 	voltage = BatCheck_8times();
-	
+
 	if(ChargeCheck())
 	{voltage -= INTERNAL_RES * CHARGING_CUR;}
-	
+
 	if((voltage >= 4.2))
 	{power = 100;}
 	else if(voltage >= 4.06 && voltage <4.2)

@@ -5,7 +5,7 @@
 
 #define CLK_ENABLE __HAL_RCC_GPIOB_CLK_ENABLE();
 
-iic_bus_t MPU_bus = 
+iic_bus_t MPU_bus =
 {
 	.IIC_SDA_PORT = GPIOB,
 	.IIC_SCL_PORT = GPIOB,
@@ -35,7 +35,7 @@ void MPU_INT_Pin_Init()
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
 
   /* EXTI interrupt init*/
-  HAL_NVIC_SetPriority(EXTI15_10_IRQn, 0, 0);
+	HAL_NVIC_SetPriority(EXTI15_10_IRQn, 5, 0);
   HAL_NVIC_EnableIRQ(EXTI15_10_IRQn);
 }
 
@@ -47,10 +47,10 @@ void MPU_INT_Pin_Init()
     @param  NULL
 */
 /**************************************************************************/
-void MPU_Motion_Init(void)			
+void MPU_Motion_Init(void)
 {
     MPU_Write_Byte(MPU_MOTION_DET_REG,0x01);    //set the acceleration threshold is (LSB*2)mg
-    MPU_Write_Byte(MPU_MOTION_DUR_REG,0x01);    //Acceleration detection time is ()ms 
+    MPU_Write_Byte(MPU_MOTION_DUR_REG,0x01);    //Acceleration detection time is ()ms
     MPU_Write_Byte(MPU_INTBP_CFG_REG,0X90);     //INT Pin active low level, reset until 50us
     MPU_Write_Byte(MPU_INT_EN_REG,0x40);       	//enable INT
 }
@@ -80,14 +80,14 @@ void MPU_Bus_Init(void)
 */
 /**************************************************************************/
 u8 MPU_Init(void)
-{ 
+{
 	u8 res;
-	
+
 	MPU_Bus_Init();
-	
+
 	MPU_Write_Byte(MPU_PWR_MGMT1_REG,0X80);	//复位MPU6050
   delay_ms(100);
-	MPU_Write_Byte(MPU_PWR_MGMT1_REG,0X00);	//唤醒MPU6050 
+	MPU_Write_Byte(MPU_PWR_MGMT1_REG,0X00);	//唤醒MPU6050
 	MPU_Set_Gyro_Fsr(3);										//G传感器, 2000dps
 	MPU_Set_Accel_Fsr(2);										//A传感器, 8g
 	MPU_Set_Rate(50);												//采样率50Hz
@@ -95,7 +95,7 @@ u8 MPU_Init(void)
 	MPU_Write_Byte(MPU_USER_CTRL_REG,0X00);	//IIC主模式关闭
 	MPU_Write_Byte(MPU_FIFO_EN_REG,0X00);		//dis FIFO
 	MPU_Write_Byte(MPU_INTBP_CFG_REG,0X80);	//INT active low
-	
+
 	res=MPU_Read_Byte(MPU_DEVICE_ID_REG);
 	if(res==MPU_ADDR)//ID
 	{
@@ -103,11 +103,11 @@ u8 MPU_Init(void)
 		MPU_Write_Byte(MPU_PWR_MGMT2_REG,0X87);	//enable accelerometer,disanable gyroscope,set the wake up frequence=20Hz
 		MPU_Set_Rate(50);												//采样率50Hz
  	}else return 1;
-	
+
 	MPU_Motion_Init();
 	MPU_INT_Pin_Init();
-	
-	
+
+
 	return 0;
 }
 
@@ -139,7 +139,7 @@ uint8_t MPU_Read_Status()
 /**************************************************************************/
 u8 MPU_Set_Gyro_Fsr(u8 fsr)
 {
-	return MPU_Write_Byte(MPU_GYRO_CFG_REG,fsr<<3); 
+	return MPU_Write_Byte(MPU_GYRO_CFG_REG,fsr<<3);
 }
 
 
@@ -175,7 +175,7 @@ u8 MPU_Set_LPF(u16 lpf)
 	else if(lpf>=42)data=3;
 	else if(lpf>=20)data=4;
 	else if(lpf>=10)data=5;
-	else data=6; 
+	else data=6;
 	return MPU_Write_Byte(MPU_CFG_REG,data);
 }
 
@@ -210,12 +210,12 @@ u8 MPU_Set_Rate(u16 rate)
 /**************************************************************************/
 short MPU_Get_Temperature(void)
 {
-    u8 buf[2]; 
+    u8 buf[2];
     short raw;
 		float temp;
-		MPU_Read_Len(MPU_ADDR,MPU_TEMP_OUTH_REG,2,buf); 
-    raw=((u16)buf[0]<<8)|buf[1];  
-    temp=36.53+((double)raw)/340;  
+		MPU_Read_Len(MPU_ADDR,MPU_TEMP_OUTH_REG,2,buf);
+    raw=((u16)buf[0]<<8)|buf[1];
+    temp=36.53+((double)raw)/340;
     return temp*100;;
 }
 
@@ -231,14 +231,14 @@ short MPU_Get_Temperature(void)
 /**************************************************************************/
 u8 MPU_Get_Gyroscope(short *gx,short *gy,short *gz)
 {
-    u8 buf[6],res;  
+    u8 buf[6],res;
 		res=MPU_Read_Len(MPU_ADDR,MPU_GYRO_XOUTH_REG,6,buf);
 		if(res==0)
 		{
-			*gx=((u16)buf[0]<<8)|buf[1];  
-			*gy=((u16)buf[2]<<8)|buf[3];  
+			*gx=((u16)buf[0]<<8)|buf[1];
+			*gy=((u16)buf[2]<<8)|buf[3];
 			*gz=((u16)buf[4]<<8)|buf[5];
-		} 	
+		}
     return res;;
 }
 
@@ -254,14 +254,14 @@ u8 MPU_Get_Gyroscope(short *gx,short *gy,short *gz)
 /**************************************************************************/
 u8 MPU_Get_Accelerometer(short *ax,short *ay,short *az)
 {
-    u8 buf[6],res;  
+    u8 buf[6],res;
 		res=MPU_Read_Len(MPU_ADDR,MPU_ACCEL_XOUTH_REG,6,buf);
 		if(res==0)
 		{
-			*ax=((u16)buf[0]<<8)|buf[1];  
-			*ay=((u16)buf[2]<<8)|buf[3];  
+			*ax=((u16)buf[0]<<8)|buf[1];
+			*ay=((u16)buf[2]<<8)|buf[3];
 			*az=((u16)buf[4]<<8)|buf[5];
-		} 	
+		}
     return res;;
 }
 
@@ -279,28 +279,28 @@ u8 MPU_Get_Accelerometer(short *ax,short *ay,short *az)
 /**************************************************************************/
 u8 MPU_Write_Len(u8 addr,u8 reg,u8 len,u8 *buf)
 {
-	u8 i; 
-  IICStart(&MPU_bus); 
+	u8 i;
+  IICStart(&MPU_bus);
 	IICSendByte(&MPU_bus,(addr<<1)|0);
-	if(IICWaitAck(&MPU_bus))	
+	if(IICWaitAck(&MPU_bus))
 	{
-		IICStop(&MPU_bus);		 
-		return 1;		
+		IICStop(&MPU_bus);
+		return 1;
 	}
-    IICSendByte(&MPU_bus,reg);	
-    IICWaitAck(&MPU_bus);		
+    IICSendByte(&MPU_bus,reg);
+    IICWaitAck(&MPU_bus);
 	for(i=0;i<len;i++)
 	{
-		IICSendByte(&MPU_bus,buf[i]);	
-		if(IICWaitAck(&MPU_bus))		
+		IICSendByte(&MPU_bus,buf[i]);
+		if(IICWaitAck(&MPU_bus))
 		{
-			IICStop(&MPU_bus);	 
-			return 1;		 
-		}		
-	}    
-    IICStop(&MPU_bus);	 
-	return 0;	
-} 
+			IICStop(&MPU_bus);
+			return 1;
+		}
+	}
+    IICStop(&MPU_bus);
+	return 0;
+}
 
 /**************************************************************************/
 /*
@@ -312,24 +312,24 @@ u8 MPU_Write_Len(u8 addr,u8 reg,u8 len,u8 *buf)
     @return 0 if success
 */
 /**************************************************************************/
-u8 MPU_Write_Byte(u8 reg,u8 data) 				 
-{ 
-  IICStart(&MPU_bus); 
+u8 MPU_Write_Byte(u8 reg,u8 data)
+{
+  IICStart(&MPU_bus);
 	IICSendByte(&MPU_bus, (MPU_ADDR<<1)|0);
-	if(IICWaitAck(&MPU_bus))	
+	if(IICWaitAck(&MPU_bus))
 	{
-		IICStop(&MPU_bus);		 
-		return 1;		
+		IICStop(&MPU_bus);
+		return 1;
 	}
-	IICSendByte(&MPU_bus,reg);	
-	IICWaitAck(&MPU_bus);		
+	IICSendByte(&MPU_bus,reg);
+	IICWaitAck(&MPU_bus);
 	IICSendByte(&MPU_bus,data);
-	if(IICWaitAck(&MPU_bus))	
+	if(IICWaitAck(&MPU_bus))
 	{
-		IICStop(&MPU_bus);	 
-		return 1;		 
-	}		 
-  IICStop(&MPU_bus);	 
+		IICStop(&MPU_bus);
+		return 1;
+	}
+  IICStop(&MPU_bus);
 	return 0;
 }
 
@@ -346,18 +346,18 @@ u8 MPU_Write_Byte(u8 reg,u8 data)
 u8 MPU_Read_Byte(u8 reg)
 {
 	u8 res;
-  IICStart(&MPU_bus); 
+  IICStart(&MPU_bus);
 	IICSendByte(&MPU_bus,(MPU_ADDR<<1)|0);
-	IICWaitAck(&MPU_bus);		
-  IICSendByte(&MPU_bus,reg);	
-  IICWaitAck(&MPU_bus);		
+	IICWaitAck(&MPU_bus);
+  IICSendByte(&MPU_bus,reg);
+  IICWaitAck(&MPU_bus);
   IICStart(&MPU_bus);
 	IICSendByte(&MPU_bus,(MPU_ADDR<<1)|1);
-  IICWaitAck(&MPU_bus);		
+  IICWaitAck(&MPU_bus);
 	res=IICReceiveByte(&MPU_bus);
 	IICSendNotAck(&MPU_bus);
-  IICStop(&MPU_bus);			
-	return res;		
+  IICStop(&MPU_bus);
+	return res;
 }
 
 
@@ -374,19 +374,19 @@ u8 MPU_Read_Byte(u8 reg)
 */
 /**************************************************************************/
 u8 MPU_Read_Len(u8 addr,u8 reg,u8 len,u8 *buf)
-{ 
- 	IICStart(&MPU_bus); 
+{
+ 	IICStart(&MPU_bus);
 	IICSendByte(&MPU_bus,(addr<<1)|0);
-	if(IICWaitAck(&MPU_bus))	
+	if(IICWaitAck(&MPU_bus))
 	{
-		IICStop(&MPU_bus);		 
-		return 1;		
+		IICStop(&MPU_bus);
+		return 1;
 	}
-    IICSendByte(&MPU_bus,reg);	
-    IICWaitAck(&MPU_bus);		
+    IICSendByte(&MPU_bus,reg);
+    IICWaitAck(&MPU_bus);
     IICStart(&MPU_bus);
 		IICSendByte(&MPU_bus,(addr<<1)|1);
-    IICWaitAck(&MPU_bus);		
+    IICWaitAck(&MPU_bus);
 		while(len)
 		{
 			if(len==1)
@@ -394,16 +394,16 @@ u8 MPU_Read_Len(u8 addr,u8 reg,u8 len,u8 *buf)
 				*buf=IICReceiveByte(&MPU_bus);
 				IICSendNotAck(&MPU_bus);
 			}
-			else 
+			else
 			{
-				*buf=IICReceiveByte(&MPU_bus);	
+				*buf=IICReceiveByte(&MPU_bus);
 				IICSendAck(&MPU_bus);
-			}				
+			}
 			len--;
-			buf++; 
-		}    
+			buf++;
+		}
     IICStop(&MPU_bus);
-		return 0;	
+		return 0;
 }
 
 uint8_t MPU_Write_Multi_Byte(uint8_t addr,uint8_t length,uint8_t buff[])
